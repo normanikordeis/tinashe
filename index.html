@@ -1202,17 +1202,59 @@ function closeNewsAlert() { document.getElementById('news-alert').classList.remo
 
 // MUSIC PLAYER DATA
 const PLAYLIST = [
-  { t:'Polo', era:'DETOUR', d:'3:05' },
-  { t:'Jeep', era:'DETOUR', d:'3:42' },
-  { t:'Freak It', era:'DETOUR', d:'2:58' },
-  { t:'I Like Ur Look', era:'DETOUR', d:'3:12' },
-  { t:'Need for Speed', era:'DETOUR', d:'2:45' },
-  { t:'Feed The Beast', era:'CLASSIC', d:'3:45' },
-  { t:'Alone (feat. Nicki Minaj)', era:'CLASSIC', d:'3:05' },
-  { t:'Heart to Break', era:'CLASSIC', d:'3:45' },
-  { t:'I Don\'t Want It At All', era:'CLASSIC', d:'3:14' },
-  { t:'Future Starts Now', era:'CLASSIC', d:'4:39' },
-  { t:'Clarity', era:'CLASSIC', d:'3:20' },
+  {
+    t: 'Polo',
+    yt: 'NuAU3sbzbBo',
+    url: 'https://www.youtube.com/watch?v=NuAU3sbzbBo'
+  },
+
+  {
+    t: 'Jeep',
+    yt: 'V_-rrLLkxas',
+    url: 'https://www.youtube.com/watch?v=V_-rrLLkxas'
+  },
+
+  {
+    t: 'Freak It',
+    yt: 'wl2ig2D61mc',
+    url: 'https://www.youtube.com/watch?v=wl2ig2D61mc'
+  },
+
+  {
+    t: 'I Like Ur Look',
+    yt: 'OcsT4gXPFu8',
+    url: 'https://www.youtube.com/watch?v=OcsT4gXPFu8'
+  },
+
+  {
+    t: 'Need for Speed',
+    yt: '6dKZ0xBWxNo',
+    url: 'https://www.youtube.com/watch?v=6dKZ0xBWxNo'
+  },
+
+  {
+    t: 'Pop Sound',
+    yt: 'ifOuca8eQ2g',
+    url: 'https://www.youtube.com/watch?v=ifOuca8eQ2g'
+  },
+
+  {
+    t: 'Mr. Producer feat. BC Kingdom',
+    yt: '6Yp9k9bWDes',
+    url: 'https://www.youtube.com/watch?v=6Yp9k9bWDes'
+  },
+
+  {
+    t: 'Cha Cha',
+    yt: '4J9b7m4R8vA',
+    url: 'https://www.youtube.com/watch?v=4J9b7m4R8vA'
+  },
+
+  {
+    t: 'Get Some feat. Cortisa Star',
+    yt: 'M7j6s7xL2mE',
+    url: 'https://www.youtube.com/watch?v=M7j6s7xL2mE'
+  }
 ];
 let cur = 0, playing = false, prog = 0, timer = null;
 const mpDisc = document.getElementById('mp-disc');
