@@ -1,1404 +1,1938 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>~*~ KiM PeTrAs DeTouR !!!! ~*~ MAY 29 2026 ~*~</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=VT323&family=Special+Elite&family=Permanent+Marker&display=swap" rel="stylesheet"/>
+
 <style>
-/* =============================================
-   Y2K / EARLY-WEB FAN SHRINE — KIM PETRAS DETOUR
-   Inspired by: MySpace, GeoCities, early 2000s fan pages,
-   tabloid gossip sites, pop star fansites circa 2003-2007
-   ============================================= */
-
-* { margin:0; padding:0; box-sizing:border-box; }
-
-:root {
-  --hot-pink: #ff1a8c;
-  --deep-pink: #cc0066;
-  --baby-pink: #ffb3d9;
-  --crimson: #cc0000;
-  --black: #0d0004;
-  --offwhite: #fff8f2;
-  --silver: #c8c8d0;
-  --gold: #d4af37;
-  --neon: #ff3399;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-html { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='4' cy='4' r='3' fill='%23ff1a8c'/%3E%3C/svg%3E") 4 4, auto; }
+:root{
+  --hot-pink:#ff1a8c;
+  --deep-pink:#cc0066;
+  --baby-pink:#ffb3d9;
+  --crimson:#cc0000;
+  --black:#0d0004;
+  --offwhite:#fff8f2;
+  --silver:#c8c8d0;
+  --gold:#d4af37;
+}
 
-body {
-  background-color: #0d0004;
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#0d0004;
+  color:var(--offwhite);
+  font-family:'Libre Baskerville',serif;
+  overflow-x:hidden;
+
   background-image:
-    repeating-linear-gradient(0deg, rgba(255,26,140,0.03) 0px, rgba(255,26,140,0.03) 1px, transparent 1px, transparent 4px),
-    repeating-linear-gradient(90deg, rgba(255,26,140,0.02) 0px, rgba(255,26,140,0.02) 1px, transparent 1px, transparent 60px);
-  color: var(--offwhite);
-  font-family: 'Libre Baskerville', Georgia, serif;
-  overflow-x: hidden;
-  min-height: 100vh;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #1a0008; }
-::-webkit-scrollbar-thumb { background: var(--hot-pink); }
-
-/* =============================================
-   LOADING SCREEN
-============================================= */
-#loader {
-  position: fixed; inset: 0; z-index: 9999;
-  background: #000;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 20px;
-  transition: opacity 0.6s, visibility 0.6s;
-}
-#loader.hide { opacity: 0; visibility: hidden; }
-.loader-ascii {
-  font-family: 'VT323', monospace;
-  font-size: clamp(14px, 3vw, 22px);
-  color: var(--hot-pink);
-  text-align: center;
-  line-height: 1.3;
-  text-shadow: 0 0 10px var(--hot-pink);
-  white-space: pre;
-  animation: loaderGlow 1s infinite alternate;
-}
-@keyframes loaderGlow { from{opacity:0.7} to{opacity:1; text-shadow:0 0 20px var(--hot-pink),0 0 40px #ff69b4} }
-.loader-bar-outer { width:260px; height:14px; border:2px solid var(--hot-pink); background:#000; }
-.loader-bar-inner { height:100%; width:0; background:linear-gradient(90deg,var(--crimson),var(--hot-pink),#ff69b4); animation: barFill 2.4s ease forwards; }
-@keyframes barFill { to{width:100%} }
-.loader-text { font-family:'VT323',monospace; font-size:16px; color:var(--silver); letter-spacing:3px; animation: blinkText 0.8s step-end infinite; }
-@keyframes blinkText { 0%,100%{opacity:1} 50%{opacity:0} }
-
-/* =============================================
-   TOP MARQUEE / BREAKING NEWS
-============================================= */
-.top-alert {
-  background: var(--crimson);
-  padding: 0;
-  border-bottom: 3px solid var(--hot-pink);
-  overflow: hidden;
-  white-space: nowrap;
-  position: sticky; top:0; z-index:1000;
-  display: flex; align-items: stretch;
-}
-.alert-tag {
-  background: var(--black);
-  padding: 6px 14px;
-  font-family: 'Oswald', sans-serif;
-  font-size: 13px;
-  letter-spacing: 3px;
-  font-weight:700;
-  color: var(--hot-pink);
-  border-right: 3px solid var(--hot-pink);
-  flex-shrink: 0;
-  display:flex; align-items:center;
-  animation: tagFlash 0.6s infinite alternate;
-}
-@keyframes tagFlash { from{background:var(--black)} to{background:#1a0000} }
-.alert-scroll {
-  display:inline-block;
-  animation: scrollLeft 28s linear infinite;
-  font-family: 'Oswald', sans-serif;
-  font-size: 13px;
-  font-weight:400;
-  letter-spacing: 2px;
-  padding: 6px 0;
-  color: #fff;
-  white-space: nowrap;
-}
-.alert-scroll .hl { color: var(--baby-pink); font-weight:700; }
-@keyframes scrollLeft { from{transform:translateX(100vw)} to{transform:translateX(-100%)} }
-
-/* =============================================
-   MAIN LAYOUT — 3-COLUMN TABLE-STYLE
-============================================= */
-#page-wrap {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 8px;
-}
-
-/* =============================================
-   HEADER / MASTHEAD
-============================================= */
-#masthead {
-  text-align: center;
-  padding: 20px 10px 10px;
-  position: relative;
-  border-bottom: 2px solid var(--hot-pink);
-  background: linear-gradient(180deg, rgba(204,0,102,0.15) 0%, transparent 100%);
-  overflow: hidden;
-}
-#masthead::before {
-  content: '';
-  position: absolute; inset:0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1.5' fill='rgba(255,26,140,0.15)'/%3E%3C/svg%3E");
-  pointer-events:none;
-}
-
-.site-name-top {
-  font-family: 'Permanent Marker', cursive;
-  font-size: clamp(13px,2.5vw,18px);
-  color: var(--baby-pink);
-  letter-spacing: 2px;
-  margin-bottom: 4px;
-  animation: shimmer 3s ease-in-out infinite alternate;
-}
-@keyframes shimmer { from{color:var(--baby-pink)} to{color:#fff} }
-
-.main-logo-wrap {
-  position: relative;
-  display: inline-block;
-  margin: 6px auto;
-}
-.main-logo {
-  font-family: 'Oswald', sans-serif;
-  font-weight: 700;
-  font-size: clamp(64px, 16vw, 160px);
-  letter-spacing: 0.02em;
-  line-height: 0.9;
-  color: transparent;
-  -webkit-text-stroke: 2px var(--hot-pink);
-  text-shadow:
-    3px 3px 0 var(--crimson),
-    6px 6px 0 rgba(204,0,102,0.5),
-    0 0 60px rgba(255,26,140,0.4);
-  display: block;
-  animation: logoWobble 6s ease-in-out infinite alternate;
-  cursor: pointer;
-  user-select: none;
-}
-@keyframes logoWobble {
-  0%{transform:skewX(0) scale(1)}
-  30%{transform:skewX(-0.5deg) scale(1.01)}
-  70%{transform:skewX(0.5deg) scale(1.005)}
-  100%{transform:skewX(0) scale(1)}
-}
-.logo-shadow-txt {
-  position:absolute; top:4px; left:4px; right:0;
-  font-family: 'Oswald', sans-serif;
-  font-weight: 700;
-  font-size: clamp(64px, 16vw, 160px);
-  letter-spacing: 0.02em;
-  line-height: 0.9;
-  color: rgba(204,0,0,0.25);
-  pointer-events:none;
-  z-index:-1;
-}
-
-.artist-sub {
-  font-family: 'Special Elite', serif;
-  font-size: clamp(14px,3vw,22px);
-  color: var(--silver);
-  letter-spacing: 6px;
-  margin-top: 4px;
-  text-transform: uppercase;
-}
-.release-date-badge {
-  display: inline-block;
-  margin-top: 8px;
-  background: var(--hot-pink);
-  color: #fff;
-  font-family: 'Oswald', sans-serif;
-  font-size: 15px;
-  font-weight:700;
-  letter-spacing: 4px;
-  padding: 4px 20px;
-  clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
-  animation: badgePulse 1.5s ease-in-out infinite alternate;
-}
-@keyframes badgePulse { from{box-shadow:0 0 0 rgba(255,26,140,0)} to{box-shadow:0 0 20px rgba(255,26,140,0.8)} }
-
-.star-row {
-  font-size: 18px;
-  color: var(--hot-pink);
-  margin: 8px 0 0;
-  animation: starSpin 4s linear infinite;
-  display: inline-block;
-}
-@keyframes starSpin { from{letter-spacing:4px} to{letter-spacing:10px} }
-
-/* =============================================
-   3-COLUMN LAYOUT
-============================================= */
-.columns {
-  display: grid;
-  grid-template-columns: 200px 1fr 200px;
-  gap: 12px;
-  padding: 12px 0;
-  align-items: start;
-}
-@media(max-width:700px) {
-  .columns { grid-template-columns: 1fr; }
-  .col-left, .col-right { display:none; }
-}
-
-/* =============================================
-   SIDEBAR BOXES
-============================================= */
-.sidebar-box {
-  border: 2px solid var(--hot-pink);
-  background: rgba(0,0,0,0.7);
-  margin-bottom: 10px;
-  overflow: hidden;
-}
-.sidebar-box-title {
-  background: var(--hot-pink);
-  color: #fff;
-  font-family: 'Oswald', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  padding: 4px 8px;
-  text-transform: uppercase;
-}
-.sidebar-box-body { padding: 8px; font-size: 12px; }
-.sidebar-box-body p { color: var(--silver); line-height: 1.5; margin-bottom: 6px; font-size:11px; }
-.sidebar-box-body a {
-  color: var(--baby-pink);
-  text-decoration: none;
-  font-size: 11px;
-  display: block;
-  padding: 2px 0;
-  border-bottom: 1px dotted rgba(255,26,140,0.3);
-  transition: color 0.2s;
-}
-.sidebar-box-body a:hover { color: #fff; text-decoration: underline; }
-.sidebar-box-body a::before { content: '► '; color: var(--hot-pink); font-size:9px; }
-
-/* Hit counter */
-.hit-counter {
-  font-family: 'VT323', monospace;
-  font-size: 22px;
-  color: #00ff66;
-  background: #000;
-  border: 1px solid #00ff66;
-  padding: 2px 8px;
-  display: inline-block;
-  letter-spacing: 4px;
-  text-shadow: 0 0 8px #00ff66;
-}
-.counter-label { font-size:10px; color: var(--silver); margin-top:3px; font-family: 'Oswald', sans-serif; letter-spacing:2px; }
-
-/* Online now */
-.online-lamp {
-  display: inline-block;
-  width: 8px; height: 8px;
-  background: #00ff66;
-  border-radius: 50%;
-  box-shadow: 0 0 6px #00ff66;
-  animation: lampBlink 1.2s ease-in-out infinite;
-  margin-right: 5px;
-}
-@keyframes lampBlink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-.glitter {
-  display:inline-block;
-  animation: glitterSpin 2s linear infinite;
-  color: var(--hot-pink);
-}
-@keyframes glitterSpin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
-
-/* =============================================
-   MAIN CONTENT COLUMN
-============================================= */
-.col-main { min-width:0; }
-
-.section-head {
-  background: linear-gradient(90deg, var(--crimson), var(--hot-pink), var(--crimson));
-  padding: 5px 10px;
-  font-family: 'Oswald', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #fff;
-  border-left: 4px solid #fff;
-  margin-bottom: 8px;
-  position: relative;
-  overflow: hidden;
-}
-.section-head::after {
-  content: '✦ ✦ ✦';
-  position: absolute; right: 10px; top: 50%;
-  transform: translateY(-50%);
-  font-size: 10px;
-  color: rgba(255,255,255,0.5);
-}
-
-/* =============================================
-   BREAKING NEWS HERO BOX
-============================================= */
-.breaking-hero {
-  border: 3px solid var(--crimson);
-  background: rgba(0,0,0,0.85);
-  padding: 0;
-  margin-bottom: 12px;
-  position: relative;
-  overflow: hidden;
-}
-.breaking-hero::before {
-  content: '';
-  position: absolute; inset:0;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent 0px, transparent 10px,
-    rgba(255,26,140,0.02) 10px, rgba(255,26,140,0.02) 11px
+  repeating-linear-gradient(
+    0deg,
+    rgba(255,26,140,.03) 0px,
+    rgba(255,26,140,.03) 1px,
+    transparent 1px,
+    transparent 4px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    rgba(255,26,140,.02) 0px,
+    rgba(255,26,140,.02) 1px,
+    transparent 1px,
+    transparent 60px
   );
+}
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-track{
+  background:#1a0008;
+}
+
+::-webkit-scrollbar-thumb{
+  background:var(--hot-pink);
+}
+
+/* =========================================
+   LOADER
+========================================= */
+
+#loader{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+
+  background:
+  radial-gradient(circle at center,#1a0010 0%,#000 80%);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  gap:24px;
+
+  transition:
+  opacity .8s ease,
+  visibility .8s ease;
+}
+
+#loader.hide{
+  opacity:0;
+  visibility:hidden;
   pointer-events:none;
 }
-.bh-top {
-  background: var(--crimson);
-  padding: 5px 12px;
-  display: flex; align-items: center; gap: 10px;
-  border-bottom: 2px solid var(--hot-pink);
-}
-.bh-breaking {
-  font-family: 'Oswald', sans-serif;
-  font-size: 11px;
-  font-weight:700;
-  letter-spacing:4px;
-  color:#fff;
-  background:var(--black);
-  padding: 1px 8px;
-  animation: blink 0.7s step-end infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-.bh-date { font-family:'VT323',monospace; font-size:14px; color:rgba(255,255,255,0.6); }
 
-.bh-body { padding: 16px; }
-.bh-headline {
-  font-family: 'Oswald', sans-serif;
-  font-size: clamp(22px, 5vw, 42px);
-  font-weight: 700;
-  line-height: 1.05;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  margin-bottom: 6px;
-}
-.bh-headline span { color: var(--hot-pink); }
-.bh-subline {
-  font-family: 'Special Elite', serif;
-  font-size: clamp(13px,2.5vw,17px);
-  color: var(--baby-pink);
-  margin-bottom: 12px;
-  font-style: italic;
-  line-height: 1.4;
-}
-.bh-body-text {
-  font-size: 13px;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.7;
-  border-top: 1px solid rgba(255,26,140,0.2);
-  padding-top: 10px;
-  column-count: 2;
-  column-gap: 20px;
-}
-@media(max-width:500px){ .bh-body-text{column-count:1} }
-.bh-pull {
-  font-family: 'Permanent Marker', cursive;
-  font-size: clamp(16px,3vw,22px);
-  color: var(--hot-pink);
-  border-left: 4px solid var(--hot-pink);
-  padding: 6px 10px;
-  margin: 10px 0;
-  line-height: 1.3;
-  column-span: all;
+.vault-gif{
+  width:min(520px,88vw);
+
+  border:3px solid var(--hot-pink);
+
+  box-shadow:
+  0 0 30px rgba(255,26,140,.5),
+  0 0 80px rgba(255,26,140,.2);
 }
 
-/* =============================================
-   PHOTO GALLERY — REAL YOUTUBE EMBED STYLE
-============================================= */
-.videos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-  gap: 10px;
-  margin-bottom: 12px;
-}
-.video-card {
-  border: 2px solid var(--hot-pink);
-  background: #000;
-  position: relative;
-  overflow: hidden;
-}
-.video-card-inner {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-}
-.video-card-inner iframe {
-  position: absolute; top:0; left:0;
-  width:100%; height:100%;
-  border:none;
-}
-.video-card-label {
-  background: var(--hot-pink);
-  padding: 4px 8px;
-  font-family: 'Oswald', sans-serif;
-  font-size: 12px;
-  font-weight:700;
-  letter-spacing:2px;
-  color:#fff;
-  display:flex; align-items:center; gap:6px;
-}
-.video-card-label .era-tag {
-  background: rgba(0,0,0,0.5);
-  font-size:9px;
-  padding:1px 5px;
-  letter-spacing:2px;
-  border:1px solid rgba(255,255,255,0.3);
-}
-.video-card-sub {
-  padding: 5px 8px;
-  font-family: 'Special Elite', serif;
-  font-size: 11px;
-  color: var(--silver);
-  font-style: italic;
-}
-
-/* =============================================
-   SINGLES TRACKER TABLE
-============================================= */
-.singles-table {
-  width:100%;
-  border-collapse: collapse;
-  font-size: 12px;
-  margin-bottom: 12px;
-}
-.singles-table th {
-  background: var(--hot-pink);
-  color: #fff;
-  font-family: 'Oswald', sans-serif;
-  font-size: 11px;
-  font-weight:700;
-  letter-spacing:2px;
-  padding: 5px 8px;
-  text-align:left;
-  text-transform: uppercase;
-}
-.singles-table td {
-  padding: 5px 8px;
-  border-bottom: 1px solid rgba(255,26,140,0.15);
-  color: var(--offwhite);
-  vertical-align: middle;
-}
-.singles-table tr:nth-child(even) td { background: rgba(255,26,140,0.04); }
-.singles-table tr:hover td { background: rgba(255,26,140,0.1); }
-.single-num { font-family:'VT323',monospace; color:var(--baby-pink); font-size:16px; }
-.single-name { font-family:'Oswald',sans-serif; font-weight:400; }
-.single-date { color:var(--silver); font-size:11px; }
-.single-link a {
-  color: var(--hot-pink);
-  text-decoration:none;
+.loader-title{
   font-family:'Oswald',sans-serif;
-  font-size:11px;
-  border:1px solid var(--hot-pink);
-  padding: 1px 6px;
-  display:inline-block;
-  transition: all 0.15s;
-}
-.single-link a:hover { background:var(--hot-pink); color:#fff; }
+  font-size:clamp(22px,5vw,48px);
+  color:var(--hot-pink);
+  letter-spacing:6px;
 
-/* =============================================
-   COUNTDOWN BOXES
-============================================= */
-.countdowns-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-@media(max-width:480px){ .countdowns-row{grid-template-columns:1fr} }
+  text-shadow:
+  0 0 12px var(--hot-pink),
+  0 0 40px rgba(255,26,140,.5);
 
-.cd-box {
-  border: 2px solid var(--hot-pink);
-  background: rgba(0,0,0,0.8);
-  overflow: hidden;
+  animation:loaderPulse 1.2s infinite alternate;
 }
-.cd-box.mystery {
-  border-color: var(--silver);
-  background: rgba(0,0,0,0.9);
+
+@keyframes loaderPulse{
+  from{
+    transform:scale(1);
+    opacity:.7;
+  }
+  to{
+    transform:scale(1.04);
+    opacity:1;
+  }
 }
-.cd-head {
-  background: var(--hot-pink);
-  padding: 5px 8px;
-  font-family: 'Oswald', sans-serif;
-  font-size: 11px;
-  font-weight:700;
-  letter-spacing:3px;
-  color:#fff;
-  text-transform:uppercase;
+
+.loader-bar-outer{
+  width:min(340px,80vw);
+  height:16px;
+  border:2px solid var(--hot-pink);
+  background:#050005;
+  overflow:hidden;
 }
-.cd-box.mystery .cd-head { background: rgba(200,200,210,0.15); color: var(--silver); border-bottom:1px solid rgba(200,200,210,0.2); }
-.cd-inner { padding: 10px 8px; text-align:center; }
-.cd-sub { font-family:'Special Elite',serif; font-size:11px; color:var(--silver); font-style:italic; margin-bottom:8px; }
-.cd-nums {
-  display: flex; justify-content:center; gap:4px; align-items:flex-start;
-  flex-wrap: wrap;
+
+.loader-bar-inner{
+  height:100%;
+  width:0%;
+
+  background:
+  linear-gradient(
+    90deg,
+    #ff0055,
+    #ff1a8c,
+    #ff66cc
+  );
+
+  animation:loadBar 3s ease forwards;
 }
-.cd-unit { text-align:center; }
-.cd-num {
+
+@keyframes loadBar{
+  to{
+    width:100%;
+  }
+}
+
+.loader-text{
   font-family:'VT323',monospace;
-  font-size: clamp(36px, 8vw, 54px);
-  color: var(--hot-pink);
-  line-height:1;
-  display:block;
-  text-shadow: 0 0 15px var(--hot-pink);
-  transition: transform 0.1s, color 0.1s;
-}
-.cd-box.mystery .cd-num { color: var(--silver); text-shadow: 0 0 10px var(--silver); }
-.cd-num.tick { transform:scale(1.12); color:#fff !important; }
-.cd-lbl { font-family:'Oswald',sans-serif; font-size:9px; letter-spacing:2px; color:rgba(255,255,255,0.35); text-transform:uppercase; }
-.cd-colon { font-family:'VT323',monospace; font-size:48px; color:rgba(255,26,140,0.4); line-height:1; padding-top:2px; }
-.cd-box.mystery .cd-colon { color:rgba(200,200,210,0.3); }
-.mystery-note { font-family:'Special Elite',serif; font-size:10px; color:rgba(255,255,255,0.3); font-style:italic; margin-top:6px; animation: staticFlick 3s infinite; }
-@keyframes staticFlick { 0%,95%,100%{opacity:0.3} 97%{opacity:0.8} 98%{opacity:0.1} }
+  color:var(--silver);
+  letter-spacing:4px;
+  font-size:20px;
 
-/* =============================================
-   FAN WALL / GUESTBOOK
-============================================= */
-.guestbook {
-  border: 2px solid var(--hot-pink);
-  background: rgba(0,0,0,0.8);
-  margin-bottom: 12px;
+  animation:blink 1s step-end infinite;
 }
-.gb-head {
-  background: var(--hot-pink);
-  padding:5px 8px;
+
+@keyframes blink{
+  0%,100%{opacity:1}
+  50%{opacity:.2}
+}
+
+/* ========================================= */
+
+#flash{
+  position:fixed;
+  inset:0;
+  background:#ff1a8c;
+  opacity:0;
+  pointer-events:none;
+  z-index:9990;
+  transition:opacity .2s ease;
+}
+
+.top-alert{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  display:flex;
+  align-items:center;
+
+  overflow:hidden;
+
+  border-bottom:3px solid var(--hot-pink);
+
+  background:var(--crimson);
+}
+
+.alert-tag{
+  background:#000;
+  padding:8px 14px;
+
+  color:var(--hot-pink);
+
+  font-family:'Oswald',sans-serif;
+  font-size:12px;
+  letter-spacing:3px;
+  font-weight:700;
+
+  border-right:3px solid var(--hot-pink);
+}
+
+.alert-scroll{
+  white-space:nowrap;
+
+  display:inline-block;
+
+  padding:8px 0;
+
   font-family:'Oswald',sans-serif;
   font-size:13px;
+  letter-spacing:2px;
+
+  animation:marquee 30s linear infinite;
+}
+
+.alert-scroll .hl{
+  color:var(--baby-pink);
   font-weight:700;
-  letter-spacing:3px;
-  color:#fff;
-  display:flex; align-items:center; gap:8px;
 }
-.gb-live { display:flex; align-items:center; gap:5px; font-size:11px; }
-.live-dot-gb { width:7px; height:7px; background:#00ff66; border-radius:50%; animation:lampBlink 1s infinite; box-shadow:0 0 6px #00ff66; }
 
-.gb-entries { max-height:280px; overflow-y:auto; padding:8px; display:flex; flex-direction:column; gap:8px; }
-.gb-entry {
-  border: 1px solid rgba(255,26,140,0.2);
-  background: rgba(255,26,140,0.04);
-  padding: 7px 10px;
-  animation: entryIn 0.4s ease both;
+@keyframes marquee{
+  from{
+    transform:translateX(100%);
+  }
+  to{
+    transform:translateX(-100%);
+  }
 }
-@keyframes entryIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
-.gb-user { font-family:'Oswald',sans-serif; font-size:13px; font-weight:400; color:var(--hot-pink); }
-.gb-user.vip { color:var(--gold); }
-.gb-time { font-family:'VT323',monospace; font-size:13px; color:rgba(255,255,255,0.25); margin-left:6px; }
-.gb-text { font-size:12px; color:rgba(255,255,255,0.75); margin-top:3px; line-height:1.5; }
 
-.gb-form { padding:8px; border-top:1px solid rgba(255,26,140,0.2); display:flex; gap:6px; flex-wrap:wrap; }
-.gb-input, .gb-msg {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,26,140,0.35);
-  color: #fff;
-  padding: 5px 8px;
-  font-family: 'Libre Baskerville',serif;
-  font-size: 12px;
-  outline: none;
+#page-wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:0 12px 120px;
 }
-.gb-input { flex:0 0 110px; }
-.gb-msg { flex: 1; min-width: 0; }
-.gb-input::placeholder, .gb-msg::placeholder { color:rgba(255,255,255,0.2); font-style:italic; }
-.gb-input:focus,.gb-msg:focus { border-color:var(--hot-pink); }
-.gb-btn {
-  background: var(--hot-pink);
-  border: none; color:#fff;
-  font-family:'Oswald',sans-serif;
-  font-size:12px; font-weight:700; letter-spacing:2px;
-  padding: 5px 12px; cursor:pointer;
-  transition: background 0.15s;
-}
-.gb-btn:hover { background: var(--deep-pink); }
 
-.gb-emojis { padding: 0 8px 6px; display:flex; gap:5px; flex-wrap:wrap; }
-.ej-btn {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,26,140,0.2);
-  font-size:16px; cursor:pointer;
-  width:30px; height:30px; display:flex; align-items:center; justify-content:center;
-  transition: all 0.15s; border-radius:0;
-}
-.ej-btn:hover { background:rgba(255,26,140,0.2); transform:scale(1.2); }
+/* =========================================
+   HEADER
+========================================= */
 
-/* Floating hearts */
-.float-heart {
-  position:fixed; pointer-events:none; z-index:9998; font-size:24px;
-  animation: heartUp 1.8s ease-out forwards;
-}
-@keyframes heartUp { from{transform:translateY(0) scale(1);opacity:1} to{transform:translateY(-140px) scale(0.4);opacity:0} }
-
-/* =============================================
-   MUSIC PLAYER (floating)
-============================================= */
-#music-player {
-  position: fixed;
-  bottom: 16px; right: 16px;
-  width: 280px;
-  border: 2px solid var(--hot-pink);
-  background: rgba(0,0,0,0.92);
-  backdrop-filter: blur(10px);
-  z-index: 999;
-  box-shadow: 0 0 30px rgba(255,26,140,0.2), 0 0 60px rgba(255,26,140,0.08);
-  transition: transform 0.25s ease;
-}
-#music-player.mini { transform: translateY(calc(100% - 36px)); }
-.mp-bar {
-  background: var(--hot-pink);
-  padding: 5px 8px;
-  font-family: 'Oswald',sans-serif;
-  font-size: 11px; font-weight:700; letter-spacing:2px; color:#fff;
-  cursor: pointer;
-  display: flex; align-items:center; justify-content:space-between;
-}
-.mp-bar-arrow { font-size:14px; transition:transform 0.2s; }
-#music-player.mini .mp-bar-arrow { transform:rotate(180deg); }
-.mp-body { padding: 10px; }
-.mp-now { display:flex; gap:10px; align-items:center; margin-bottom:10px; }
-.mp-disc {
-  width:46px; height:46px; border-radius:50%;
-  background: conic-gradient(from 0deg, var(--crimson), var(--hot-pink), #ff69b4, var(--crimson));
-  flex-shrink:0;
-  border: 3px solid rgba(255,255,255,0.1);
+#masthead{
+  text-align:center;
+  padding:30px 10px 20px;
   position:relative;
-  transition: animation-play-state 0.1s;
+
+  border-bottom:2px solid var(--hot-pink);
+
+  background:
+  linear-gradient(
+    180deg,
+    rgba(204,0,102,.15) 0%,
+    transparent 100%
+  );
 }
-.mp-disc.spin { animation: discSpin 3s linear infinite; }
-@keyframes discSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-.mp-disc::after {
-  content:'';
-  position:absolute; inset:30%; border-radius:50%;
-  background:var(--black);
-  border:1px solid rgba(255,255,255,0.1);
+
+.site-name-top{
+  font-family:'Permanent Marker',cursive;
+  color:var(--baby-pink);
+  letter-spacing:2px;
+  margin-bottom:10px;
 }
-.mp-info { flex:1; min-width:0; }
-.mp-title { font-family:'Oswald',sans-serif; font-size:13px; font-weight:400; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.mp-artist { font-size:10px; color:var(--silver); font-style:italic; }
-.mp-era { font-family:'Oswald',sans-serif; font-size:9px; letter-spacing:2px; color:var(--hot-pink); border:1px solid var(--hot-pink); padding:1px 4px; display:inline-block; margin-top:2px; }
 
-.mp-progress { margin-bottom:8px; }
-.mp-prog-bar { width:100%; height:3px; background:rgba(255,255,255,0.1); cursor:pointer; position:relative; }
-.mp-prog-fill { height:100%; background:linear-gradient(90deg,var(--crimson),var(--hot-pink)); width:0; transition:width 0.5s linear; }
-.mp-times { display:flex; justify-content:space-between; font-family:'VT323',monospace; font-size:12px; color:rgba(255,255,255,0.3); margin-top:2px; }
-
-.mp-btns { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:8px; }
-.mp-btn { background:none; border:none; color:rgba(255,255,255,0.5); font-size:16px; cursor:pointer; transition:color 0.15s, transform 0.15s; }
-.mp-btn:hover { color:#fff; transform:scale(1.2); }
-.mp-play {
-  width:36px; height:36px; border-radius:50%;
-  background:linear-gradient(135deg,var(--crimson),var(--hot-pink));
-  color:#fff; font-size:14px;
-  display:flex; align-items:center; justify-content:center;
-  box-shadow: 0 0 14px rgba(255,26,140,0.5);
-  transition: box-shadow 0.2s, transform 0.15s;
+.main-logo-wrap{
+  position:relative;
+  display:inline-block;
 }
-.mp-play:hover { transform:scale(1.08); box-shadow:0 0 24px rgba(255,26,140,0.7); }
 
-.mp-eq { display:flex; gap:2px; align-items:flex-end; height:16px; }
-.mp-eq-bar { width:3px; background:var(--hot-pink); border-radius:1px 1px 0 0; animation:eqAnim 0.5s ease-in-out infinite alternate; }
-.mp-eq-bar:nth-child(1){animation-delay:0s; --mh:14px}
-.mp-eq-bar:nth-child(2){animation-delay:0.1s;--mh:10px}
-.mp-eq-bar:nth-child(3){animation-delay:0.05s;--mh:16px}
-.mp-eq-bar:nth-child(4){animation-delay:0.15s;--mh:8px}
-.mp-eq-bar:nth-child(5){animation-delay:0.08s;--mh:13px}
-.mp-eq-bar.stopped { animation:none; height:2px !important; }
-@keyframes eqAnim { from{height:2px} to{height:var(--mh,12px)} }
+.main-logo{
+  position:relative;
+  z-index:2;
 
-.mp-queue { max-height:120px; overflow-y:auto; border-top:1px solid rgba(255,26,140,0.2); }
-.mp-qitem {
-  display:flex; gap:6px; align-items:center;
-  padding:5px 10px;
+  font-family:'Oswald',sans-serif;
+  font-size:clamp(70px,15vw,180px);
+  line-height:.9;
+  font-weight:700;
+
+  color:transparent;
+
+  -webkit-text-stroke:2px var(--hot-pink);
+
+  text-shadow:
+  4px 4px 0 var(--crimson),
+  0 0 40px rgba(255,26,140,.4);
+
   cursor:pointer;
-  font-size:11px;
-  border-bottom:1px solid rgba(255,26,140,0.07);
-  transition:background 0.15s;
 }
-.mp-qitem:hover { background:rgba(255,26,140,0.08); }
-.mp-qitem.active { background:rgba(255,26,140,0.12); }
-.mp-qi-n { font-family:'VT323',monospace; font-size:13px; color:rgba(255,255,255,0.2); width:16px; }
-.mp-qi-t { font-family:'Oswald',sans-serif; flex:1; color:rgba(255,255,255,0.7); }
-.mp-qitem.active .mp-qi-t { color:var(--hot-pink); }
-.mp-qi-e { font-size:9px; font-family:'Oswald',sans-serif; color:var(--hot-pink); border:1px solid rgba(255,26,140,0.4); padding:0 3px; }
 
-/* =============================================
-   NEWS ALERT POPUP
-============================================= */
-#news-alert {
-  position:fixed; bottom:16px; left:16px;
-  width:250px;
+.logo-shadow-txt{
+  position:absolute;
+  inset:0;
+
+  z-index:1;
+
+  font-family:'Oswald',sans-serif;
+  font-size:clamp(70px,15vw,180px);
+  line-height:.9;
+  font-weight:700;
+
+  color:rgba(204,0,0,.2);
+
+  transform:translate(6px,6px);
+}
+
+.artist-sub{
+  margin-top:10px;
+
+  font-family:'Special Elite',cursive;
+  color:var(--silver);
+  letter-spacing:6px;
+}
+
+.release-date-badge{
+  margin-top:12px;
+  display:inline-block;
+
+  background:var(--hot-pink);
+  color:#fff;
+
+  padding:6px 22px;
+
+  font-family:'Oswald',sans-serif;
+  letter-spacing:4px;
+  font-weight:700;
+}
+
+.star-row{
+  margin-top:10px;
+  color:var(--hot-pink);
+}
+
+/* ========================================= */
+
+.columns{
+  display:grid;
+  grid-template-columns:220px 1fr 220px;
+  gap:14px;
+  margin-top:14px;
+}
+
+@media(max-width:900px){
+  .columns{
+    grid-template-columns:1fr;
+  }
+
+  .col-left,
+  .col-right{
+    display:none;
+  }
+}
+
+/* ========================================= */
+
+.sidebar-box{
+  border:2px solid var(--hot-pink);
+  background:rgba(0,0,0,.72);
+  margin-bottom:12px;
+}
+
+.sidebar-box-title{
+  background:var(--hot-pink);
+
+  padding:6px 10px;
+
+  font-family:'Oswald',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.sidebar-box-body{
+  padding:10px;
+  font-size:12px;
+}
+
+.sidebar-box-body a{
+  display:block;
+  color:var(--baby-pink);
+  text-decoration:none;
+  margin-bottom:6px;
+}
+
+.sidebar-box-body a:hover{
+  color:#fff;
+}
+
+.info-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:6px;
+}
+
+.info-key{
+  color:var(--baby-pink);
+  font-family:'Oswald',sans-serif;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.info-val{
+  color:var(--silver);
+  font-size:10px;
+  text-align:right;
+}
+
+/* ========================================= */
+
+.breaking-hero{
+  border:3px solid var(--crimson);
+  background:rgba(0,0,0,.85);
+  margin-bottom:16px;
+}
+
+.bh-top{
+  display:flex;
+  gap:10px;
+  align-items:center;
+
   background:var(--crimson);
-  border:2px solid var(--hot-pink);
-  z-index:998;
-  opacity:0; visibility:hidden;
-  transform:translateX(-20px);
-  transition:all 0.4s ease;
-}
-#news-alert.show { opacity:1; visibility:visible; transform:translateX(0); }
-.na-head { background:var(--black); padding:4px 8px; font-family:'Oswald',sans-serif; font-size:10px; letter-spacing:3px; color:var(--hot-pink); border-bottom:1px solid var(--hot-pink); display:flex; align-items:center; gap:6px; }
-.na-body { padding:8px; font-size:11px; color:#fff; line-height:1.4; font-style:italic; }
-.na-close { position:absolute; top:4px; right:6px; background:none; border:none; color:rgba(255,255,255,0.5); cursor:pointer; font-size:12px; }
-.na-close:hover { color:#fff; }
 
-/* =============================================
-   EASTER EGG OVERLAY
-============================================= */
-#easter-overlay {
-  position:fixed; inset:0; background:rgba(0,0,0,0.97);
-  z-index:9997; display:flex; align-items:center; justify-content:center;
-  opacity:0; visibility:hidden; transition:all 0.4s;
-}
-#easter-overlay.show { opacity:1; visibility:visible; }
-.easter-box {
-  max-width:360px; text-align:center;
-  border:2px solid var(--hot-pink);
-  padding:30px;
-  background:rgba(204,0,102,0.05);
-}
-.easter-icon { font-size:44px; margin-bottom:10px; }
-.easter-h { font-family:'Oswald',sans-serif; font-size:26px; font-weight:700; color:var(--hot-pink); margin-bottom:8px; }
-.easter-p { font-size:14px; color:rgba(255,255,255,0.7); line-height:1.6; margin-bottom:16px; font-style:italic; }
-.easter-btn { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:3px; color:var(--silver); background:none; border:1px solid rgba(255,255,255,0.2); padding:6px 20px; cursor:pointer; }
-.easter-btn:hover { border-color:var(--hot-pink); color:var(--hot-pink); }
+  padding:6px 12px;
 
-.sparkle { position:fixed; pointer-events:none; z-index:9999; border-radius:50%; mix-blend-mode:screen; animation:sparkleFade 0.6s ease-out forwards; }
-@keyframes sparkleFade { from{transform:scale(1);opacity:1} to{transform:scale(0);opacity:0} }
+  border-bottom:2px solid var(--hot-pink);
+}
+
+.bh-breaking{
+  background:#000;
+
+  padding:2px 10px;
+
+  font-family:'Oswald',sans-serif;
+  letter-spacing:3px;
+  font-size:11px;
+}
+
+.bh-date{
+  font-family:'VT323',monospace;
+  color:rgba(255,255,255,.7);
+}
+
+.bh-body{
+  padding:20px;
+}
+
+.bh-headline{
+  font-family:'Oswald',sans-serif;
+  font-size:clamp(26px,5vw,54px);
+  line-height:1.05;
+  margin-bottom:10px;
+}
+
+.bh-headline span{
+  color:var(--hot-pink);
+}
+
+.bh-subline{
+  color:var(--baby-pink);
+  font-style:italic;
+  margin-bottom:16px;
+}
+
+.bh-body-text{
+  line-height:1.8;
+  color:rgba(255,255,255,.8);
+  font-size:14px;
+}
+
+.bh-body-text p{
+  margin-bottom:16px;
+}
+
+.bh-pull{
+  border-left:4px solid var(--hot-pink);
+
+  padding:10px 14px;
+  margin:16px 0;
+
+  color:var(--hot-pink);
+
+  font-family:'Permanent Marker',cursive;
+  font-size:20px;
+}
+
+/* ========================================= */
+
+.divider-stars{
+  text-align:center;
+  margin:22px 0;
+
+  color:var(--hot-pink);
+
+  font-family:'Oswald',sans-serif;
+  letter-spacing:4px;
+}
+
+/* ========================================= */
+
+.countdowns-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+@media(max-width:700px){
+  .countdowns-row{
+    grid-template-columns:1fr;
+  }
+}
+
+.cd-box{
+  border:2px solid var(--hot-pink);
+  background:rgba(0,0,0,.8);
+}
+
+.cd-head{
+  background:var(--hot-pink);
+
+  padding:6px 10px;
+
+  font-family:'Oswald',sans-serif;
+  font-size:11px;
+  letter-spacing:3px;
+}
+
+.cd-inner{
+  padding:14px;
+  text-align:center;
+}
+
+.cd-sub{
+  margin-bottom:12px;
+  color:var(--silver);
+  font-size:11px;
+  font-style:italic;
+}
+
+.cd-nums{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.cd-unit{
+  text-align:center;
+}
+
+.cd-num{
+  display:block;
+
+  font-family:'VT323',monospace;
+  font-size:clamp(36px,7vw,58px);
+
+  color:var(--hot-pink);
+
+  text-shadow:0 0 14px var(--hot-pink);
+}
+
+.cd-lbl{
+  font-family:'Oswald',sans-serif;
+  font-size:10px;
+  letter-spacing:2px;
+  color:rgba(255,255,255,.5);
+}
+
+.cd-colon{
+  font-size:42px;
+  color:rgba(255,26,140,.4);
+}
+
+.mystery{
+  border-color:var(--silver);
+}
+
+.mystery .cd-head{
+  background:rgba(255,255,255,.1);
+}
+
+.mystery .cd-num{
+  color:var(--silver);
+  text-shadow:0 0 12px var(--silver);
+}
+
+.mystery-note{
+  margin-top:10px;
+  color:rgba(255,255,255,.35);
+  font-style:italic;
+  font-size:11px;
+}
+
+/* ========================================= */
+
+.section-head{
+  background:
+  linear-gradient(
+    90deg,
+    var(--crimson),
+    var(--hot-pink),
+    var(--crimson)
+  );
+
+  padding:7px 12px;
+
+  font-family:'Oswald',sans-serif;
+  letter-spacing:3px;
+  font-size:13px;
+
+  margin-bottom:12px;
+
+  border-left:4px solid #fff;
+}
+
+.videos-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:12px;
+}
+
+.video-card{
+  border:2px solid var(--hot-pink);
+  background:#000;
+}
+
+.video-card-label{
+  background:var(--hot-pink);
+  padding:6px 10px;
+
+  font-family:'Oswald',sans-serif;
+  letter-spacing:2px;
+  font-size:12px;
+}
+
+.video-card-inner{
+  position:relative;
+  padding-bottom:56.25%;
+  height:0;
+}
+
+.video-card-inner iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+.video-card-sub{
+  padding:8px 10px;
+  color:var(--silver);
+  font-size:11px;
+  font-style:italic;
+}
+
+/* ========================================= */
+
+.singles-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-bottom:16px;
+}
+
+.singles-table th{
+  background:var(--hot-pink);
+
+  padding:8px;
+
+  text-align:left;
+
+  font-family:'Oswald',sans-serif;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.singles-table td{
+  padding:8px;
+  border-bottom:1px solid rgba(255,26,140,.15);
+  font-size:12px;
+}
+
+.singles-table tr:nth-child(even){
+  background:rgba(255,26,140,.05);
+}
+
+.single-link a{
+  color:var(--hot-pink);
+}
+
+/* ========================================= */
+
+.guestbook{
+  border:2px solid var(--hot-pink);
+  background:rgba(0,0,0,.8);
+}
+
+.gb-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:var(--hot-pink);
+
+  padding:8px 10px;
+
+  font-family:'Oswald',sans-serif;
+  letter-spacing:2px;
+}
+
+.gb-live{
+  font-size:11px;
+}
+
+.gb-entries{
+  max-height:280px;
+  overflow-y:auto;
+  padding:10px;
+
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.gb-entry{
+  background:rgba(255,26,140,.05);
+  border:1px solid rgba(255,26,140,.2);
+
+  padding:8px;
+}
+
+.gb-user{
+  color:var(--hot-pink);
+  font-family:'Oswald',sans-serif;
+}
+
+.gb-user.vip{
+  color:var(--gold);
+}
+
+.gb-time{
+  margin-left:8px;
+  color:rgba(255,255,255,.4);
+  font-family:'VT323',monospace;
+}
+
+.gb-text{
+  margin-top:4px;
+  color:rgba(255,255,255,.8);
+  line-height:1.5;
+}
+
+.gb-form{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+
+  padding:10px;
+
+  border-top:1px solid rgba(255,26,140,.2);
+}
+
+.gb-input,
+.gb-msg{
+  background:rgba(255,255,255,.05);
+
+  border:1px solid rgba(255,26,140,.35);
+
+  color:#fff;
+
+  padding:8px;
+
+  outline:none;
+}
+
+.gb-input{
+  width:160px;
+}
+
+.gb-msg{
+  flex:1;
+}
+
+.gb-btn{
+  border:none;
+  background:var(--hot-pink);
+  color:#fff;
+
+  padding:8px 16px;
+
+  font-family:'Oswald',sans-serif;
+  letter-spacing:2px;
+
+  cursor:pointer;
+}
+
+.gb-btn:hover{
+  background:var(--deep-pink);
+}
+
+.gb-emojis{
+  padding:0 10px 10px;
+  display:flex;
+  gap:6px;
+}
+
+.ej-btn{
+  width:34px;
+  height:34px;
+
+  border:1px solid rgba(255,26,140,.3);
+
+  background:rgba(255,255,255,.04);
+
+  cursor:pointer;
+
+  font-size:18px;
+}
+
+/* ========================================= */
+
+.float-heart{
+  position:fixed;
+  z-index:9999;
+  pointer-events:none;
+
+  animation:heartUp 1.8s ease-out forwards;
+}
+
+@keyframes heartUp{
+  from{
+    transform:translateY(0);
+    opacity:1;
+  }
+  to{
+    transform:translateY(-140px);
+    opacity:0;
+  }
+}
+
+/* ========================================= */
+
+#music-player{
+  position:fixed;
+  bottom:16px;
+  right:16px;
+
+  width:300px;
+
+  border:2px solid var(--hot-pink);
+
+  background:rgba(0,0,0,.95);
+
+  z-index:1000;
+
+  box-shadow:
+  0 0 30px rgba(255,26,140,.3);
+}
+
+.mp-bar{
+  background:var(--hot-pink);
+
+  padding:7px 10px;
+
+  display:flex;
+  justify-content:space-between;
+
+  font-family:'Oswald',sans-serif;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.mp-body{
+  padding:12px;
+}
+
+.mp-now{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.mp-disc{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+
+  background:
+  conic-gradient(
+    var(--crimson),
+    var(--hot-pink),
+    #ff66cc,
+    var(--crimson)
+  );
+
+  animation:spin 3s linear infinite paused;
+}
+
+.mp-disc.spin{
+  animation-play-state:running;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+.mp-title{
+  font-family:'Oswald',sans-serif;
+}
+
+.mp-artist{
+  color:var(--silver);
+  font-size:11px;
+}
+
+.mp-era{
+  margin-top:4px;
+  display:inline-block;
+
+  border:1px solid var(--hot-pink);
+
+  padding:1px 5px;
+
+  font-size:10px;
+  color:var(--hot-pink);
+
+  font-family:'Oswald',sans-serif;
+}
+
+.mp-progress{
+  margin:12px 0;
+}
+
+.mp-prog-bar{
+  height:4px;
+  background:rgba(255,255,255,.12);
+}
+
+.mp-prog-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--crimson),var(--hot-pink));
+}
+
+.mp-times{
+  margin-top:4px;
+
+  display:flex;
+  justify-content:space-between;
+
+  font-family:'VT323',monospace;
+  color:rgba(255,255,255,.4);
+}
+
+.mp-btns{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+}
+
+.mp-btn,
+.mp-play{
+  cursor:pointer;
+}
+
+.mp-play{
+  width:38px;
+  height:38px;
+
+  border-radius:50%;
+  border:none;
+
+  background:
+  linear-gradient(
+    135deg,
+    var(--crimson),
+    var(--hot-pink)
+  );
+
+  color:#fff;
+}
+
+.mp-btn{
+  border:none;
+  background:none;
+  color:#fff;
+  font-size:18px;
+}
+
+.mp-queue{
+  margin-top:12px;
+
+  max-height:120px;
+  overflow-y:auto;
+
+  border-top:1px solid rgba(255,26,140,.2);
+}
+
+.mp-qitem{
+  display:flex;
+  gap:8px;
+  align-items:center;
+
+  padding:6px 8px;
+
+  cursor:pointer;
+
+  font-size:11px;
+}
+
+.mp-qitem:hover{
+  background:rgba(255,26,140,.1);
+}
+
+.mp-qitem.active{
+  background:rgba(255,26,140,.16);
+}
+
+.mp-qi-t{
+  flex:1;
+}
+
+/* ========================================= */
+
+.sparkle{
+  position:fixed;
+  pointer-events:none;
+  z-index:9999;
+  border-radius:50%;
+
+  animation:sparkleFade .6s ease-out forwards;
+}
+
+@keyframes sparkleFade{
+  to{
+    transform:scale(0);
+    opacity:0;
+  }
+}
 </style>
 </head>
 <body>
 
-<div id="flash"></div>
+<!-- LOADER -->
+<div id="loader">
+  <img
+    class="vault-gif"
+    src="https://media.tenor.com/7TI6FPD1B_cAAAAC/vault-opening.gif"
+    alt="Vault Opening"
+  />
 
-<div id="easter-overlay">
-  <div class="easter-box">
-    <div class="easter-icon" id="e-icon">💖</div>
-    <div class="easter-h" id="e-head">SECRET UNLOCKED</div>
-    <div class="easter-p" id="e-body">You found something special.</div>
-    <button class="easter-btn" onclick="closeEaster()">CONTINUE ›</button>
+  <div class="loader-title">
+    ENTERING DETOUR ERA...
+  </div>
+
+  <div class="loader-bar-outer">
+    <div class="loader-bar-inner"></div>
+  </div>
+
+  <div class="loader-text">
+    UNLOCKING BUNHEAD ARCHIVES...
   </div>
 </div>
+
+<div id="flash"></div>
 
 <div class="top-alert">
   <div class="alert-tag">⚡ BREAKING</div>
+
   <div style="overflow:hidden;flex:1">
     <div class="alert-scroll">
-      &nbsp;&nbsp;&nbsp; <span class="hl">KIM PETRAS — DETOUR — OUT MAY 29 2026</span> &nbsp;&nbsp;&nbsp;◆&nbsp;&nbsp;&nbsp; DETOUR • DTLA • I LIKE UR LOOK • CHECK IT • POLO • BRUTALIST • NEED FOR SPEED • JEEP • 101 • BASKETBALL • BITCH BALL OUT • KOREA • FREAK IT   &nbsp;&nbsp;&nbsp;◆&nbsp;&nbsp;&nbsp; <span class="hl">SOMETHING IS HAPPENING AT 12:30PM EST AND NOBODY KNOWS WHAT</span> &nbsp;&nbsp;&nbsp;◆&nbsp;&nbsp;&nbsp; INDEPENDENT RELEASE VIA BUNHEAD RECORDS — HER OWN LABEL — FULL CREATIVE CONTROL &nbsp;&nbsp;&nbsp;◆&nbsp;&nbsp;&nbsp; <span class="hl">"I'M THINKING ABOUT WHAT I WANT POP MUSIC TO BE" — KIM PETRAS</span> &nbsp;&nbsp;&nbsp;◆&nbsp;&nbsp;&nbsp; PRETOUR EP RELEASED EARLIER THIS YEAR — 4 TRACKS — LO-FI VISUALS — YOUTUBE + SOUNDCLOUD ONLY &nbsp;&nbsp;&nbsp;◆&nbsp;&nbsp;&nbsp; <span class="hl">SHE FIRED EVERYONE, LEFT REPUBLIC, AND DID IT HERSELF. ICON BEHAVIOR.</span>
+      <span class="hl">KIM PETRAS — DETOUR — OUT MAY 29 2026</span>
+      &nbsp;&nbsp;&nbsp;◆&nbsp;&nbsp;&nbsp;
+      DETOUR • DTLA • I LIKE UR LOOK • CHECK IT • POLO • BRUTALIST • NEED FOR SPEED • JEEP
+      &nbsp;&nbsp;&nbsp;◆&nbsp;&nbsp;&nbsp;
+      <span class="hl">SOMETHING IS HAPPENING AT 12:30 PM EST...</span>
     </div>
   </div>
-</div>
-
-<div id="news-alert">
-  <button class="na-close" onclick="closeNewsAlert()">×</button>
-  <div class="na-head">🚨 EXCLUSIVE gossip RUMOR</div>
-  <div class="na-body">"I heard from a reliable source close to BunHead that the 12:30 PM drop is something you can dance to in the club........"</div>
 </div>
 
 <div id="page-wrap">
-  <header id="masthead">
-    <div class="site-name-top">~*~ welcome to the ultimate unofficial web-shrine ~*~</div>
-    <div class="main-logo-wrap">
-      <span class="main-logo" id="main-logo">DETOUR</span>
-      <span class="logo-shadow-txt">DETOUR</span>
+
+<header id="masthead">
+  <div class="site-name-top">
+    ~*~ welcome to the ultimate unofficial web-shrine ~*~
+  </div>
+
+  <div class="main-logo-wrap">
+    <div class="main-logo" id="main-logo">DETOUR</div>
+    <div class="logo-shadow-txt">DETOUR</div>
+  </div>
+
+  <div class="artist-sub">
+    KIM PETRAS fan page
+  </div>
+
+  <div class="release-date-badge">
+    ALBUM DROP: MAY 29, 2026
+  </div>
+
+  <div class="star-row">
+    ✦ 🌟 ✦ 💫 ✦ ✨ ✦ ⭐ ✦
+  </div>
+</header>
+
+<div class="columns">
+
+<!-- LEFT -->
+<aside class="col-left">
+
+  <div class="sidebar-box">
+    <div class="sidebar-box-title">💾 Site Stats</div>
+
+    <div class="sidebar-box-body">
+
+      <div class="info-row">
+        <div class="info-key">ALBUM:</div>
+        <div class="info-val">Detour</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-key">ARTIST:</div>
+        <div class="info-val">Kim Petras</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-key">LABEL:</div>
+        <div class="info-val">BunHead Records</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-key">ERA:</div>
+        <div class="info-val">DETOUR</div>
+      </div>
+
     </div>
-    <div class="artist-sub">KIM PETRAS fan page</div>
-    <div><span class="release-date-badge">ALBUM DROP: MAY 29, 2026</span></div>
-    <div class="star-row">✦ 🌟 ✦ 💫 ✦ ✨ ✦ ⭐ ✦</div>
-  </header>
+  </div>
 
-  <div class="columns">
-    
-    <aside class="col-left">
-      <div class="sidebar-box">
-        <div class="sidebar-box-title">💾 Site Stats</div>
-        <div class="sidebar-box-body">
-          <div class="info-row"><div class="info-key">ALBUM:</div><div class="info-val">Detour</div></div>
-          <div class="info-row"><div class="info-key">ARTIST:</div><div class="info-val">Kim Petras</div></div>
-          <div class="info-row"><div class="info-key">DROPS:</div><div class="info-val">May 29, 2026</div></div>
-          <div class="info-row"><div class="info-key">LABEL:</div><div class="info-val">BunHead Records (indie!)</div></div>
-          <div class="info-row"><div class="info-key">GENRE:</div><div class="info-val">Pop / alt / Y2K-inspired</div></div>
-          <div class="info-row"><div class="info-key">ERA:</div><div class="info-val">Detour</div></div>
-        </div>
+</aside>
+
+<!-- MAIN -->
+<main class="col-main">
+
+<section class="breaking-hero">
+
+<div class="bh-top">
+  <span class="bh-breaking">UPDATED ERA SUMMARY</span>
+  <span class="bh-date">2026.05.18 // 23:14 EST</span>
+</div>
+
+<div class="bh-body">
+
+<h2 class="bh-headline">
+  THE REVOLUTION WILL BE <span>INDEPENDENT</span>.
+</h2>
+
+<h3 class="bh-subline">
+  Kim Petras built BunHead Records and created her definitive Y2K masterpiece.
+</h3>
+
+<div class="bh-body-text">
+
+<p>
+It started with frustration. After months of label gridlock,
+Kim Petras walked away from a major contract and promised fans
+that Detour would come out no matter what.
+</p>
+
+<div class="bh-pull">
+"I wanted it to sound like the music videos I watched on MTV in 2004."
+</div>
+
+<p>
+Inspired by Gwen Stefani, Fergie, M.I.A., and The Pussycat Dolls,
+Detour represents Kim at maximum creative freedom.
+</p>
+
+</div>
+</div>
+</section>
+
+<div class="divider-stars">
+✦ ✧ ✦ LIVE RELEASE COUNTDOWNS ✦ ✧ ✦
+</div>
+
+<div class="countdowns-row">
+
+<div class="cd-box">
+  <div class="cd-head">🎀 DETOUR ALBUM RELEASE</div>
+
+  <div class="cd-inner">
+
+    <div class="cd-sub">
+      counting down to may 29 @ 12:00 pm est
+    </div>
+
+    <div class="cd-nums">
+
+      <div class="cd-unit">
+        <span class="cd-num" id="d1-d">00</span>
+        <div class="cd-lbl">days</div>
       </div>
 
-      <div class="sidebar-box">
-        <div class="sidebar-box-title">🔗 Official Links</div>
-        <div class="sidebar-box-body">
-          <a href="https://www.instagram.com/kimpetras/" target="_blank" rel="noopener">Instagram @kimpetras</a>
-          <a href="https://kimpetras.lnk.to/kppolo" target="_blank" rel="noopener">Stream "Polo" ↗</a>
-          <a href="https://www.youtube.com/watch?v=NuAU3sbzbBo" target="_blank" rel="noopener">Polo (Visualizer) ↗</a>
-          <a href="https://www.youtube.com/watch?v=V_-rrLLkxas" target="_blank" rel="noopener">Jeep (Official MV) ↗</a>
-          <a href="https://ffm.to/jeep-kp-margoporchesnightfeelings" target="_blank" rel="noopener">Stream "Jeep" ↗</a>
-          <a href="https://www.youtube.com/watch?v=xQcFqxamgag" target="_blank" rel="noopener">Jeep on Fallon ↗</a>
-        </div>
+      <div class="cd-colon">:</div>
+
+      <div class="cd-unit">
+        <span class="cd-num" id="d1-h">00</span>
+        <div class="cd-lbl">hrs</div>
       </div>
 
-      <div class="sidebar-box">
-        <div class="sidebar-box-title">👥 Visitors</div>
-        <div class="sidebar-box-body" style="text-align:center">
-          <div class="hit-counter" id="hit-count">004729</div>
-          <div class="counter-label">total visits</div>
-          <div style="margin-top:8px;font-size:11px;color:var(--silver)">
-            <span class="online-lamp"></span> <span id="online-now">2,847</span> online now
-          </div>
-        </div>
-      </div>
-    </aside>
+      <div class="cd-colon">:</div>
 
-    <main class="col-main">
-      
-      <section class="breaking-hero">
-        <div class="bh-top">
-          <span class="bh-breaking">UPDATED ERA SUMMARY</span>
-          <span class="bh-date">2026.05.18 // 23:14:02 EST</span>
-        </div>
-        <div class="bh-body">
-          <h2 class="bh-headline">THE REVOLUTION WILL BE <span>INDEPENDENT</span>.</h2>
-          <h3 class="bh-subline">How Kim Petras broke her chains, built BunHead Records, and created her definitive Y2K masterpiece.</h3>
-          <div class="bh-body-text">
-            <p>It started with regret. Or maybe it started with frustration. In late 2025, after months of label gridlock, Kim Petras did what few mainstream stars dare to do: she walked away from a major contract. Taking to alternative social channels, she gave her fans a stark, unfiltered update: <em>"They won't let me release what I want. I've waited long enough. I love u guys. I'm dropping Detour regardless."</em></p>
-            <p>Then came Polo. Then Freak It. Then I Like Ur Look. Then Need for Speed. Then Jeep — a country-inflected ballad co-written during the LA wildfires that somehow became her most critically praised single yet. And suddenly May 29, 2026 became the most circled date in every pop fan's calendar.</p>
-            <div class="bh-pull">"I wanted it to sound like the music videos I used to watch on MTV in 2004 when I was a kid in Germany dreaming of escape."</div>
-            <p>Inspired by Gwen Stefani's L.A.M.B., Fergie, The Pussycat Dolls, and M.I.A., Detour represents Kim Petras at maximum creative freedom. She fired a bunch of people. She cut off the label. She worked with trans musicians and collaborators who understood exactly what this album needed to sound like. And the result is, by all accounts, the album of 2026.</p>
-          </div>
-        </div>
-      </section>
-
-      <div class="divider-stars">✦ ✧ ✦ LIVE RELEASE COUNTDOWNS ✦ ✧ ✦</div>
-
-      <div class="countdowns-row">
-        <div class="cd-box">
-          <div class="cd-head">🎀 DETOUR ALBUM RELEASE</div>
-          <div class="cd-inner">
-            <div class="cd-sub">counting down to may 29 @ 12:00 pm est</div>
-            <div class="cd-nums">
-              <div class="cd-unit"><span class="cd-num" id="d1-d">00</span><div class="cd-lbl">days</div></div>
-              <div class="cd-colon">:</div>
-              <div class="cd-unit"><span class="cd-num" id="d1-h">00</span><div class="cd-lbl">hrs</div></div>
-              <div class="cd-colon">:</div>
-              <div class="cd-unit"><span class="cd-num" id="d1-m">00</span><div class="cd-lbl">min</div></div>
-              <div class="cd-colon">:</div>
-              <div class="cd-unit"><span class="cd-num" id="d1-s">00</span><div class="cd-lbl">sec</div></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="cd-box mystery">
-          <div class="cd-head">⚡ SOMETHING ELSE — 12:30 PM</div>
-          <div class="cd-inner">
-            <div class="cd-sub">something is happening 30 mins later!</div>
-            <div class="cd-nums">
-              <div class="cd-unit"><span class="cd-num" id="d2-d">00</span><div class="cd-lbl">days</div></div>
-              <div class="cd-colon">:</div>
-              <div class="cd-unit"><span class="cd-num" id="d2-h">00</span><div class="cd-lbl">hrs</div></div>
-              <div class="cd-colon">:</div>
-              <div class="cd-unit"><span class="cd-num" id="d2-m">00</span><div class="cd-lbl">min</div></div>
-              <div class="cd-colon">:</div>
-              <div class="cd-unit"><span class="cd-num" id="d2-s">00</span><div class="cd-lbl">sec</div></div>
-            </div>
-            <div class="mystery-note">[ redacted ] [ classified ] [ ?????? ]</div>
-          </div>
-        </div>
+      <div class="cd-unit">
+        <span class="cd-num" id="d1-m">00</span>
+        <div class="cd-lbl">min</div>
       </div>
 
-      <div class="divider-stars">✦ ✧ ✦ OFFICIAL MUSIC VIDEOS ✦ ✧ ✦</div>
+      <div class="cd-colon">:</div>
 
-      <section>
-        <div class="section-head">🎬 DETOUR Era — Watch Now</div>
-        <div class="videos-grid">
-          <div class="video-card">
-            <div class="video-card-label"> POLO <span class="era-tag">SINGLE #1 · JUN 2025</span> </div>
-            <div class="video-card-inner">
-              <iframe src="https://www.youtube.com/embed/NuAU3sbzbBo" title="Kim Petras - Polo (Official Visualizer)" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="video-card-sub">Official Visualizer — the DETOUR era begins</div>
-          </div>
-          <div class="video-card">
-            <div class="video-card-label"> JEEP <span class="era-tag">SINGLE #5 · MAY 2026</span> </div>
-            <div class="video-card-inner">
-              <iframe src="https://www.youtube.com/embed/V_-rrLLkxas" title="Kim Petras - Jeep (Official Music Video)" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="video-card-sub">Official MV — filmed in Paris & the French countryside</div>
-          </div>
-          <div class="video-card">
-            <div class="video-card-label"> JEEP ON FALLON <span class="era-tag">LIVE · MAY 7 2026</span> </div>
-            <div class="video-card-inner">
-              <iframe src="https://www.youtube.com/embed/xQcFqxamgag" title="Kim Petras: Jeep | The Tonight Show Starring Jimmy Fallon" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="video-card-sub">Live performance on The Tonight Show Starring Jimmy Fallon</div>
-          </div>
-        </div>
-      </section>
-
-      <div class="divider-stars">✦ ✧ ✦ DISCOGRAPHY ✦ ✧ ✦</div>
-
-      <section>
-        <div class="section-head">📀 DETOUR Era Singles — In Order</div>
-        <table class="singles-table">
-          <thead>
-            <tr><th>#</th><th>Single</th><th>Released</th><th>Details</th><th>Watch/Listen</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="single-num">01</td>
-              <td class="single-name">Polo</td>
-              <td class="single-date">Jun 2025</td>
-              <td style="font-size:10px;color:var(--silver)">Lead single — club track — synth-heavy</td>
-              <td class="single-link"><a href="https://www.youtube.com/watch?v=NuAU3sbzbBo" target="_blank" rel="noopener">▶ YT</a></td>
-            </tr>
-            <tr>
-              <td class="single-num">02</td>
-              <td class="single-name">Freak It</td>
-              <td class="single-date">2025</td>
-              <td style="font-size:10px;color:var(--silver)">Dance track — co-prod. w/ Nightfeelings, Margo XS</td>
-              <td class="single-link"><a href="https://open.spotify.com/search/Kim%20Petras%20Freak%20It" target="_blank" rel="noopener">▶ Spotify</a></td>
-            </tr>
-            <tr>
-              <td class="single-num">03</td>
-              <td class="single-name">I Like Ur Look</td>
-              <td class="single-date">2025</td>
-              <td style="font-size:10px;color:var(--silver)">Reuploaded May 14 2026 via BunHead Records</td>
-              <td class="single-link"><a href="https://open.spotify.com/search/Kim%20Petras%20I%20Like%20Ur%20Look" target="_blank" rel="noopener">▶ Spotify</a></td>
-            </tr>
-            <tr>
-              <td class="single-num">04</td>
-              <td class="single-name">Need for Speed</td>
-              <td class="single-date">Apr 2026</td>
-              <td style="font-size:10px;color:var(--silver)">"9 looks, 13 pairs of shoes, self-funded" — Kim</td>
-              <td class="single-link"><a href="https://open.spotify.com/search/Kim%20Petras%20Need%20for%20Speed" target="_blank" rel="noopener">▶ Spotify</a></td>
-            </tr>
-            <tr>
-              <td class="single-num">05</td>
-              <td class="single-name">Jeep</td>
-              <td class="single-date">May 2026</td>
-              <td style="font-size:10px;color:var(--silver)">A country-inflected ballad co-written w/ Porches</td>
-              <td class="single-link"><a href="https://www.youtube.com/watch?v=V_-rrLLkxas" target="_blank" rel="noopener">▶ YT</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section class="guestbook">
-        <div class="gb-head">
-          <span>📝 Sign the Detour Guestbook</span>
-          <div class="gb-live"><span class="live-dot-gb"></span> live feed</div>
-        </div>
-        <div class="gb-entries" id="gb-entries"></div>
-        <div class="gb-form">
-          <input type="text" id="gb-name" class="gb-input" placeholder="Your Handle..." maxlength="20"/>
-          <input type="text" id="gb-msg" class="gb-msg" placeholder="Leave a message for Kim / the era..." maxlength="140"/>
-          <button id="gb-send" class="gb-btn">POST ›</button>
-        </div>
-        <div class="gb-emojis">
-          <button class="ej-btn" onclick="addEmoji('💖')">💖</button>
-          <button class="ej-btn" onclick="addEmoji('⚡')">⚡</button>
-          <button class="ej-btn" onclick="addEmoji('👑')">👑</button>
-          <button class="ej-btn" onclick="addEmoji('🛹')">🛹</button>
-          <button class="ej-btn" onclick="addEmoji('💋')">💋</button>
-        </div>
-      </section>
-
-    </main>
-
-    <aside class="col-right">
-      <div class="sidebar-box">
-        <div class="sidebar-box-title">🎧 About Kim</div>
-        <div class="sidebar-box-body">
-          <div class="about-kim">
-            <p>Kim Petras made history as an indie queen, went major, and now returned to her roots. She writes hooks that get stuck in your head for days.</p>
-            <p><em>"If I couldn't make pop music, I don't know what I'd do. I'd leave a voice note right now if she could."</em></p>
-            <p><em>"'Jeep' is my favorite. It happened the night we were evacuated."</em></p>
-          </div>
-        </div>
+      <div class="cd-unit">
+        <span class="cd-num" id="d1-s">00</span>
+        <div class="cd-lbl">sec</div>
       </div>
 
-      <div class="sidebar-box">
-        <div class="sidebar-box-title">🎵 Detour Collabs</div>
-        <div class="sidebar-box-body">
-          <div class="about-kim" style="padding:0">
-            <p><strong>Porches</strong> — Jeep (co-prod/co-write)</p>
-            <p><strong>Nightfeelings</strong> — multiple tracks</p>
-            <p><strong>Margo XS</strong> — Frost Children</p>
-            <p><strong>Angel Prost</strong> — Frost Children</p>
-            <p><strong>Eric Cross</strong> — Jeep</p>
-            <p><strong>BC Kingdom</strong> — Mr. Producer</p>
-            <p><strong>Cortisa Star</strong> — Get Some</p>
-          </div>
-        </div>
+    </div>
+  </div>
+</div>
+
+<div class="cd-box mystery">
+  <div class="cd-head">⚡ SOMETHING ELSE — 12:30 PM</div>
+
+  <div class="cd-inner">
+
+    <div class="cd-sub">
+      something is happening 30 mins later...
+    </div>
+
+    <div class="cd-nums">
+
+      <div class="cd-unit">
+        <span class="cd-num" id="d2-d">00</span>
+        <div class="cd-lbl">days</div>
       </div>
 
-      <div class="sidebar-box">
-        <div class="sidebar-box-title">📰 Kim Said</div>
-        <div class="sidebar-box-body">
-          <div class="about-kim" style="padding:0;font-size:10px">
-            <p>Inspirations for DETOUR:<br/>
-            <strong style="color:var(--hot-pink)">Gwen Stefani (L.A.M.B.)</strong><br/>
-            <strong style="color:var(--hot-pink)">Fergie</strong><br/>
-            <strong style="color:var(--hot-pink)">The Pussycat Dolls</strong><br/>
-            <strong style="color:var(--hot-pink)">M.I.A.</strong></p>
-            <p style="margin-top:6px"><em>"Why is no one putting respect on Fergie? That's my queen."</em><br/>— Kim Petras, 2026</p>
-          </div>
-        </div>
+      <div class="cd-colon">:</div>
+
+      <div class="cd-unit">
+        <span class="cd-num" id="d2-h">00</span>
+        <div class="cd-lbl">hrs</div>
       </div>
-    </aside>
+
+      <div class="cd-colon">:</div>
+
+      <div class="cd-unit">
+        <span class="cd-num" id="d2-m">00</span>
+        <div class="cd-lbl">min</div>
+      </div>
+
+      <div class="cd-colon">:</div>
+
+      <div class="cd-unit">
+        <span class="cd-num" id="d2-s">00</span>
+        <div class="cd-lbl">sec</div>
+      </div>
+
+    </div>
+
+    <div class="mystery-note">
+      [ redacted ] [ classified ] [ ????? ]
+    </div>
 
   </div>
 </div>
 
-<div id="music-player" class="mini">
-  <div class="mp-bar" onclick="togglePlayerMini()">
-    <span>📻 BUNHEAD RADIO (SIMULATED)</span>
-    <span class="mp-bar-arrow" id="mp-arrow">▲</span>
-  </div>
-  <div class="mp-body">
-    <div class="mp-now">
-      <div class="mp-disc" id="mp-disc"></div>
-      <div class="mp-info">
-        <div class="mp-title" id="mp-title">Polo</div>
-        <div class="mp-artist">Kim Petras</div>
-        <div><span class="mp-era" id="mp-era">DETOUR</span></div>
-      </div>
-      <div class="mp-eq">
-        <div class="mp-eq-bar stopped"></div>
-        <div class="mp-eq-bar stopped"></div>
-        <div class="mp-eq-bar stopped"></div>
-        <div class="mp-eq-bar stopped"></div>
-        <div class="mp-eq-bar stopped"></div>
-      </div>
-    </div>
-    <div class="mp-progress">
-      <div class="mp-prog-bar" id="mp-pbar" onclick="seekPlayer(event)">
-        <div class="mp-prog-fill" id="mp-prog-fill"></div>
-      </div>
-      <div class="mp-times">
-        <span id="mp-cur">0:00</span>
-        <span id="mp-tot">3:05</span>
-      </div>
-    </div>
-    <div class="mp-btns">
-      <button class="mp-btn" onclick="prevTrack()">⏮</button>
-      <button class="mp-play" id="mp-play" onclick="togglePlay()">▶</button>
-      <button class="mp-btn" onclick="nextTrack()">⏭</button>
-    </div>
-    <div class="mp-queue" id="mp-queue"></div>
-  </div>
+</div>
+
+<div class="divider-stars">
+✦ ✧ ✦ OFFICIAL MUSIC VIDEOS ✦ ✧ ✦
+</div>
+
+<section>
+
+<div class="section-head">
+🎬 DETOUR Era — Watch Now
+</div>
+
+<div class="videos-grid">
+
+<div class="video-card">
+
+<div class="video-card-label">
+POLO
+</div>
+
+<div class="video-card-inner">
+<iframe
+src="https://www.youtube.com/embed/NuAU3sbzbBo"
+allowfullscreen
+loading="lazy"></iframe>
+</div>
+
+<div class="video-card-sub">
+Official Visualizer
+</div>
+
+</div>
+
+<div class="video-card">
+
+<div class="video-card-label">
+JEEP
+</div>
+
+<div class="video-card-inner">
+<iframe
+src="https://www.youtube.com/embed/V_-rrLLkxas"
+allowfullscreen
+loading="lazy"></iframe>
+</div>
+
+<div class="video-card-sub">
+Official Music Video
+</div>
+
+</div>
+
+</div>
+</section>
+
+<div class="divider-stars">
+✦ ✧ ✦ DISCOGRAPHY ✦ ✧ ✦
+</div>
+
+<section>
+
+<div class="section-head">
+📀 DETOUR Era Singles
+</div>
+
+<table class="singles-table">
+
+<thead>
+<tr>
+<th>#</th>
+<th>Single</th>
+<th>Released</th>
+<th>Watch</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>01</td>
+<td>Polo</td>
+<td>Jun 2025</td>
+<td class="single-link">
+<a href="https://www.youtube.com/watch?v=NuAU3sbzbBo" target="_blank">▶ YT</a>
+</td>
+</tr>
+
+<tr>
+<td>02</td>
+<td>Jeep</td>
+<td>May 2026</td>
+<td class="single-link">
+<a href="https://www.youtube.com/watch?v=V_-rrLLkxas" target="_blank">▶ YT</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+</section>
+
+<section class="guestbook">
+
+<div class="gb-head">
+<span>📝 Sign the Detour Guestbook</span>
+<div class="gb-live">● live feed</div>
+</div>
+
+<div class="gb-entries" id="gb-entries"></div>
+
+<div class="gb-form">
+
+<input
+type="text"
+id="gb-name"
+class="gb-input"
+placeholder="Your Handle..."
+maxlength="20"
+/>
+
+<input
+type="text"
+id="gb-msg"
+class="gb-msg"
+placeholder="Leave a message..."
+maxlength="140"
+/>
+
+<button id="gb-send" class="gb-btn">
+POST ›
+</button>
+
+</div>
+
+<div class="gb-emojis">
+
+<button class="ej-btn" onclick="addEmoji('💖')">💖</button>
+<button class="ej-btn" onclick="addEmoji('⚡')">⚡</button>
+<button class="ej-btn" onclick="addEmoji('👑')">👑</button>
+<button class="ej-btn" onclick="addEmoji('💋')">💋</button>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- RIGHT -->
+<aside class="col-right">
+
+<div class="sidebar-box">
+<div class="sidebar-box-title">🎧 About Kim</div>
+
+<div class="sidebar-box-body">
+<p>
+Kim Petras made history as an indie queen,
+went major, and returned to her roots.
+</p>
+</div>
+
+</div>
+
+</aside>
+
+</div>
+</div>
+
+<!-- MUSIC PLAYER -->
+
+<div id="music-player">
+
+<div class="mp-bar">
+<span>📻 BUNHEAD RADIO</span>
+</div>
+
+<div class="mp-body">
+
+<div class="mp-now">
+
+<div class="mp-disc" id="mp-disc"></div>
+
+<div>
+<div class="mp-title" id="mp-title">Polo</div>
+<div class="mp-artist">Kim Petras</div>
+<div class="mp-era" id="mp-era">DETOUR</div>
+</div>
+
+</div>
+
+<div class="mp-progress">
+
+<div class="mp-prog-bar">
+<div class="mp-prog-fill" id="mp-prog-fill"></div>
+</div>
+
+<div class="mp-times">
+<span id="mp-cur">0:00</span>
+<span id="mp-tot">3:05</span>
+</div>
+
+</div>
+
+<div class="mp-btns">
+
+<button class="mp-btn" onclick="prevTrack()">⏮</button>
+
+<button class="mp-play" id="mp-play" onclick="togglePlay()">
+▶
+</button>
+
+<button class="mp-btn" onclick="nextTrack()">⏭</button>
+
+</div>
+
+<div class="mp-queue" id="mp-queue"></div>
+
+</div>
 </div>
 
 <script>
-// ============================================================
-// Y2K FAN SITE — JS
-// ============================================================
 
-// LOADER
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('hide');
-    setTimeout(doFlash, 800);
-    setTimeout(showNewsAlert, 4000);
+/* =========================================
+   LOADER
+========================================= */
+
+window.addEventListener('load',()=>{
+
+  setTimeout(()=>{
+
+    document
+    .getElementById('loader')
+    .classList
+    .add('hide');
+
+    doFlash();
     initSparkle();
-  }, 2600);
+
+  },3200);
+
 });
 
-// FLASH
-function doFlash() {
-  const f = document.getElementById('flash');
-  f.style.opacity = '0.7';
-  setTimeout(() => f.style.opacity = '0', 100);
+/* ========================================= */
+
+function doFlash(){
+
+  const flash=document.getElementById('flash');
+
+  flash.style.opacity='.7';
+
+  setTimeout(()=>{
+    flash.style.opacity='0';
+  },120);
+
 }
 
-// CURSOR SPARKLE TRAIL
-function initSparkle() {
-  let last = 0;
-  document.addEventListener('mousemove', e => {
-    const now = Date.now();
-    if (now - last < 60) return;
-    last = now;
-    const s = document.createElement('div');
-    s.className = 'sparkle';
-    s.style.left = (e.clientX - 3) + 'px';
-    s.style.top = (e.clientY - 3) + 'px';
-    s.style.background = Math.random() > 0.6 ? '#fff' : 'var(--hot-pink)';
-    s.style.width = s.style.height = (Math.random() * 5 + 3) + 'px';
+/* =========================================
+   SPARKLES
+========================================= */
+
+function initSparkle(){
+
+  let last=0;
+
+  document.addEventListener('mousemove',e=>{
+
+    const now=Date.now();
+
+    if(now-last<60) return;
+
+    last=now;
+
+    const s=document.createElement('div');
+
+    s.className='sparkle';
+
+    s.style.left=(e.clientX-3)+'px';
+    s.style.top=(e.clientY-3)+'px';
+
+    s.style.width=s.style.height=
+    (Math.random()*5+3)+'px';
+
+    s.style.background=
+    Math.random()>.5
+    ? '#fff'
+    : '#ff1a8c';
+
     document.body.appendChild(s);
-    setTimeout(() => s.remove(), 620);
+
+    setTimeout(()=>{
+      s.remove();
+    },600);
+
   });
+
 }
 
-// COUNTDOWNS (Using full ISO dates with timezone offset string to specify Eastern Time accurately)
-function pad(n) { return String(n).padStart(2,'0'); }
+/* =========================================
+   COUNTDOWNS
+========================================= */
 
-const T1 = new Date('2026-05-29T12:00:00-04:00').getTime(); // 12:00 PM EDT (UTC-4)
-const T2 = new Date('2026-05-29T12:30:00-04:00').getTime(); // 12:30 PM EDT (UTC-4)
+function pad(n){
+  return String(n).padStart(2,'0');
+}
 
-function tick(target, ids) {
-  const diff = target - Date.now();
-  if (diff <= 0) {
-    ids.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = '00';
+const T1=new Date('2026-05-29T12:00:00-04:00').getTime();
+const T2=new Date('2026-05-29T12:30:00-04:00').getTime();
+
+function tick(target,ids){
+
+  const diff=target-Date.now();
+
+  if(diff<=0){
+    ids.forEach(id=>{
+      document.getElementById(id).textContent='00';
     });
     return;
   }
-  const s = Math.floor(diff/1000);
-  const vals = [
+
+  const s=Math.floor(diff/1000);
+
+  const vals=[
     Math.floor(s/86400),
     Math.floor((s%86400)/3600),
     Math.floor((s%3600)/60),
     s%60
   ];
-  ids.forEach((id, i) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const v = pad(vals[i]);
-    if (el.textContent !== v) {
-      el.textContent = v;
-      el.classList.add('tick');
-      setTimeout(() => el.classList.remove('tick'), 120);
-    }
+
+  ids.forEach((id,i)=>{
+    document.getElementById(id).textContent=
+    pad(vals[i]);
   });
+
 }
 
-setInterval(() => {
-  tick(T1, ['d1-d','d1-h','d1-m','d1-s']);
-  tick(T2, ['d2-d','d2-h','d2-m','d2-s']);
-}, 1000);
+setInterval(()=>{
 
-// HIT COUNTER SIM
-let hc = 4729;
-setInterval(() => {
-  if (Math.random() > 0.4) {
-    hc += Math.floor(Math.random() * 3) + 1;
-    document.getElementById('hit-count').textContent = String(hc).padStart(6,'0');
-  }
-  if (Math.random() > 0.7) {
-    let on = parseInt(document.getElementById('online-now').textContent.replace(/,/g,''));
-    on += Math.random() > 0.5 ? Math.floor(Math.random()*4) : -Math.floor(Math.random()*4);
-    document.getElementById('online-now').textContent = on.toLocaleString();
-  }
-}, 3000);
+  tick(T1,['d1-d','d1-h','d1-m','d1-s']);
 
-// NEWS POPUP
-function showNewsAlert() { document.getElementById('news-alert').classList.add('show'); }
-function closeNewsAlert() { document.getElementById('news-alert').classList.remove('show'); }
+  tick(T2,['d2-d','d2-h','d2-m','d2-s']);
 
-```js
-// MUSIC PLAYER DATA
-const PLAYLIST = [
-  {
-    t: 'Polo',
-    yt: 'NuAU3sbzbBo',
-    url: 'https://www.youtube.com/watch?v=NuAU3sbzbBo'
-  },
+},1000);
 
-  {
-    t: 'Freak It',
-    yt: 'wl2ig2D61mc',
-    url: 'https://www.youtube.com/watch?v=wl2ig2D61mc'
-  },
+/* =========================================
+   GUESTBOOK
+========================================= */
 
-  {
-    t: 'I Like Ur Look',
-    yt: 'OcsT4gXPFu8',
-    url: 'https://www.youtube.com/watch?v=OcsT4gXPFu8'
-  },
-
-  {
-    t: 'Need for Speed',
-    yt: '6dKZ0xBWxNo',
-    url: 'https://www.youtube.com/watch?v=6dKZ0xBWxNo'
-  },
-
-  {
-    t: 'Jeep',
-    yt: 'V_-rrLLkxas',
-    url: 'https://www.youtube.com/watch?v=V_-rrLLkxas'
-  },
-
-  {
-    t: 'Pop Sound',
-    yt: 'ifOuca8eQ2g',
-    url: 'https://www.youtube.com/watch?v=ifOuca8eQ2g'
-  },
-
-  {
-    t: 'Mr. Producer feat. BC Kingdom',
-    yt: '6Yp9k9bWDes',
-    url: 'https://www.youtube.com/watch?v=6Yp9k9bWDes'
-  },
-
-  {
-    t: 'Cha Cha',
-    yt: '4J9b7m4R8vA',
-    url: 'https://www.youtube.com/watch?v=4J9b7m4R8vA'
-  },
-
-  {
-    t: 'Get Some feat. Cortisa Star',
-    yt: 'M7j6s7xL2mE',
-    url: 'https://www.youtube.com/watch?v=M7j6s7xL2mE'
-  }
+const PRELOAD=[
+{
+n:'woo_ah_stan',
+t:'Crying to Jeep right now 😭',
+ts:'10:42 AM',
+vip:true
+},
+{
+n:'bunhead_boy',
+t:'the layout is EVERYTHING',
+ts:'11:04 AM',
+vip:false
+}
 ];
-let cur = 0, playing = false, prog = 0, timer = null;
-const mpDisc = document.getElementById('mp-disc');
-const mpTitle = document.getElementById('mp-title');
-const mpEra = document.getElementById('mp-era');
-const mpFill = document.getElementById('mp-prog-fill');
-const mpCur = document.getElementById('mp-cur');
-const mpTot = document.getElementById('mp-tot');
-const mpPlayBtn = document.getElementById('mp-play');
-const mpEqBars = document.querySelectorAll('.mp-eq-bar');
-const mpQueue = document.getElementById('mp-queue');
 
-function buildQueue() {
-  mpQueue.innerHTML = '';
-  PLAYLIST.forEach((t,i) => {
-    const d = document.createElement('div');
-    d.className = 'mp-qitem' + (i===cur?' active':'');
-    d.innerHTML = `<span class="mp-qi-n">${String(i+1).padStart(2,'0')}</span><span class="mp-qi-t">${t.t}</span><span class="mp-qi-e">${t.era}</span>`;
-    d.addEventListener('click', () => {
-      cur=i; loadTrack(); if(!playing) togglePlay();
-    });
-    mpQueue.appendChild(d);
+const gbEl=document.getElementById('gb-entries');
+
+function esc(s){
+  return s
+  .replace(/&/g,'&amp;')
+  .replace(/</g,'&lt;')
+  .replace(/>/g,'&gt;');
+}
+
+function addEntry(name,text,ts,vip=false){
+
+  const d=document.createElement('div');
+
+  d.className='gb-entry';
+
+  d.innerHTML=`
+  <div>
+  <span class="gb-user ${vip?'vip':''}">
+  ${vip?'★ ':''}${esc(name)}
+  </span>
+
+  <span class="gb-time">${ts}</span>
+  </div>
+
+  <div class="gb-text">${esc(text)}</div>
+  `;
+
+  gbEl.appendChild(d);
+
+  gbEl.scrollTop=gbEl.scrollHeight;
+
+  spawnHeart();
+
+}
+
+PRELOAD.forEach((m,i)=>{
+  setTimeout(()=>{
+    addEntry(m.n,m.t,m.ts,m.vip);
+  },1000+i*600);
+});
+
+function now(){
+
+  const d=new Date();
+
+  return d.toLocaleTimeString([],{
+    hour:'2-digit',
+    minute:'2-digit'
   });
+
 }
-function loadTrack() {
-  const t = PLAYLIST[cur];
-  mpTitle.textContent = t.t;
-  mpArtist = 'Kim Petras';
-  mpEra.textContent = t.era;
-  mpEra.style.color = t.era==='DETOUR' ? 'var(--hot-pink)' : t.era==='PRETOUR' ? 'var(--baby-pink)' : 'var(--silver)';
-  mpEra.style.borderColor = mpEra.style.color;
-  mpTot.textContent = t.d;
-  prog = 0; mpFill.style.width='0%'; mpCur.textContent='0:00';
+
+document
+.getElementById('gb-send')
+.addEventListener('click',sendMsg);
+
+function sendMsg(){
+
+  const n=
+  document
+  .getElementById('gb-name')
+  .value
+  .trim()
+  || 'AnonymousBun';
+
+  const m=
+  document
+  .getElementById('gb-msg')
+  .value
+  .trim();
+
+  if(!m) return;
+
+  addEntry(n,m,now());
+
+  document.getElementById('gb-msg').value='';
+
+}
+
+function addEmoji(em){
+
+  document.getElementById('gb-msg').value+=em;
+
+}
+
+/* =========================================
+   HEARTS
+========================================= */
+
+function spawnHeart(){
+
+  const h=document.createElement('div');
+
+  h.className='float-heart';
+
+  h.textContent=
+  ['💖','✨','💋','🔥'][Math.floor(Math.random()*4)];
+
+  h.style.left=
+  Math.random()*window.innerWidth+'px';
+
+  h.style.top=
+  (window.innerHeight-40)+'px';
+
+  document.body.appendChild(h);
+
+  setTimeout(()=>{
+    h.remove();
+  },1800);
+
+}
+
+/* =========================================
+   MUSIC PLAYER
+========================================= */
+
+const PLAYLIST=[
+{
+t:'Polo',
+d:'3:05',
+era:'DETOUR'
+},
+{
+t:'Jeep',
+d:'3:44',
+era:'DETOUR'
+}
+];
+
+let cur=0;
+let playing=false;
+let prog=0;
+let timer=null;
+
+const mpDisc=document.getElementById('mp-disc');
+const mpTitle=document.getElementById('mp-title');
+const mpEra=document.getElementById('mp-era');
+const mpFill=document.getElementById('mp-prog-fill');
+const mpCur=document.getElementById('mp-cur');
+const mpTot=document.getElementById('mp-tot');
+const mpPlay=document.getElementById('mp-play');
+const mpQueue=document.getElementById('mp-queue');
+
+function buildQueue(){
+
+  mpQueue.innerHTML='';
+
+  PLAYLIST.forEach((t,i)=>{
+
+    const d=document.createElement('div');
+
+    d.className=
+    'mp-qitem'+(i===cur?' active':'');
+
+    d.innerHTML=`
+    <span>${String(i+1).padStart(2,'0')}</span>
+    <span class="mp-qi-t">${t.t}</span>
+    <span>${t.era}</span>
+    `;
+
+    d.addEventListener('click',()=>{
+
+      cur=i;
+
+      loadTrack();
+
+    });
+
+    mpQueue.appendChild(d);
+
+  });
+
+}
+
+function loadTrack(){
+
+  const t=PLAYLIST[cur];
+
+  mpTitle.textContent=t.t;
+
+  mpEra.textContent=t.era;
+
+  mpTot.textContent=t.d;
+
+  prog=0;
+
+  mpFill.style.width='0%';
+
+  mpCur.textContent='0:00';
+
   buildQueue();
+
 }
-function togglePlay() {
-  playing = !playing;
-  mpPlayBtn.textContent = playing ? '⏸' : '▶';
-  mpDisc.classList.toggle('spin', playing);
-  mpEqBars.forEach(b => b.classList.toggle('stopped', !playing));
-  if (playing) { startSim(); } else { clearInterval(timer); }
+
+function togglePlay(){
+
+  playing=!playing;
+
+  mpPlay.textContent=
+  playing
+  ? '⏸'
+  : '▶';
+
+  mpDisc.classList.toggle('spin',playing);
+
+  if(playing){
+    startSim();
+  }else{
+    clearInterval(timer);
+  }
+
 }
-function startSim() {
+
+function startSim(){
+
   clearInterval(timer);
-  const parts = PLAYLIST[cur].d.split(':');
-  const total = parseInt(parts[0])*60 + parseInt(parts[1]);
-  timer = setInterval(() => {
+
+  const parts=
+  PLAYLIST[cur].d.split(':');
+
+  const total=
+  parseInt(parts[0])*60+
+  parseInt(parts[1]);
+
+  timer=setInterval(()=>{
+
     prog++;
-    if (prog > total) {
-      prog=0; cur=(cur+1)%PLAYLIST.length; loadTrack(); return;
+
+    if(prog>total){
+
+      nextTrack();
+
+      return;
+
     }
-    mpFill.style.width = (prog/total*100)+'%';
-    mpCur.textContent = Math.floor(prog/60)+':'+String(prog%60).padStart(2,'0');
-  }, 1000);
+
+    mpFill.style.width=
+    (prog/total*100)+'%';
+
+    mpCur.textContent=
+    Math.floor(prog/60)+':'+
+    String(prog%60).padStart(2,'0');
+
+  },1000);
+
 }
-function seekPlayer(e) {
-  const rect = document.getElementById('mp-pbar').getBoundingClientRect();
-  const pct = (e.clientX - rect.left) / rect.width;
-  const parts = PLAYLIST[cur].d.split(':');
-  const total = parseInt(parts[0])*60 + parseInt(parts[1]);
-  prog = Math.floor(pct * total);
-  mpFill.style.width = (pct*100)+'%';
-  mpCur.textContent = Math.floor(prog/60)+':'+String(prog%60).padStart(2,'0');
+
+function nextTrack(){
+
+  cur=(cur+1)%PLAYLIST.length;
+
+  loadTrack();
+
 }
-function nextTrack() { cur=(cur+1)%PLAYLIST.length; loadTrack(); }
-function prevTrack() { cur=cur-1<0?PLAYLIST.length-1:cur-1; loadTrack(); }
-function togglePlayerMini() {
-  const p = document.getElementById('music-player');
-  p.classList.toggle('mini');
-  document.getElementById('mp-arrow').textContent = p.classList.contains('mini')?'▲':'▼';
+
+function prevTrack(){
+
+  cur=cur-1<0
+  ? PLAYLIST.length-1
+  : cur-1;
+
+  loadTrack();
+
 }
+
 loadTrack();
 
-// GUESTBOOK REAL SIM
-const PRELOAD = [
-  { n:'woo_ah_stan', t:'Crying to Jeep right now... on repeat forever. 😭 Paris music video was beautiful!', ts:'10:42 AM', vip:true },
-  { n:'bunhead_boy', t:'omg the layout is everything. early 2000s vibes match the snippets so well.', ts:'11:04 AM', vip:false },
-  { n:'margofits', t:'Is anyone staying up for the 12:30 drop?? I need help. or just send detour', ts:'11:17 AM', vip:false },
-  { n:'kpforever_xo', t:'She left Republic, fired everyone, started her own label, worked with trans girls — this is PEAK feminist pop. 👑', ts:'11:34 AM', vip:false },
-  { n:'silverchrome_', t:'the DETOUR era aesthetic... pink, red, silver... it\'s so her 💖', ts:'11:49 AM', vip:false },
-  { n:'hearthrobkim', t:'"My fans have waited long enough" - she said that and then DELIVERED. queen behavior.', ts:'12:01 PM', vip:true },
-];
-const gbEl = document.getElementById('gb-entries');
-function addEntry(name, text, ts, vip=false) {
-  const d = document.createElement('div');
-  d.className = 'gb-entry';
-  d.innerHTML = `<div><span class="gb-user${vip?' vip':''}">${vip?'★ ':''}${esc(name)}</span><span class="gb-time">${ts}</span></div><div class="gb-text">${esc(text)}</div>`;
-  gbEl.appendChild(d);
-  gbEl.scrollTop = gbEl.scrollHeight;
-  spawnHeart();
-}
-function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function now(){ const d=new Date(); return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0'); }
-PRELOAD.forEach((m,i) => setTimeout(() => addEntry(m.n, m.t, m.ts, m.vip), 3000+i*400));
+/* ========================================= */
 
-document.getElementById('gb-send').addEventListener('click', sendMsg);
-document.getElementById('gb-msg').addEventListener('keydown', e => { if(e.key==='Enter') sendMsg(); });
-function sendMsg() {
-  const n = document.getElementById('gb-name').value.trim() || 'AnonymousBun';
-  const m = document.getElementById('gb-msg').value.trim();
-  if(!m)return;
-  addEntry(n, m, now(), false);
-  document.getElementById('gb-msg').value = '';
-}
-function addEmoji(em) { document.getElementById('gb-msg').value += em; }
+document
+.getElementById('main-logo')
+.addEventListener('click',()=>{
 
-function spawnHeart() {
-  const h = document.createElement('div');
-  h.className = 'float-heart';
-  h.textContent = ['💖','💝','💓','✨','🔥','💋'][Math.floor(Math.random()*6)];
-  h.style.left = Math.random()*window.innerWidth + 'px';
-  h.style.top = (window.innerHeight - 40) + 'px';
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 1800);
-}
+  doFlash();
 
-// EASTER EGGS
-const EGGS = [
-  { i:'💋', h:'ERA DEFINED', b:'BunHead is indie pop history in the making. You are early to the party.' },
-  { i:'🚗', h:'VROOM VROOM', b:'Need for Speed features 9 completely self-funded custom looks. True icon energy.' },
-  { i:'🛤️', h:'The Road Leads Here', b:'Every detour is just the scenic route to exactly where you were always supposed to be.' },
-  { i:'📰', h:'EXCLUSIVE', b:'BREAKING: Hidden Easter Egg Discovered — Stan Twitter Is Impressed — Detour Era Confirmed Most Iconic.' },
-  { i:'⚡', h:'KONAMI UNLOCKED', b:'↑↑↓↓←→←→BA. You really did that. Absolute legend behavior. Kim is proud of you.' },
-];
-let eIdx=0, eOpen=false;
-function showEaster(idx) {
-  if(eOpen)return;
-  const egg = EGGS[idx!==undefined?idx:eIdx%EGGS.length];
-  eIdx++;
-  document.getElementById('e-icon').textContent=egg.i;
-  document.getElementById('e-head').textContent=egg.h;
-  document.getElementById('e-body').textContent=egg.b;
-  document.getElementById('easter-overlay').classList.add('show');
-  eOpen=true; doFlash();
-}
-function closeEaster() { document.getElementById('easter-overlay').classList.remove('show'); eOpen=false; }
-document.getElementById('easter-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('easter-overlay'))closeEaster();});
+  for(let i=0;i<6;i++){
 
-// Logo 3x click
-let lc=0;
-document.getElementById('main-logo').addEventListener('click',()=>{
-  lc++; if(lc>=3){lc=0;showEaster();}
+    setTimeout(()=>{
+      spawnHeart();
+    },i*120);
+
+  }
+
 });
 
-// Header double-click
-document.getElementById('masthead').addEventListener('dblclick',()=>{ doFlash(); for(let i=0;i<8;i++)setTimeout(spawnHeart,i*120); });
-
-// Konami
-let ks=[];
-const KK=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-document.addEventListener('keydown', e=>{
-  ks.push(e.key.toLowerCase());
-  if(ks.length>KK.length)ks.shift();
-  if(ks.join('')===KK.join('').toLowerCase()){ showEaster(4); ks=[]; }
-});
 </script>
+
 </body>
 </html>
-
 ```
