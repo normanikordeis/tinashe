@@ -464,9 +464,13 @@
   // secret easter egg: star clicks theme (document click 5 times)
   let clickCount=0; document.body.addEventListener('click',()=>{ clickCount++; if(clickCount===10){ alert('✨ DETOUR MODE ✨: glitter overload'); document.body.style.backgroundColor='#ffb3c6'; setTimeout(()=>document.body.style.backgroundColor='',3000); clickCount=0; } });
   
-  // ambient animation tagline
-  const taglines = ["detour", "DTLA", "i like ur look", "check it" "polo", "brutalist", "need for speed", "jeep" "101", "basketball", "bitch ball out", "korea", "freak it"];
-  let idx=0; setInterval(()=>{document.getElementById('animatedTagline').innerHTML=taglines[idx%taglines.length]; idx++;},3000);
+// ambient animation tagline
+const taglines = ["detour", "DTLA", "i like ur look", "check it", "polo", "brutalist", "need for speed", "jeep", "101", "basketball", "bitch ball out", "korea", "freak it"];
+let idx = 0;
+setInterval(() => {
+  document.getElementById('animatedTagline').innerHTML = taglines[idx % taglines.length];
+  idx++;
+}, 3000);
 </script>
 </body>
 </html>
