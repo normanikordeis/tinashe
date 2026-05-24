@@ -5,17 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Detour</title>
 
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Orbitron:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
 
-<!-- Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-<!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
-<!-- Vanilla Tilt -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
 <style>
@@ -53,8 +48,6 @@ body{
   cursor:none;
 }
 
-/* CUSTOM CURSOR */
-
 .cursor{
   width:24px;
   height:24px;
@@ -81,13 +74,10 @@ body{
   to{transform:rotate(360deg);}
 }
 
-/* LOADER */
-
 .loader{
   position:fixed;
   inset:0;
-  background:
-    linear-gradient(135deg,#ff008c,#ff69b4,#fff0f7);
+  background:linear-gradient(135deg,#ff008c,#ff69b4,#fff0f7);
   z-index:99999;
   display:flex;
   align-items:center;
@@ -117,8 +107,6 @@ body{
   50%{transform:scale(1.05);}
 }
 
-/* VHS OVERLAY */
-
 .vhs{
   position:fixed;
   inset:0;
@@ -128,8 +116,6 @@ body{
   mix-blend-mode:screen;
   z-index:2;
 }
-
-/* PARTICLES */
 
 .particles{
   position:fixed;
@@ -150,15 +136,9 @@ body{
 }
 
 @keyframes float{
-  from{
-    transform:translateY(100vh) scale(0);
-  }
-  to{
-    transform:translateY(-10vh) scale(1);
-  }
+  from{transform:translateY(100vh) scale(0);}
+  to{transform:translateY(-10vh) scale(1);}
 }
-
-/* ROAD */
 
 .highway{
   position:fixed;
@@ -167,17 +147,14 @@ body{
   width:200px;
   top:0;
   bottom:0;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      rgba(255,255,255,.8) 0 20px,
-      transparent 20px 50px
-    );
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,.8) 0 20px,
+    transparent 20px 50px
+  );
   opacity:.05;
   z-index:0;
 }
-
-/* HERO */
 
 .hero{
   min-height:100vh;
@@ -193,8 +170,8 @@ body{
   position:absolute;
   inset:0;
   background-image:
-  linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.5)),
-  url('https://images.genius.com/3dc9b8edc7ccb261d75b1def264571ef.1000x266x1.png');
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.5)),
+    url('https://ourculturemag.com/wp-content/uploads/Kim-Petras-July2025-Freak-It-e1772098419431.webp');
   background-size:cover;
   background-position:center;
   animation:bgShift 20s infinite alternate ease-in-out;
@@ -202,14 +179,8 @@ body{
 }
 
 @keyframes bgShift{
-  0%{
-    transform:scale(1.1) translateX(0);
-    filter:hue-rotate(0deg);
-  }
-  100%{
-    transform:scale(1.2) translateX(-40px);
-    filter:hue-rotate(15deg);
-  }
+  0%{transform:scale(1.1) translateX(0);filter:hue-rotate(0deg);}
+  100%{transform:scale(1.2) translateX(-40px);filter:hue-rotate(15deg);}
 }
 
 .hero-content{
@@ -256,12 +227,8 @@ body{
 }
 
 @keyframes flicker{
-  0%,19%,21%,23%,25%,54%,56%,100%{
-    opacity:1;
-  }
-  20%,24%,55%{
-    opacity:.5;
-  }
+  0%,19%,21%,23%,25%,54%,56%,100%{opacity:1;}
+  20%,24%,55%{opacity:.5;}
 }
 
 .enter-btn{
@@ -281,8 +248,6 @@ body{
 .enter-btn:hover{
   transform:translateY(-6px) scale(1.03);
 }
-
-/* MARQUEE */
 
 .marquee{
   width:100%;
@@ -304,12 +269,8 @@ body{
 }
 
 @keyframes marquee{
-  from{
-    transform:translateX(100%);
-  }
-  to{
-    transform:translateX(-100%);
-  }
+  from{transform:translateX(100%);}
+  to{transform:translateX(-100%);}
 }
 
 section{
@@ -317,8 +278,6 @@ section{
   position:relative;
   z-index:5;
 }
-
-/* COUNTDOWN */
 
 .countdowns{
   display:grid;
@@ -357,14 +316,9 @@ section{
   flex-wrap:wrap;
 }
 
-.unit{
-  flex:1;
-  min-width:70px;
-}
+.unit{flex:1;min-width:70px;}
 
-.unit span{
-  display:block;
-}
+.unit span{display:block;}
 
 .num{
   font-size:3rem;
@@ -378,8 +332,6 @@ section{
   letter-spacing:2px;
   font-size:.8rem;
 }
-
-/* STORY */
 
 .story-grid{
   display:grid;
@@ -427,8 +379,6 @@ section{
   font-family:'Permanent Marker';
 }
 
-/* PLAYER */
-
 .player-wrap{
   max-width:1100px;
   margin:auto;
@@ -460,15 +410,17 @@ section{
   animation:pulse 2s infinite;
 }
 
-.album-art{
-  position:relative;
-}
+.album-art{position:relative;}
 
 .album-art img{
   width:100%;
   border-radius:30px;
-  animation:spinAlbum 18s linear infinite;
   box-shadow:0 20px 60px rgba(0,0,0,.4);
+  transition:transform 0.4s ease;
+}
+
+.album-art img.spinning{
+  animation:spinAlbum 18s linear infinite;
 }
 
 @keyframes spinAlbum{
@@ -476,14 +428,9 @@ section{
   to{transform:rotate(360deg);}
 }
 
-.track-info h2{
-  font-size:2.5rem;
-}
+.track-info h2{font-size:2.5rem;}
 
-.track-info p{
-  margin-top:10px;
-  opacity:.7;
-}
+.track-info p{margin-top:10px;opacity:.7;}
 
 .controls{
   display:flex;
@@ -503,17 +450,11 @@ section{
   transition:.3s;
 }
 
-.controls button:hover{
-  transform:scale(1.1);
-}
+.controls button:hover{transform:scale(1.1);}
 
-.progress{
-  margin-top:30px;
-}
+.progress{margin-top:30px;}
 
-.progress input{
-  width:100%;
-}
+.progress input{width:100%;}
 
 .visualizer{
   display:flex;
@@ -527,8 +468,10 @@ section{
   width:10px;
   background:linear-gradient(to top,var(--pink),white);
   border-radius:10px;
-  animation:bounce 1s infinite ease-in-out;
+  height:20px;
 }
+
+.bar.active{animation:bounce 1s infinite ease-in-out;}
 
 .bar:nth-child(2){animation-delay:.2s}
 .bar:nth-child(3){animation-delay:.4s}
@@ -557,6 +500,7 @@ section{
   transition:.3s;
   display:flex;
   justify-content:space-between;
+  align-items:center;
 }
 
 .track:hover{
@@ -564,12 +508,18 @@ section{
   transform:translateX(6px);
 }
 
+.track.active-track{
+  background:rgba(255,20,147,.2);
+  border:1px solid rgba(255,20,147,.4);
+}
+
 .track a{
   color:#fff;
   text-decoration:none;
+  font-size:1.2rem;
 }
 
-/* CHAT */
+.track a:hover{color:var(--pink);}
 
 .chat-wrap{
   max-width:1000px;
@@ -598,19 +548,11 @@ section{
 }
 
 @keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:none;}
 }
 
-.message strong{
-  color:var(--soft);
-}
+.message strong{color:var(--soft);}
 
 .chat-form{
   display:flex;
@@ -628,6 +570,8 @@ section{
   color:white;
 }
 
+.chat-form input::placeholder{color:rgba(255,255,255,.5);}
+
 .chat-form button{
   padding:16px 30px;
   border:none;
@@ -635,9 +579,9 @@ section{
   background:linear-gradient(135deg,var(--pink),var(--hotpink));
   color:white;
   cursor:pointer;
+  font-weight:700;
+  letter-spacing:2px;
 }
-
-/* GALLERY */
 
 .gallery{
   columns:3 300px;
@@ -654,11 +598,10 @@ section{
 .gallery-item img{
   width:100%;
   transition:1s;
+  display:block;
 }
 
-.gallery-item:hover img{
-  transform:scale(1.08);
-}
+.gallery-item:hover img{transform:scale(1.08);}
 
 .gallery-item span{
   position:absolute;
@@ -668,8 +611,6 @@ section{
   padding:10px 16px;
   border-radius:100px;
 }
-
-/* FOOTER */
 
 footer{
   text-align:center;
@@ -701,6 +642,7 @@ footer h2{
   color:white;
   text-decoration:none;
   transition:.3s;
+  font-size:1.3rem;
 }
 
 .socials a:hover{
@@ -722,24 +664,10 @@ footer h2{
   50%{transform:translateY(-20px) rotate(-8deg);}
 }
 
-/* RESPONSIVE */
-
 @media(max-width:900px){
-
-  .story-grid,
-  .radio{
-    grid-template-columns:1fr;
-  }
-
-  .hero h1{
-    font-size:4rem;
-  }
-
-  .detour-sign{
-    width:170px;
-    font-size:1.3rem;
-  }
-
+  .story-grid,.radio{grid-template-columns:1fr;}
+  .hero h1{font-size:4rem;}
+  .detour-sign{width:170px;font-size:1.3rem;}
 }
 
 </style>
@@ -765,19 +693,15 @@ footer h2{
 
   <div class="hero-content">
 
-    <div class="detour-sign">
-      DETOUR
-    </div>
+    <div class="detour-sign">DETOUR</div>
 
     <h1>KIM PETRAS</h1>
 
     <h2>MAY 29, 2026</h2>
 
-    <div class="tagline">
-      ✦ a new era begins ✦
-    </div>
+    <div class="tagline">✦ a new era begins ✦</div>
 
-    <button class="enter-btn">
+    <button class="enter-btn" onclick="document.querySelector('.player-wrap').scrollIntoView({behavior:'smooth'})">
       ENTER THE ERA
     </button>
 
@@ -786,82 +710,63 @@ footer h2{
 </section>
 
 <!-- MARQUEE -->
-
 <div class="marquee">
   <span>
-    DETOUR • KIM PETRAS • THE DETOUR BEGINS MAY 29 • POP REBIRTH • NEW ERA • INDEPENDENT ICON • DETOUR •
+    DETOUR &nbsp;•&nbsp; KIM PETRAS &nbsp;•&nbsp; THE DETOUR BEGINS MAY 29 &nbsp;•&nbsp; POP REBIRTH &nbsp;•&nbsp; NEW ERA &nbsp;•&nbsp; INDEPENDENT ICON &nbsp;•&nbsp; DETOUR &nbsp;•&nbsp; KIM PETRAS &nbsp;•&nbsp; THE DETOUR BEGINS MAY 29 &nbsp;•&nbsp; POP REBIRTH &nbsp;•&nbsp;
   </span>
 </div>
 
 <!-- COUNTDOWN -->
-
 <section>
-
   <div class="countdowns">
 
     <div class="count-card">
-
       <h3>Detour Arrives In</h3>
-
       <div class="timer" id="timer1"></div>
-
     </div>
 
     <div class="count-card">
-
       <h3>...something else is coming</h3>
-
       <div class="timer" id="timer2"></div>
-
     </div>
 
   </div>
-
 </section>
 
 <!-- STORY -->
-
 <section>
-
   <div class="story-grid">
 
     <div class="story-card" data-tilt>
-
       <h2>from chaos to clarity</h2>
-
       <p>
         After years inside the machine, DETOUR feels like Kim Petras taking the wheel back.
-        Neon heartbreak. Highway freedom. Pop rebirth. 
+        Neon heartbreak. Highway freedom. Pop rebirth.
         This era glows with independence, femininity, danger, nightlife memories,
         motel signs, traffic lights, emotional honesty, and hyperpop glamour.
         Every visual feels like driving through Los Angeles at 2AM with mascara tears
         and glitter on the dashboard.
       </p>
-
       <br>
-
       <p>
-        “i needed to disappear for a second so i could become myself again.”
+        "i needed to disappear for a second so i could become myself again."
       </p>
-
     </div>
 
     <div class="polaroid" data-tilt>
-
-      <img src="https://ourculturemag.com/wp-content/uploads/Kim-Petras-July2025-Freak-It-e1772098419431.webp">
-
+      <img
+        src="https://ourculturemag.com/wp-content/uploads/Kim-Petras-July2025-Freak-It-e1772098419431.webp"
+        alt="Kim Petras Detour era"
+        onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kim_Petras_at_The_Grove.jpg/800px-Kim_Petras_at_The_Grove.jpg'"
+      >
       <span>journal fragment // 02:17AM</span>
-
     </div>
 
   </div>
-
 </section>
 
 <!-- PLAYER -->
-
 <section>
-
   <div class="player-wrap">
 
     <div class="radio" data-tilt>
@@ -869,38 +774,27 @@ footer h2{
       <div class="onair">ON AIR</div>
 
       <div class="album-art">
-
         <img id="cover"
-        src="https://i.redd.it/kim-petras-announces-freak-it-7-25-v0-y7sn3tjlmbdf1.jpg?width=1280&format=pjpg&auto=webp&s=9297019570f3e0369d31f33b82cc073744b5439e">
-
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kim_Petras_at_The_Grove.jpg/800px-Kim_Petras_at_The_Grove.jpg"
+          alt="Kim Petras album art"
+        >
       </div>
 
       <div class="track-info">
-
-        <h2 id="title">Future Starts Now</h2>
-        <p>Detour Radio Broadcast</p>
+        <h2 id="title">Polo</h2>
+        <p>Detour Radio — click ▶ YouTube to listen</p>
 
         <div class="controls">
-
-          <button id="prev">
-            <i class="fa-solid fa-backward"></i>
-          </button>
-
-          <button id="play">
-            <i class="fa-solid fa-play"></i>
-          </button>
-
-          <button id="next">
-            <i class="fa-solid fa-forward"></i>
-          </button>
-
+          <button id="prev"><i class="fa-solid fa-backward"></i></button>
+          <button id="play"><i class="fa-solid fa-play"></i></button>
+          <button id="next"><i class="fa-solid fa-forward"></i></button>
         </div>
 
         <div class="progress">
-          <input type="range" id="seek" value="0">
+          <input type="range" id="seek" value="0" min="0" max="100">
         </div>
 
-        <div class="visualizer">
+        <div class="visualizer" id="visualizer">
           <div class="bar"></div>
           <div class="bar"></div>
           <div class="bar"></div>
@@ -917,15 +811,11 @@ footer h2{
     </div>
 
   </div>
-
 </section>
 
 <!-- CHAT -->
-
 <section>
-
   <div class="chat-wrap">
-
     <div class="chat-box">
 
       <h2 style="margin-bottom:30px;">✦ DETOUR FAN WALL ✦</h2>
@@ -933,91 +823,101 @@ footer h2{
       <div class="messages" id="messages"></div>
 
       <div class="chat-form">
-
         <input type="text" id="username" placeholder="username">
-
         <input type="text" id="messageInput" placeholder="leave a message for the era...">
-
-        <button id="sendBtn">
-          SEND ♡
-        </button>
-
+        <button id="sendBtn">SEND ♡</button>
       </div>
 
     </div>
-
   </div>
-
 </section>
 
 <!-- GALLERY -->
-
 <section>
-
   <div class="gallery">
 
     <div class="gallery-item">
-      <img src="https://pbs.twimg.com/media/HCF4bFJaQAAeatt.jpg">
+      <img
+        src="https://ourculturemag.com/wp-content/uploads/Kim-Petras-July2025-Freak-It-e1772098419431.webp"
+        alt="Kim Petras Detour"
+        onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kim_Petras_at_The_Grove.jpg/800px-Kim_Petras_at_The_Grove.jpg'"
+      >
       <span>detour motel nights</span>
     </div>
 
     <div class="gallery-item">
-      <img src="https://i.postimg.cc/pX6spLmD/byrdie-kim-petras-social-83055fedd66544fa8c069abc9b2e6899.jpg">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kim_Petras_at_The_Grove.jpg/800px-Kim_Petras_at_The_Grove.jpg"
+        alt="Kim Petras pink freeway"
+      >
       <span>pink freeway dreams</span>
     </div>
 
     <div class="gallery-item">
-      <img src="https://i1.sndcdn.com/artworks-E54IdJGoCTcQlJFO-vWUjIw-t1080x1080.jpg">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Kim_Petras_Unveiled_as_2023_Victoria%27s_Secret_Fashion_Show_Performer_%28cropped%29.jpg/800px-Kim_Petras_Unveiled_as_2023_Victoria%27s_Secret_Fashion_Show_Performer_%28cropped%29.jpg"
+        alt="Kim Petras 2AM"
+        onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kim_Petras_at_The_Grove.jpg/800px-Kim_Petras_at_The_Grove.jpg'"
+      >
       <span>2am radio energy</span>
     </div>
 
     <div class="gallery-item">
-      <img src="https://tecoapple.com/wp-content/uploads/2025/06/kimpetraspoloa025.jpg">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kim_Petras_at_The_Grove.jpg/800px-Kim_Petras_at_The_Grove.jpg"
+        alt="Kim Petras Detour forever"
+      >
       <span>detour forever</span>
     </div>
 
     <div class="gallery-item">
-      <img src="https://pbs.twimg.com/media/G_TP_pRXEAEae_3.jpg">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Kim_Petras_Unveiled_as_2023_Victoria%27s_Secret_Fashion_Show_Performer_%28cropped%29.jpg/800px-Kim_Petras_Unveiled_as_2023_Victoria%27s_Secret_Fashion_Show_Performer_%28cropped%29.jpg"
+        alt="Kim Petras new era"
+        onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kim_Petras_at_The_Grove.jpg/800px-Kim_Petras_at_The_Grove.jpg'"
+      >
       <span>new era begins</span>
     </div>
 
     <div class="gallery-item">
-      <img src="https://cdn.prod.website-files.com/62ee0bbe0c783a903ecc0ddb/68fbcaf43b4b785c0033f18e_FLAUNT_kimpetras5.jpeg">
+      <img
+        src="https://ourculturemag.com/wp-content/uploads/Kim-Petras-July2025-Freak-It-e1772098419431.webp"
+        alt="Kim Petras traffic lights"
+        onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kim_Petras_at_The_Grove.jpg/800px-Kim_Petras_at_The_Grove.jpg'"
+      >
       <span>traffic lights + glitter</span>
     </div>
 
   </div>
-
 </section>
 
 <!-- FOOTER -->
-
 <footer>
 
   <img class="detour-sticker"
-  src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/MUTCD_W8-4.svg/1200px-MUTCD_W8-4.svg.png">
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/MUTCD_W8-4.svg/1200px-MUTCD_W8-4.svg.png"
+    alt="Detour sign"
+  >
 
   <h2>the detour begins may 29</h2>
 
-  <p>
-    fan-made immersive experience inspired by the DETOUR era ♡
-  </p>
+  <p>fan-made immersive experience inspired by the DETOUR era ♡</p>
 
   <div class="socials">
 
-    <a href="https://www.instagram.com/kimpetras/" target="_blank">
+    <a href="https://www.instagram.com/kimpetras/" target="_blank" rel="noopener" aria-label="Kim Petras Instagram">
       <i class="fab fa-instagram"></i>
     </a>
 
-    <a href="https://www.youtube.com/@KimPetras" target="_blank">
+    <a href="https://www.youtube.com/@KimPetras" target="_blank" rel="noopener" aria-label="Kim Petras YouTube">
       <i class="fab fa-youtube"></i>
     </a>
 
-    <a href="https://open.spotify.com/artist/3Xt3RrJMFv5SZkCfUE8C1J" target="_blank">
+    <a href="https://open.spotify.com/artist/3Xt3RrJMFv5SZkCfUE8C1J" target="_blank" rel="noopener" aria-label="Kim Petras Spotify">
       <i class="fab fa-spotify"></i>
     </a>
 
-    <a href="https://x.com/kimpetras" target="_blank">
+    <a href="https://x.com/kimpetras" target="_blank" rel="noopener" aria-label="Kim Petras X/Twitter">
       <i class="fab fa-x-twitter"></i>
     </a>
 
@@ -1025,362 +925,246 @@ footer h2{
 
 </footer>
 
-<audio id="audio"></audio>
-
 <script>
 
 /* LOADER */
-
-window.addEventListener('load',()=>{
-
-  gsap.to('.loader',{
-    opacity:0,
-    duration:1.2,
-    delay:2,
-    onComplete:()=>{
-      document.querySelector('.loader').style.display='none';
+window.addEventListener('load', () => {
+  gsap.to('.loader', {
+    opacity: 0,
+    duration: 1.2,
+    delay: 2,
+    onComplete: () => {
+      document.querySelector('.loader').style.display = 'none';
     }
   });
-
 });
 
 /* CURSOR */
-
-const cursor=document.querySelector('.cursor');
-
-window.addEventListener('mousemove',e=>{
-  cursor.style.left=e.clientX+'px';
-  cursor.style.top=e.clientY+'px';
+const cursor = document.querySelector('.cursor');
+window.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
 });
 
 /* PARTICLES */
-
-const particles=document.getElementById('particles');
-
-for(let i=0;i<80;i++){
-
-  const s=document.createElement('div');
-
+const particlesEl = document.getElementById('particles');
+for (let i = 0; i < 80; i++) {
+  const s = document.createElement('div');
   s.classList.add('sparkle');
-
-  s.style.left=Math.random()*100+'vw';
-  s.style.animationDuration=(5+Math.random()*10)+'s';
-  s.style.opacity=Math.random();
-
-  particles.appendChild(s);
-
+  s.style.left = Math.random() * 100 + 'vw';
+  s.style.animationDuration = (5 + Math.random() * 10) + 's';
+  s.style.opacity = Math.random();
+  particlesEl.appendChild(s);
 }
 
 /* COUNTDOWN */
-
-function countdown(id,target){
-
-  const el=document.getElementById(id);
-
-  function update(){
-
-    const now=new Date().getTime();
-
-    const diff=target-now;
-
-    const d=Math.floor(diff/(1000*60*60*24));
-    const h=Math.floor((diff/(1000*60*60))%24);
-    const m=Math.floor((diff/(1000*60))%60);
-    const s=Math.floor((diff/1000)%60);
-
-    el.innerHTML=`
-      <div class="unit">
-        <span class="num">${d}</span>
-        <span class="label">days</span>
-      </div>
-      <div class="unit">
-        <span class="num">${h}</span>
-        <span class="label">hours</span>
-      </div>
-      <div class="unit">
-        <span class="num">${m}</span>
-        <span class="label">mins</span>
-      </div>
-      <div class="unit">
-        <span class="num">${s}</span>
-        <span class="label">secs</span>
-      </div>
+function countdown(id, target) {
+  const el = document.getElementById(id);
+  function update() {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      el.innerHTML = '<div class="unit"><span class="num">IT\'S HERE!</span></div>';
+      return;
+    }
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    el.innerHTML = `
+      <div class="unit"><span class="num">${d}</span><span class="label">days</span></div>
+      <div class="unit"><span class="num">${h}</span><span class="label">hours</span></div>
+      <div class="unit"><span class="num">${m}</span><span class="label">mins</span></div>
+      <div class="unit"><span class="num">${s}</span><span class="label">secs</span></div>
     `;
   }
-
   update();
-  setInterval(update,1000);
-
+  setInterval(update, 1000);
 }
 
-countdown(
-'timer1',
-new Date('May 29, 2026 12:00:00 EST').getTime()
-);
+countdown('timer1', new Date('May 29, 2026 12:00:00 EST').getTime());
+countdown('timer2', new Date('May 29, 2026 12:30:00 EST').getTime());
 
-countdown(
-'timer2',
-new Date('May 29, 2026 12:30:00 EST').getTime()
-);
+/* PLAYER
+   Note: YouTube URLs cannot be played directly in <audio>.
+   The player shows track info and opens YouTube on play or click.
+   Bars animate when a track is "selected". */
 
-```js
-/* PLAYER */
-
-const tracks=[
-
-{
-title:'Polo',
-src:'https://www.youtube.com/watch?v=NuAU3sbzbBo',
-cover:'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop',
-youtube:'https://www.youtube.com/watch?v=NuAU3sbzbBo'
-},
-
-{
-title:'Freak It',
-src:'https://www.youtube.com/watch?v=wl2ig2D61mc',
-cover:'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop',
-youtube:'https://www.youtube.com/watch?v=wl2ig2D61mc'
-},
-
-{
-title:'I Like Ur Look',
-src:'https://www.youtube.com/results?search_query=Kim+Petras+I+Like+Ur+Look+official+audio',
-cover:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop',
-youtube:'https://www.youtube.com/results?search_query=Kim+Petras+I+Like+Ur+Look+official+audio'
-},
-
-{
-title:'Need For Speed',
-src:'https://www.youtube.com/results?search_query=Kim+Petras+Need+For+Speed+official+audio',
-cover:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop',
-youtube:'https://www.youtube.com/results?search_query=Kim+Petras+Need+For+Speed+official+audio'
-},
-
-{
-title:'Jeep',
-src:'https://www.youtube.com/results?search_query=Kim+Petras+Jeep+official+audio',
-cover:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=1200&auto=format&fit=crop',
-youtube:'https://www.youtube.com/results?search_query=Kim+Petras+Jeep+official+audio'
-},
-
-{
-title:'Pop Sound',
-src:'https://www.youtube.com/results?search_query=Kim+Petras+Pop+Sound+official+audio',
-cover:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop',
-youtube:'https://www.youtube.com/results?search_query=Kim+Petras+Pop+Sound+official+audio'
-},
-
-{
-title:'Mr. Producer (feat. BC Kingdom)',
-src:'https://www.youtube.com/results?search_query=Kim+Petras+Mr.+Producer+feat.+BC+Kingdom+official+audio',
-cover:'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop',
-youtube:'https://www.youtube.com/results?search_query=Kim+Petras+Mr.+Producer+feat.+BC+Kingdom+official+audio'
-},
-
-{
-title:'Cha Cha',
-src:'https://www.youtube.com/results?search_query=Kim+Petras+Cha+Cha+official+audio',
-cover:'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1200&auto=format&fit=crop',
-youtube:'https://www.youtube.com/results?search_query=Kim+Petras+Cha+Cha+official+audio'
-},
-
-{
-title:'Get Some (feat. Cortisa Star)',
-src:'https://www.youtube.com/results?search_query=Kim+Petras+Get+Some+feat.+Cortisa+Star+official+audio',
-cover:'https://images.unsplash.com/photo-1496345875659-11f7dd282d1d?q=80&w=1200&auto=format&fit=crop',
-youtube:'https://www.youtube.com/results?search_query=Kim+Petras+Get+Some+feat.+Cortisa+Star+official+audio'
-}
-
+const tracks = [
+  {
+    title: 'Polo',
+    youtube: 'https://www.youtube.com/watch?v=NuAU3sbzbBo',
+    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kim_Petras_at_The_Grove.jpg/800px-Kim_Petras_at_The_Grove.jpg'
+  },
+  {
+    title: 'Freak It',
+    youtube: 'https://www.youtube.com/watch?v=wl2ig2D61mc',
+    cover: 'https://ourculturemag.com/wp-content/uploads/Kim-Petras-July2025-Freak-It-e1772098419431.webp'
+  },
+  {
+    title: 'I Like Ur Look',
+    youtube: 'https://www.youtube.com/results?search_query=Kim+Petras+I+Like+Ur+Look+official',
+    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Kim_Petras_Unveiled_as_2023_Victoria%27s_Secret_Fashion_Show_Performer_%28cropped%29.jpg/800px-Kim_Petras_Unveiled_as_2023_Victoria%27s_Secret_Fashion_Show_Performer_%28cropped%29.jpg'
+  },
+  {
+    title: 'Need For Speed',
+    youtube: 'https://www.youtube.com/results?search_query=Kim+Petras+Need+For+Speed+official',
+    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kim_Petras_at_The_Grove.jpg/800px-Kim_Petras_at_The_Grove.jpg'
+  },
+  {
+    title: 'Jeep',
+    youtube: 'https://www.youtube.com/results?search_query=Kim+Petras+Jeep+official',
+    cover: 'https://ourculturemag.com/wp-content/uploads/Kim-Petras-July2025-Freak-It-e1772098419431.webp'
+  },
+  {
+    title: 'Pop Sound',
+    youtube: 'https://www.youtube.com/results?search_query=Kim+Petras+Pop+Sound+official',
+    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Kim_Petras_Unveiled_as_2023_Victoria%27s_Secret_Fashion_Show_Performer_%28cropped%29.jpg/800px-Kim_Petras_Unveiled_as_2023_Victoria%27s_Secret_Fashion_Show_Performer_%28cropped%29.jpg'
+  },
+  {
+    title: 'Mr. Producer (feat. BC Kingdom)',
+    youtube: 'https://www.youtube.com/results?search_query=Kim+Petras+Mr+Producer+BC+Kingdom+official',
+    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Kim_Petras_at_The_Grove.jpg/800px-Kim_Petras_at_The_Grove.jpg'
+  },
+  {
+    title: 'Cha Cha',
+    youtube: 'https://www.youtube.com/results?search_query=Kim+Petras+Cha+Cha+official',
+    cover: 'https://ourculturemag.com/wp-content/uploads/Kim-Petras-July2025-Freak-It-e1772098419431.webp'
+  },
+  {
+    title: 'Get Some (feat. Cortisa Star)',
+    youtube: 'https://www.youtube.com/results?search_query=Kim+Petras+Get+Some+Cortisa+Star+official',
+    cover: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Kim_Petras_Unveiled_as_2023_Victoria%27s_Secret_Fashion_Show_Performer_%28cropped%29.jpg/800px-Kim_Petras_Unveiled_as_2023_Victoria%27s_Secret_Fashion_Show_Performer_%28cropped%29.jpg'
+  }
 ];
 
-const audio=document.getElementById('audio');
-const title=document.getElementById('title');
-const cover=document.getElementById('cover');
-const playBtn=document.getElementById('play');
-const nextBtn=document.getElementById('next');
-const prevBtn=document.getElementById('prev');
-const playlist=document.getElementById('playlist');
+const titleEl = document.getElementById('title');
+const coverEl = document.getElementById('cover');
+const playBtn = document.getElementById('play');
+const nextBtn = document.getElementById('next');
+const prevBtn = document.getElementById('prev');
+const playlistEl = document.getElementById('playlist');
+const bars = document.querySelectorAll('.bar');
 
-let current=0;
-let playing=false;
+let current = 0;
+let playing = false;
 
-function loadTrack(i){
-
-  audio.src=tracks[i].src;
-  title.innerText=tracks[i].title;
-  cover.src=tracks[i].cover;
-
+function loadTrack(i) {
+  titleEl.innerText = tracks[i].title;
+  coverEl.src = tracks[i].cover;
+  document.querySelectorAll('.track').forEach((t, idx) => {
+    t.classList.toggle('active-track', idx === i);
+  });
 }
 
-loadTrack(current);
+function setPlaying(state) {
+  playing = state;
+  playBtn.innerHTML = playing
+    ? '<i class="fa-solid fa-pause"></i>'
+    : '<i class="fa-solid fa-play"></i>';
+  bars.forEach(b => b.classList.toggle('active', playing));
+  coverEl.classList.toggle('spinning', playing);
+}
 
-function togglePlay(){
+function openYouTube() {
+  window.open(tracks[current].youtube, '_blank');
+}
 
-  if(!playing){
-
-    audio.play();
-    playing=true;
-    playBtn.innerHTML='<i class="fa-solid fa-pause"></i>';
-
-  }else{
-
-    audio.pause();
-    playing=false;
-    playBtn.innerHTML='<i class="fa-solid fa-play"></i>';
-
+playBtn.addEventListener('click', () => {
+  if (!playing) {
+    setPlaying(true);
+    openYouTube();
+  } else {
+    setPlaying(false);
   }
+});
 
-}
-
-playBtn.onclick=togglePlay;
-
-nextBtn.onclick=()=>{
-
-  current=(current+1)%tracks.length;
+nextBtn.addEventListener('click', () => {
+  current = (current + 1) % tracks.length;
   loadTrack(current);
+  if (playing) openYouTube();
+});
 
-  if(playing) audio.play();
-
-};
-
-prevBtn.onclick=()=>{
-
-  current=(current-1+tracks.length)%tracks.length;
+prevBtn.addEventListener('click', () => {
+  current = (current - 1 + tracks.length) % tracks.length;
   loadTrack(current);
+  if (playing) openYouTube();
+});
 
-  if(playing) audio.play();
-
-};
-
-tracks.forEach((t,i)=>{
-
-  const div=document.createElement('div');
-
-  div.className='track';
-
-  div.innerHTML=`
+tracks.forEach((t, i) => {
+  const div = document.createElement('div');
+  div.className = 'track' + (i === 0 ? ' active-track' : '');
+  div.innerHTML = `
     <span>${t.title}</span>
-    <a href="${t.youtube}" target="_blank">
+    <a href="${t.youtube}" target="_blank" rel="noopener" onclick="event.stopPropagation()" aria-label="Listen on YouTube">
       <i class="fa-brands fa-youtube"></i>
     </a>
   `;
-
-  div.onclick=()=>{
-
-    current=i;
+  div.addEventListener('click', () => {
+    current = i;
     loadTrack(i);
-
-    audio.play();
-
-    playing=true;
-
-    playBtn.innerHTML='<i class="fa-solid fa-pause"></i>';
-
-  };
-
-  playlist.appendChild(div);
-
+    setPlaying(true);
+    openYouTube();
+  });
+  playlistEl.appendChild(div);
 });
 
+loadTrack(0);
+
 /* GUESTBOOK */
+const messagesEl = document.getElementById('messages');
+const sendBtn = document.getElementById('sendBtn');
 
-const messagesEl=document.getElementById('messages');
-const sendBtn=document.getElementById('sendBtn');
-
-let messages=JSON.parse(localStorage.getItem('detourMessages')) || [
-
-{
-user:'angelbaby',
-text:'this era already changed my life ✨',
-time:'2 mins ago'
-},
-
-{
-user:'hyperpopqueen',
-text:'DETOUR SUMMER IS COMING',
-time:'8 mins ago'
+let messages = [];
+try {
+  messages = JSON.parse(localStorage.getItem('detourMessages')) || [
+    { user: 'angelbaby', text: 'this era already changed my life ✨', time: '2 mins ago' },
+    { user: 'hyperpopqueen', text: 'DETOUR SUMMER IS COMING', time: '8 mins ago' }
+  ];
+} catch(e) {
+  messages = [
+    { user: 'angelbaby', text: 'this era already changed my life ✨', time: '2 mins ago' },
+    { user: 'hyperpopqueen', text: 'DETOUR SUMMER IS COMING', time: '8 mins ago' }
+  ];
 }
 
-];
-
-function renderMessages(){
-
-  messagesEl.innerHTML='';
-
-  messages.reverse().forEach(msg=>{
-
-    const div=document.createElement('div');
-
-    div.className='message';
-
-    div.innerHTML=`
-      <strong>@${msg.user}</strong>
-      <p>${msg.text}</p>
-      <small>${msg.time}</small>
-    `;
-
+function renderMessages() {
+  messagesEl.innerHTML = '';
+  [...messages].reverse().forEach(msg => {
+    const div = document.createElement('div');
+    div.className = 'message';
+    div.innerHTML = `<strong>@${msg.user}</strong><p>${msg.text}</p><small>${msg.time}</small>`;
     messagesEl.appendChild(div);
-
   });
-
 }
 
 renderMessages();
 
-sendBtn.onclick=()=>{
-
-  const user=document.getElementById('username').value.trim();
-  const text=document.getElementById('messageInput').value.trim();
-
-  if(!user || !text) return;
-
-  messages.push({
-    user,
-    text,
-    time:'just now'
-  });
-
-  localStorage.setItem('detourMessages',JSON.stringify(messages));
-
+sendBtn.addEventListener('click', () => {
+  const user = document.getElementById('username').value.trim();
+  const text = document.getElementById('messageInput').value.trim();
+  if (!user || !text) return;
+  messages.push({ user, text, time: 'just now' });
+  try { localStorage.setItem('detourMessages', JSON.stringify(messages)); } catch(e) {}
   renderMessages();
-
-  document.getElementById('messageInput').value='';
-
-};
+  document.getElementById('messageInput').value = '';
+});
 
 /* EASTER EGG */
-
-let mode=false;
-
-window.addEventListener('keydown',e=>{
-
-  if(e.key.toLowerCase()==='d'){
-
-    mode=!mode;
-
-    if(mode){
-
-      document.body.style.filter='hue-rotate(80deg) saturate(1.5)';
-
-      alert('DETOUR MODE ACTIVATED ✦');
-
-    }else{
-
-      document.body.style.filter='none';
-
-    }
-
+let eggMode = false;
+window.addEventListener('keydown', e => {
+  if (e.key.toLowerCase() === 'd') {
+    eggMode = !eggMode;
+    document.body.style.filter = eggMode ? 'hue-rotate(80deg) saturate(1.5)' : 'none';
+    if (eggMode) alert('DETOUR MODE ACTIVATED ✦');
   }
-
 });
 
 /* TILT */
-
-VanillaTilt.init(document.querySelectorAll("[data-tilt]"),{
-  max:8,
-  speed:400,
-  glare:true,
-  "max-glare":0.3
+VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
+  max: 8,
+  speed: 400,
+  glare: true,
+  'max-glare': 0.3
 });
 
 </script>
