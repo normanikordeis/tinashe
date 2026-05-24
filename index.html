@@ -1,38 +1,43 @@
-<!-- =========================================================
-DETOUR — ULTRA CUSTOM FAN EXPERIENCE
-PINK HIGHWAY / TRAFFIC / Y2K POP EDITION
-========================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIM PETRAS — DETOUR</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
 <style>
 
-/* =========================================================
-NEW DETOUR THEME OVERRIDES
-ADD THIS BELOW YOUR CURRENT CSS
-========================================================= */
-
-:root{
-  --detour-pink:#ff4fa3;
-  --detour-hot:#ff78bd;
-  --detour-orange:#ff9d42;
-  --detour-yellow:#ffd84d;
-  --detour-dark:#120814;
-  --road:#1d1d1d;
-  --chrome:#ffe3f4;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* BODY */
+html{
+  scroll-behavior:smooth;
+}
 
 body{
+  font-family:'Inter',sans-serif;
   background:
-    linear-gradient(rgba(9,4,13,.75),rgba(9,4,13,.9)),
+    linear-gradient(rgba(15,0,20,.82),rgba(15,0,20,.92)),
     url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1800&auto=format&fit=crop');
   background-size:cover;
-  background-attachment:fixed;
   background-position:center;
+  background-attachment:fixed;
   color:white;
+  overflow-x:hidden;
 }
 
-/* animated road overlay */
+/* ROAD EFFECT */
 
 body::before{
   content:"";
@@ -42,103 +47,86 @@ body::before{
     repeating-linear-gradient(
       to bottom,
       transparent 0px,
-      transparent 90px,
-      rgba(255,255,255,.08) 90px,
+      transparent 80px,
+      rgba(255,255,255,.08) 80px,
       rgba(255,255,255,.08) 100px
     );
-  animation:roadMove 3s linear infinite;
   opacity:.25;
+  animation:roadMove 2s linear infinite;
   pointer-events:none;
 }
 
 @keyframes roadMove{
-  from{transform:translateY(0)}
-  to{transform:translateY(100px)}
+  from{
+    transform:translateY(0);
+  }
+  to{
+    transform:translateY(100px);
+  }
 }
 
-/* =========================================================
-TOPBAR
-========================================================= */
+/* NAV */
 
 .topbar{
-  background:rgba(255,20,120,.18);
-  border-bottom:2px solid rgba(255,200,0,.4);
-  backdrop-filter:blur(25px);
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:999;
+  background:rgba(255,20,120,.2);
+  backdrop-filter:blur(18px);
+  border-bottom:2px solid rgba(255,220,0,.4);
+}
+
+.topbar-inner{
+  max-width:1300px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 20px;
 }
 
 .logo{
-  color:#fff;
-  text-shadow:
-    0 0 10px var(--detour-pink),
-    0 0 20px var(--detour-pink);
+  font-weight:900;
+  letter-spacing:3px;
+  text-shadow:0 0 15px #ff5db9;
 }
 
-/* =========================================================
-DETOUR SIGN STYLING
-========================================================= */
-
-.section-title{
-  position:relative;
-  display:inline-block;
-  background:var(--detour-orange);
-  color:#111;
-  padding:16px 26px;
-  transform:rotate(-2deg);
-  border:6px solid #111;
-  box-shadow:
-    0 0 0 6px #ffd84d,
-    0 10px 30px rgba(0,0,0,.4);
-  text-transform:uppercase;
+.nav-links{
+  display:flex;
+  gap:12px;
 }
 
-.section-title::after{
-  content:"DETOUR";
-  position:absolute;
-  top:-18px;
-  right:-22px;
-  background:#111;
-  color:#ffd84d;
-  font-size:.7rem;
-  padding:6px 10px;
-  letter-spacing:2px;
-  transform:rotate(8deg);
-}
-
-/* =========================================================
-HERO
-========================================================= */
-
-.hero-bg{
-  background:
-    linear-gradient(rgba(20,0,20,.5),rgba(20,0,20,.8)),
-    url('https://images.unsplash.com/photo-1493238792000-8113da705763?q=80&w=1800&auto=format&fit=crop');
-  background-size:cover;
-  background-position:center;
-}
-
-.hero-copy{
-  background:rgba(255,40,150,.13);
-  border:1px solid rgba(255,255,255,.18);
-  box-shadow:
-    0 0 40px rgba(255,0,130,.35),
-    0 0 100px rgba(255,180,0,.1);
-}
-
-.detour{
+.nav-links a{
+  text-decoration:none;
   color:white;
-  text-shadow:
-    0 0 10px #fff,
-    0 0 30px #ff6fc4,
-    0 0 60px #ff0088;
+  padding:10px 18px;
+  border-radius:999px;
+  background:rgba(255,255,255,.1);
+  transition:.3s;
 }
 
-/* traffic tape */
+.nav-links a:hover{
+  background:#ff4fa3;
+  transform:translateY(-2px);
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:120px 20px;
+  position:relative;
+}
 
 .hero::before{
   content:"";
   position:absolute;
+  top:90px;
   left:-10%;
-  top:80px;
   width:130%;
   height:50px;
   background:
@@ -148,285 +136,523 @@ HERO
       #111 30px 60px
     );
   transform:rotate(-4deg);
-  z-index:3;
-  opacity:.85;
-  box-shadow:0 0 20px rgba(0,0,0,.5);
 }
 
-/* =========================================================
-WINDOW
-========================================================= */
-
-.floating-window{
-  background:rgba(255,255,255,.08);
-  border:2px solid rgba(255,255,255,.2);
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:1200px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
 }
 
-.window-image{
-  border:3px solid rgba(255,255,255,.25);
-}
-
-/* =========================================================
-PLAYER
-========================================================= */
-
-.player-ui{
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,0,130,.14),
-      rgba(255,145,0,.08)
-    );
+.hero-copy{
+  background:rgba(255,80,170,.15);
+  padding:40px;
+  border-radius:30px;
+  backdrop-filter:blur(20px);
   border:1px solid rgba(255,255,255,.15);
 }
 
+.kim{
+  letter-spacing:8px;
+  margin-bottom:15px;
+}
+
+.detour{
+  font-size:clamp(4rem,12vw,9rem);
+  line-height:.9;
+  font-weight:900;
+  text-shadow:
+    0 0 20px #ff5db9,
+    0 0 60px #ff0088;
+}
+
+.release{
+  margin-top:20px;
+  font-size:1.2rem;
+  letter-spacing:4px;
+}
+
+.enter-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:30px;
+  text-decoration:none;
+  color:black;
+  background:white;
+  padding:16px 26px;
+  border-radius:999px;
+  font-weight:700;
+  transition:.3s;
+}
+
+.enter-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 25px rgba(255,0,128,.5);
+}
+
+/* WINDOW */
+
+.floating-window{
+  background:rgba(255,255,255,.08);
+  padding:20px;
+  border-radius:28px;
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.15);
+}
+
+.window-image{
+  width:100%;
+  border-radius:22px;
+  object-fit:cover;
+}
+
+.status-box{
+  margin-top:20px;
+  background:rgba(255,255,255,.08);
+  padding:16px;
+  border-radius:20px;
+}
+
+/* SECTION */
+
+section{
+  padding:90px 20px;
+}
+
+.container{
+  max-width:1300px;
+  margin:auto;
+}
+
+.section-title{
+  display:inline-block;
+  background:#ff9f1c;
+  color:black;
+  padding:16px 24px;
+  border:5px solid black;
+  transform:rotate(-2deg);
+  margin-bottom:25px;
+  font-size:clamp(2rem,5vw,4rem);
+  font-weight:900;
+}
+
+.section-sub{
+  opacity:.8;
+  max-width:700px;
+  line-height:1.7;
+  margin-bottom:40px;
+}
+
+/* PLAYER */
+
+.player-shell{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:35px;
+}
+
+.player-ui{
+  background:rgba(255,255,255,.08);
+  padding:30px;
+  border-radius:30px;
+  backdrop-filter:blur(20px);
+}
+
 .player-display{
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.08),
-      rgba(255,255,255,.03)
-    );
+  text-align:center;
 }
 
 .disc{
-  border:10px solid rgba(255,255,255,.16);
-  box-shadow:
-    0 0 30px rgba(255,0,128,.45);
+  width:240px;
+  height:240px;
+  border-radius:50%;
+  margin:auto;
+  background-size:cover;
+  background-position:center;
+  border:10px solid rgba(255,255,255,.15);
+  animation:spin 10s linear infinite;
 }
 
-/* =========================================================
-TRACKS
-========================================================= */
+@keyframes spin{
+  from{
+    transform:rotate(0deg);
+  }
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+.song-title{
+  margin-top:25px;
+  font-size:1.4rem;
+  font-weight:700;
+}
+
+.controls{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+  gap:18px;
+}
+
+.controls button{
+  width:60px;
+  height:60px;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:1rem;
+  background:white;
+}
+
+.playlist{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
 
 .track{
-  position:relative;
-  overflow:hidden;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.06),
-      rgba(255,100,180,.08)
-    );
-}
-
-.track::before{
-  content:"🚧";
-  position:absolute;
-  right:18px;
-  top:18px;
-  font-size:1rem;
-  opacity:.6;
+  background:rgba(255,255,255,.08);
+  padding:14px;
+  border-radius:20px;
+  cursor:pointer;
+  transition:.3s;
+  border:1px solid rgba(255,255,255,.1);
 }
 
 .track:hover{
-  transform:translateX(12px) scale(1.01);
-  border-color:#ffb5da;
-  box-shadow:
-    0 0 20px rgba(255,100,180,.25);
+  transform:translateX(8px);
 }
 
 .track.active{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,120,190,.22),
-      rgba(255,160,50,.18)
-    );
-}
-
-/* =========================================================
-TRACK THUMBNAILS
-========================================================= */
-
-.track-thumb{
-  width:60px;
-  height:60px;
-  border-radius:14px;
-  object-fit:cover;
-  border:2px solid rgba(255,255,255,.15);
+  background:rgba(255,100,180,.25);
 }
 
 .track-flex{
   display:flex;
+  gap:15px;
   align-items:center;
-  gap:14px;
 }
 
-/* =========================================================
-BUTTONS
-========================================================= */
-
-.controls button,
-.enter-btn,
-.submit-btn{
-  background:
-    linear-gradient(
-      135deg,
-      #fff,
-      #ffd3eb
-    );
-  color:#111;
-  font-weight:900;
+.track-thumb{
+  width:65px;
+  height:65px;
+  border-radius:16px;
+  object-fit:cover;
 }
 
-.controls button:hover,
-.enter-btn:hover{
-  box-shadow:
-    0 0 25px rgba(255,105,180,.6);
+/* GALLERY */
+
+.gallery-grid{
+  columns:3 260px;
+  column-gap:18px;
 }
-
-/* =========================================================
-COUNTDOWN CARDS
-========================================================= */
-
-.count-card{
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,120,180,.15),
-      rgba(255,160,0,.08)
-    );
-  border:1px solid rgba(255,255,255,.12);
-}
-
-/* =========================================================
-GALLERY
-========================================================= */
 
 .gallery-item{
-  border:2px solid rgba(255,255,255,.15);
+  margin-bottom:18px;
+  overflow:hidden;
+  border-radius:22px;
+  position:relative;
 }
 
-.gallery-item::after{
-  content:"DETOUR";
+.gallery-item img{
+  width:100%;
+  display:block;
+  transition:1s;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.08);
+}
+
+.caption{
   position:absolute;
-  top:12px;
-  left:-25px;
-  background:#ffb000;
-  color:#111;
-  padding:8px 40px;
-  transform:rotate(-45deg);
-  font-size:.65rem;
-  font-weight:900;
-  letter-spacing:2px;
+  bottom:12px;
+  left:12px;
+  background:rgba(0,0,0,.6);
+  padding:8px 14px;
+  border-radius:999px;
 }
 
-/* =========================================================
-FAN WALL
-========================================================= */
-
-.post-form,
-.wall-feed{
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,80,160,.14),
-      rgba(255,160,0,.05)
-    );
-}
-
-/* =========================================================
-FOOTER
-========================================================= */
+/* FOOTER */
 
 footer{
-  background:
-    linear-gradient(
-      rgba(0,0,0,.7),
-      rgba(0,0,0,.95)
-    ),
-    url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1800&auto=format&fit=crop');
-  background-size:cover;
-  background-position:center;
+  padding:100px 20px;
+  text-align:center;
 }
 
 .footer-title{
-  text-shadow:
-    0 0 20px rgba(255,0,120,.45);
+  font-size:clamp(3rem,8vw,6rem);
+  font-weight:900;
+  text-shadow:0 0 25px #ff0088;
+}
+
+.socials{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+  gap:18px;
+}
+
+.socials a{
+  width:55px;
+  height:55px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.1);
+  color:white;
+  text-decoration:none;
+  font-size:1.2rem;
+}
+
+@media(max-width:900px){
+
+  .hero-content,
+  .player-shell{
+    grid-template-columns:1fr;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
 }
 
 </style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="topbar-inner">
+
+    <div class="logo">
+      KIM PETRAS — DETOUR
+    </div>
+
+    <nav class="nav-links">
+      <a href="#radio">RADIO</a>
+      <a href="#gallery">GALLERY</a>
+    </nav>
+
+  </div>
+
+</header>
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-copy">
+
+      <div class="kim">
+        KIM PETRAS
+      </div>
+
+      <h1 class="detour">
+        DETOUR
+      </h1>
+
+      <div class="release">
+        MAY 29 2026
+      </div>
+
+      <a href="#radio" class="enter-btn">
+        ENTER DETOUR
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+    </div>
+
+    <div class="floating-window">
+
+      <img
+      class="window-image"
+      src="https://images.unsplash.com/photo-1493238792000-8113da705763?q=80&w=1200&auto=format&fit=crop"
+      alt="Detour aesthetic">
+
+      <div class="status-box" id="statusBox">
+        🚧 DETOUR AHEAD
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="radio">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      DETOUR RADIO
+    </h2>
+
+    <p class="section-sub">
+      Hyperpop traffic. Pink highways. Chrome dreams.
+    </p>
+
+    <div class="player-shell">
+
+      <div class="player-ui">
+
+        <div class="player-display">
+
+          <div
+          class="disc"
+          id="disc"
+          style="background-image:url('https://i.imgur.com/UPrs1EW.jpeg')">
+          </div>
+
+          <div
+          class="song-title"
+          id="songTitle">
+            Polo
+          </div>
+
+          <div class="controls">
+
+            <button id="prevBtn">
+              <i class="fa-solid fa-backward"></i>
+            </button>
+
+            <button id="playBtn">
+              <i class="fa-solid fa-play"></i>
+            </button>
+
+            <button id="nextBtn">
+              <i class="fa-solid fa-forward"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="playlist" id="playlist"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="gallery">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      DETOUR ARCHIVE
+    </h2>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop">
+        <div class="caption">night drive</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200&auto=format&fit=crop">
+        <div class="caption">chrome fantasy</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1200&auto=format&fit=crop">
+        <div class="caption">pink traffic</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+
+  <div class="footer-title">
+    DETOUR
+  </div>
+
+  <div class="socials">
+
+    <a href="https://www.instagram.com/kimpetras/" target="_blank">
+      <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://www.youtube.com/@KimPetras" target="_blank">
+      <i class="fab fa-youtube"></i>
+    </a>
+
+    <a href="https://open.spotify.com/artist/3Xt3RrJMFv5SZkCfUE8C1J" target="_blank">
+      <i class="fab fa-spotify"></i>
+    </a>
+
+  </div>
+
+</footer>
+
+<iframe
+id="youtubePlayer"
+width="0"
+height="0"
+style="display:none"
+allow="autoplay">
+</iframe>
 
 <script>
-
-/* =========================================================
-NEW DETOUR TRACKLIST
-REAL YOUTUBE LINKS + REAL IMAGES
-========================================================= */
 
 const tracks = [
 
 {
   title:"Polo",
-  artist:"Kim Petras",
   image:"https://i.imgur.com/UPrs1EW.jpeg",
   url:"https://www.youtube.com/watch?v=7T2RonyJ_Ts"
 },
 
 {
   title:"Freak It",
-  artist:"Kim Petras",
   image:"https://i.imgur.com/j8kP4Q7.jpeg",
   url:"https://www.youtube.com/watch?v=gJowEhMVgks"
 },
 
 {
   title:"I Like Ur Look",
-  artist:"Kim Petras",
   image:"https://i.imgur.com/WY0P7QS.jpeg",
   url:"https://www.youtube.com/watch?v=8kEwU0mG4I8"
 },
 
 {
   title:"Need For Speed",
-  artist:"Kim Petras",
   image:"https://i.imgur.com/xXQJ6lM.jpeg",
   url:"https://www.youtube.com/watch?v=YQ-qToZU4VQ"
 },
 
 {
   title:"Jeep",
-  artist:"Kim Petras",
   image:"https://i.imgur.com/J4K0L2B.jpeg",
   url:"https://www.youtube.com/watch?v=5CPeHQHAQyo"
-},
-
-{
-  title:"Pop Sound",
-  artist:"Kim Petras",
-  image:"https://i.imgur.com/U2M8X7M.jpeg",
-  url:"https://www.youtube.com/watch?v=JC9FA8lZRy8"
-},
-
-{
-  title:"Mr. Producer (feat. BC Kingdom)",
-  artist:"Kim Petras",
-  image:"https://i.imgur.com/4Vv5B8h.jpeg",
-  url:"https://www.youtube.com/watch?v=8x-M7AkTvrQ"
-},
-
-{
-  title:"Cha Cha",
-  artist:"Kim Petras",
-  image:"https://i.imgur.com/WW9V5u5.jpeg",
-  url:"https://www.youtube.com/watch?v=uSlKen_DI5o"
-},
-
-{
-  title:"Get Some (feat. Cortisa Star)",
-  artist:"Kim Petras",
-  image:"https://i.imgur.com/nvQ4vVf.jpeg",
-  url:"https://www.youtube.com/watch?v=4Aq1_7Z5z2Y"
 }
 
 ];
 
-/* =========================================================
-PLAYER UPGRADE
-========================================================= */
+let currentTrack = 0;
+let playing = false;
 
-playlistEl.innerHTML = "";
+const playlistEl = document.getElementById('playlist');
+const songTitle = document.getElementById('songTitle');
+const iframe = document.getElementById('youtubePlayer');
+const playBtn = document.getElementById('playBtn');
+const disc = document.getElementById('disc');
 
 tracks.forEach((track,index)=>{
 
@@ -444,8 +670,7 @@ tracks.forEach((track,index)=>{
 
       <img
       class="track-thumb"
-      src="${track.image}"
-      alt="${track.title}">
+      src="${track.image}">
 
       <div>
 
@@ -453,13 +678,8 @@ tracks.forEach((track,index)=>{
           ${index + 1}. ${track.title}
         </strong>
 
-        <div style="
-          opacity:.7;
-          font-size:.85rem;
-          margin-top:6px;
-          letter-spacing:1px;
-        ">
-          ${track.artist} • DETOUR TRANSMISSION
+        <div style="opacity:.7;margin-top:5px;">
+          🚧 DETOUR TRANSMISSION
         </div>
 
       </div>
@@ -480,11 +700,9 @@ tracks.forEach((track,index)=>{
 
 });
 
-/* =========================================================
-LOAD TRACK
-========================================================= */
-
 function loadTrack(){
+
+  const current = tracks[currentTrack];
 
   document.querySelectorAll('.track').forEach((track,index)=>{
 
@@ -495,21 +713,9 @@ function loadTrack(){
 
   });
 
-  const current = tracks[currentTrack];
+  songTitle.innerHTML = current.title;
 
-  songTitle.innerHTML = `
-    ${current.title}
-    <div style="
-      margin-top:8px;
-      font-size:.9rem;
-      opacity:.7;
-      letter-spacing:2px;
-    ">
-      NOW EXITING REALITY
-    </div>
-  `;
-
-  document.getElementById('disc').style.backgroundImage =
+  disc.style.backgroundImage =
     `url('${current.image}')`;
 
   iframe.src =
@@ -518,24 +724,61 @@ function loadTrack(){
       "embed/"
     ) + "?autoplay=1";
 
-  playing = true;
-
   playBtn.innerHTML =
     '<i class="fa-solid fa-pause"></i>';
 
+  playing = true;
+
 }
 
-/* =========================================================
-RANDOM DETOUR SIGNS
-========================================================= */
+playBtn.addEventListener('click',()=>{
+
+  if(!playing){
+
+    loadTrack();
+
+  } else {
+
+    iframe.src = "";
+
+    playing = false;
+
+    playBtn.innerHTML =
+      '<i class="fa-solid fa-play"></i>';
+
+  }
+
+});
+
+document.getElementById('nextBtn')
+.addEventListener('click',()=>{
+
+  currentTrack =
+    (currentTrack + 1) % tracks.length;
+
+  loadTrack();
+
+});
+
+document.getElementById('prevBtn')
+.addEventListener('click',()=>{
+
+  currentTrack =
+    (currentTrack - 1 + tracks.length)
+    % tracks.length;
+
+  loadTrack();
+
+});
 
 const signs = [
+
   "🚧 DETOUR AHEAD",
-  "💿 HYPERPOP TRAFFIC",
-  "🚗 EXITING REALITY",
-  "🛣️ NEXT STOP: DETOUR",
+  "💖 HYPERPOP TRAFFIC",
+  "🛣️ EXITING REALITY",
   "⚠️ POP EMERGENCY",
-  "💖 KIM PETRAS EXPRESSWAY"
+  "🚗 KIM PETRAS EXPRESSWAY"
+
 ];
 
 setInterval(()=>{
@@ -543,31 +786,12 @@ setInterval(()=>{
   const random =
     signs[Math.floor(Math.random() * signs.length)];
 
-  document.querySelector('.status-box').innerHTML = `
-    <div class="status-title">
-      HIGHWAY STATUS
-    </div>
-    ${random}
-  `;
+  document.getElementById('statusBox')
+  .innerHTML = random;
 
-},4000);
-
-/* =========================================================
-NEON MOUSE GLOW
-========================================================= */
-
-document.addEventListener('mousemove',(e)=>{
-
-  const glow = `
-    radial-gradient(
-      circle at ${e.clientX}px ${e.clientY}px,
-      rgba(255,100,180,.18),
-      transparent 220px
-    )
-  `;
-
-  document.body.style.backgroundImage = glow;
-
-});
+},3000);
 
 </script>
+
+</body>
+</html>
