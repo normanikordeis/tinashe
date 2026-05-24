@@ -1,1058 +1,1406 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kim Petras — DETOUR</title>
-  <meta name="description" content="A premium Y2K Facebook-inspired Detour-era Kim Petras fan experience." />
-  <style>
-    :root{
-      --bg:#eef4ff;
-      --panel:rgba(255,255,255,.88);
-      --panel-strong:#ffffff;
-      --line:rgba(55,92,173,.18);
-      --blue:#1877f2;
-      --blue-dark:#0f5fc4;
-      --pink:#ff6cc9;
-      --pink2:#ffb3e9;
-      --lav:#b9a3ff;
-      --gold:#f6d37b;
-      --text:#14213d;
-      --muted:#65738b;
-      --shadow:0 18px 50px rgba(15,35,90,.14);
-      --shadow2:0 8px 24px rgba(24,119,242,.12);
-      --radius:24px;
-      --radius2:18px;
-      --glass:blur(18px);
-      --max:1240px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KIM PETRAS — DETOUR</title>
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,.95), transparent 32%),
-        radial-gradient(circle at 80% 20%, rgba(255,108,201,.16), transparent 25%),
-        radial-gradient(circle at 20% 70%, rgba(24,119,242,.12), transparent 22%),
-        linear-gradient(180deg, #f6f9ff 0%, #e8f0ff 100%);
-      overflow-x:hidden;
-    }
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background:
-        linear-gradient(rgba(255,255,255,.13), rgba(255,255,255,0)),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 5px);
-      mix-blend-mode:soft-light;
-      opacity:.55;
-      z-index:2;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 
-    a{color:inherit;text-decoration:none}
-    button,input,textarea,select{font:inherit}
-    img{max-width:100%;display:block}
-    .sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-    .app{
-      position:relative;
-      z-index:1;
-      min-height:100vh;
-    }
+<style>
 
-    /* Top bar */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:100;
-      background:linear-gradient(180deg, var(--blue) 0%, #166be0 100%);
-      box-shadow:0 6px 22px rgba(20,60,160,.22);
-      border-bottom:1px solid rgba(255,255,255,.15);
-    }
-    .topbar-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:10px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      color:white;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:700;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      min-width:0;
-    }
-    .brand-mark{
-      width:34px;height:34px;border-radius:12px;
-      background:linear-gradient(135deg, #fff 0%, #dff0ff 30%, #ffd7f1 100%);
-      box-shadow:inset 0 0 0 2px rgba(255,255,255,.3), 0 10px 20px rgba(0,0,0,.12);
-      position:relative;
-    }
-    .brand-mark::after{
-      content:"★";
-      position:absolute;inset:0;
-      display:grid;place-items:center;
-      color:#1877f2;font-size:18px;
-      text-shadow:0 1px 0 rgba(255,255,255,.8);
-    }
-    .nav-links{
-      display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;
-    }
-    .pill{
-      padding:8px 12px;border-radius:999px;
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.18);
-      backdrop-filter:var(--glass);
-      font-size:12px;font-weight:700;
-      transition:.2s ease;
-    }
-    .pill:hover{transform:translateY(-1px);background:rgba(255,255,255,.18)}
+/* =========================================================
+   DETOUR — KIM PETRAS FAN MICROSITE
+   FULL SINGLE FILE EXPERIENCE
+========================================================= */
 
-    /* Layout */
-    .shell{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:18px 14px 80px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:18px;
-    }
-    @media (min-width: 1000px){
-      .shell{
-        grid-template-columns: 280px minmax(0,1fr) 300px;
-        align-items:start;
-      }
-    }
+:root{
+  --bg:#dfe8ff;
+  --panel:rgba(255,255,255,.18);
+  --white:#fff;
+  --text:#f5f7ff;
+  --dark:#09111f;
+  --blue:#5c8dff;
+  --pink:#ff7ccf;
+  --lav:#c9b8ff;
+  --chrome:#e7efff;
+  --glass:blur(22px);
+  --border:rgba(255,255,255,.22);
+  --shadow:0 8px 40px rgba(0,0,0,.25);
+  --glow:0 0 30px rgba(255,153,255,.45);
+}
 
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.82));
-      border:1px solid rgba(120,150,220,.18);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      backdrop-filter:var(--glass);
-      overflow:hidden;
-    }
-    .card-h{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:14px 16px;
-      border-bottom:1px solid rgba(120,150,220,.14);
-      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(245,248,255,.86));
-    }
-    .card-h h2,.card-h h3{margin:0;font-size:13px;letter-spacing:.09em;text-transform:uppercase}
-    .card-b{padding:16px}
-    .label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-    .muted{color:var(--muted)}
-    .fine{font-size:12px;line-height:1.5}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    /* Hero */
-    .hero{
-      grid-column:1/-1;
-      min-height: calc(100vh - 84px);
-      position:relative;
-      border-radius:32px;
-      overflow:hidden;
-      box-shadow:0 26px 80px rgba(15,35,90,.18);
-      border:1px solid rgba(255,255,255,.55);
-      background:
-        radial-gradient(circle at 50% 20%, rgba(255,255,255,.4), transparent 25%),
-        linear-gradient(135deg, rgba(24,119,242,.92), rgba(255,108,201,.55)),
-        #17386f;
-    }
-    .hero-bg{
-      position:absolute;inset:0;
-      background:
-        linear-gradient(rgba(8,18,40,.12), rgba(8,18,40,.35)),
-        url("REPLACE_WITH_REAL_DETOUR_IMAGE_1.jpg") center/cover no-repeat;
-      filter:saturate(1.2) contrast(1.05);
-      transform:scale(1.04);
-    }
-    .hero-grid{
-      position:absolute;inset:0;
-      background:
-        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
-      background-size:36px 36px;
-      opacity:.18;
-      mask-image:linear-gradient(180deg, transparent 0%, black 18%, black 84%, transparent 100%);
-    }
-    .hero-content{
-      position:relative;
-      z-index:2;
-      min-height:inherit;
-      display:grid;
-      align-items:end;
-      padding:22px;
-    }
-    .hero-inner{
-      max-width:960px;
-      display:grid;
-      gap:18px;
-    }
-    .kicker{
-      display:inline-flex;
-      width:max-content;
-      gap:8px;
-      align-items:center;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.18);
-      border:1px solid rgba(255,255,255,.22);
-      color:#fff;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:11px;
-      backdrop-filter:blur(16px);
-    }
-    .title{
-      margin:0;
-      font-size:clamp(46px, 12vw, 118px);
-      line-height:.9;
-      letter-spacing:-.06em;
-      color:#fff;
-      text-shadow:0 10px 40px rgba(0,0,0,.28);
-    }
-    .subtitle{
-      font-size:clamp(16px, 2vw, 22px);
-      color:rgba(255,255,255,.95);
-      max-width:760px;
-      line-height:1.6;
-    }
-    .hero-row{
-      display:flex;flex-wrap:wrap;gap:10px;
-    }
-    .cta{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:13px 18px;
-      border-radius:999px;
-      border:0;
-      font-weight:700;
-      cursor:pointer;
-      transition:.2s ease;
-      box-shadow:var(--shadow2);
-    }
-    .cta.primary{background:linear-gradient(180deg, #fff, #f3f7ff); color:#0f3d88}
-    .cta.secondary{background:rgba(255,255,255,.16); color:#fff; border:1px solid rgba(255,255,255,.22)}
-    .cta:hover{transform:translateY(-2px) scale(1.01)}
+html{
+  scroll-behavior:smooth;
+}
 
-    .floating-window{
-      position:absolute;
-      right:16px;
-      top:90px;
-      width:min(360px, calc(100% - 32px));
-      background:rgba(255,255,255,.88);
-      border:1px solid rgba(255,255,255,.5);
-      border-radius:22px;
-      box-shadow:0 20px 60px rgba(0,0,0,.22);
-      backdrop-filter:blur(20px);
-      overflow:hidden;
-      z-index:3;
-    }
-    .window-bar{
-      padding:10px 14px;
-      background:linear-gradient(180deg, rgba(24,119,242,.95), rgba(20,104,221,.95));
-      color:white;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      font-size:12px;
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-    .window-body{padding:14px}
-    .window-img{
-      aspect-ratio: 1.15/1;
-      border-radius:16px;
-      background:url("REPLACE_WITH_REAL_DETOUR_IMAGE_2.jpg") center/cover no-repeat;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.4);
-      margin-bottom:12px;
-    }
+body{
+  font-family:'Inter',sans-serif;
+  background:
+    radial-gradient(circle at top left,#ffd6f5 0%,transparent 28%),
+    radial-gradient(circle at bottom right,#8db6ff 0%,transparent 35%),
+    linear-gradient(180deg,#0c1222,#131d37 40%,#0a0f1d);
+  color:var(--text);
+  overflow-x:hidden;
+  min-height:100vh;
+}
 
-    /* Main content */
-    .content{
-      display:grid;
-      gap:18px;
-    }
+/* VHS / grain overlays */
 
-    .countdowns{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:16px;
-    }
-    @media (min-width: 700px){
-      .countdowns{grid-template-columns:1fr 1fr;}
-    }
-    .count-card{
-      position:relative;
-      border-radius:28px;
-      background:
-        radial-gradient(circle at top right, rgba(255,108,201,.16), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,.96), rgba(240,246,255,.92));
-      border:1px solid rgba(118,145,220,.18);
-      overflow:hidden;
-    }
-    .count-card::after{
-      content:"";
-      position:absolute;inset:auto -20% -40% auto;
-      width:220px;height:220px;border-radius:50%;
-      background:radial-gradient(circle, rgba(24,119,242,.14), transparent 68%);
-      filter:blur(6px);
-    }
-    .count-big{
-      font-size:clamp(34px, 6vw, 60px);
-      letter-spacing:-.05em;
-      margin:10px 0 6px;
-    }
-    .timer{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0,1fr));
-      gap:10px;
-      margin-top:16px;
-    }
-    .unit{
-      background:rgba(24,119,242,.07);
-      border:1px solid rgba(24,119,242,.12);
-      border-radius:18px;
-      padding:12px 10px;
-      text-align:center;
-    }
-    .unit b{display:block;font-size:24px;line-height:1}
-    .unit span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,.04),
+      rgba(255,255,255,.04) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  opacity:.14;
+  pointer-events:none;
+  mix-blend-mode:overlay;
+  z-index:9999;
+}
 
-    .story{
-      display:grid;
-      gap:16px;
-    }
-    .story-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:16px;
-    }
-    @media (min-width: 900px){
-      .story-grid{
-        grid-template-columns: 1.05fr .95fr;
-      }
-    }
-    .collage{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-    .polaroid{
-      background:white;
-      padding:10px 10px 18px;
-      border-radius:18px;
-      box-shadow:0 18px 28px rgba(0,0,0,.12);
-      transform:rotate(var(--r,0deg));
-      transition:.25s ease;
-    }
-    .polaroid:hover{transform:translateY(-4px) rotate(0deg) scale(1.01)}
-    .polaroid .ph{
-      aspect-ratio:1/1;
-      border-radius:12px;
-      background:#dfe9ff center/cover no-repeat;
-    }
-    .polaroid p{
-      margin:10px 2px 0;
-      font-size:12px;
-      color:#3a4a67;
-    }
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity:.14;
+  pointer-events:none;
+  z-index:9998;
+}
 
-    .quote{
-      border-left:4px solid var(--pink);
-      padding:14px 16px;
-      background:linear-gradient(90deg, rgba(255,108,201,.08), rgba(255,255,255,0));
-      border-radius:0 16px 16px 0;
-      font-size:15px;
-      line-height:1.7;
-    }
+/* =========================================================
+   NAV
+========================================================= */
 
-    /* Player */
-    .player{
-      position:relative;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,.45), transparent 22%),
-        linear-gradient(180deg, rgba(255,255,255,.96), rgba(250,244,255,.9));
-    }
-    .player-body{
-      display:grid;
-      gap:16px;
-    }
-    .deck{
-      display:grid;
-      grid-template-columns: 120px minmax(0,1fr);
-      gap:14px;
-      align-items:center;
-      padding:16px;
-      border-radius:22px;
-      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(245,248,255,.85));
-      border:1px solid rgba(128,147,200,.18);
-    }
-    .disc{
-      width:120px;height:120px;border-radius:50%;
-      background:
-        radial-gradient(circle at 30% 30%, #fff 0 5%, #d7d7ff 12%, #ff9edb 30%, #6bc1ff 55%, #1c2d68 100%);
-      position:relative;
-      box-shadow:inset 0 0 0 12px rgba(255,255,255,.18), 0 16px 30px rgba(32,52,120,.18);
-      animation:spin 8s linear infinite paused;
-    }
-    .playing .disc{animation-play-state:running}
-    .disc::before{
-      content:"";
-      position:absolute;inset:18px;
-      border-radius:50%;
-      background:radial-gradient(circle, #fff 0 18%, #ddd 19% 25%, #2f437f 26% 100%);
-    }
-    .disc::after{
-      content:"";
-      position:absolute;inset:50%;
-      width:14px;height:14px;margin:-7px;
-      border-radius:50%;
-      background:#fff;
-      box-shadow:0 0 0 5px rgba(255,255,255,.35);
-    }
-    @keyframes spin{to{transform:rotate(360deg)}}
+.topbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  backdrop-filter:blur(20px);
+  background:rgba(255,255,255,.12);
+  border-bottom:1px solid rgba(255,255,255,.15);
+}
 
-    .now{
-      display:grid;
-      gap:10px;
-    }
-    .onair{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      width:max-content;
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(255,108,201,.12);
-      color:#b0196f;
-      font-size:11px;
-      font-weight:700;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-    }
-    .dot{
-      width:8px;height:8px;border-radius:50%;background:#ff296f;box-shadow:0 0 0 0 rgba(255,41,111,.4);animation:pulse 1.5s infinite;
-    }
-    @keyframes pulse{
-      0%{box-shadow:0 0 0 0 rgba(255,41,111,.4)}
-      70%{box-shadow:0 0 0 12px rgba(255,41,111,0)}
-      100%{box-shadow:0 0 0 0 rgba(255,41,111,0)}
-    }
-    .track{
-      font-size:22px;
-      font-weight:800;
-      letter-spacing:-.03em;
-    }
-    .controls{
-      display:flex;flex-wrap:wrap;gap:10px;align-items:center;
-    }
-    .btn{
-      border:1px solid rgba(24,119,242,.16);
-      background:white;
-      color:#143d86;
-      border-radius:999px;
-      padding:10px 14px;
-      cursor:pointer;
-      transition:.2s ease;
-      box-shadow:0 10px 22px rgba(24,119,242,.08);
-    }
-    .btn:hover{transform:translateY(-1px);background:#f7fbff}
-    .progress{
-      height:12px;border-radius:999px;background:rgba(24,119,242,.08);overflow:hidden;border:1px solid rgba(24,119,242,.1)
-    }
-    .bar{
-      width:0;height:100%;
-      background:linear-gradient(90deg, var(--pink), #7cdaff, #8c7cff);
-      border-radius:inherit;
-      box-shadow:0 0 18px rgba(255,108,201,.4);
-    }
-    .playlist{
-      display:grid;
-      gap:8px;
-      max-height:360px;
-      overflow:auto;
-      padding-right:4px;
-    }
-    .song{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:11px 12px;
-      border-radius:16px;
-      border:1px solid rgba(125,145,210,.16);
-      background:rgba(255,255,255,.82);
-      cursor:pointer;
-      transition:.18s ease;
-    }
-    .song:hover{transform:translateX(2px);background:white}
-    .song.active{
-      background:linear-gradient(90deg, rgba(24,119,242,.12), rgba(255,108,201,.12));
-      border-color:rgba(24,119,242,.26);
-    }
-    .song small{color:var(--muted)}
+.topbar-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+  max-width:1400px;
+  margin:auto;
+}
 
-    /* Fan wall */
-    .wall-form{
-      display:grid;
-      gap:10px;
-      grid-template-columns:1fr;
-    }
-    @media (min-width: 700px){
-      .wall-form{grid-template-columns:160px 1fr 96px auto}
-    }
-    .field, textarea, select{
-      width:100%;
-      border-radius:16px;
-      border:1px solid rgba(124,143,202,.22);
-      background:rgba(255,255,255,.92);
-      padding:12px 14px;
-      color:var(--text);
-      outline:none;
-    }
-    textarea{min-height:96px;resize:vertical}
-    .feed{display:grid;gap:12px;margin-top:14px}
-    .post{
-      padding:14px;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(247,250,255,.9));
-      border:1px solid rgba(124,143,202,.16);
-      animation:fadeUp .35s ease;
-    }
-    @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    .post-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}
-    .avatar{
-      width:34px;height:34px;border-radius:50%;
-      display:grid;place-items:center;
-      background:linear-gradient(135deg, #ffd7f1, #c7e5ff);
-      font-weight:800;color:#10387e;
-      flex:none;
-    }
+.logo{
+  font-weight:900;
+  letter-spacing:2px;
+  font-size:1rem;
+  text-transform:uppercase;
+  color:white;
+  text-shadow:0 0 10px rgba(255,255,255,.5);
+}
 
-    /* Gallery */
-    .masonry{
-      columns:1;
-      column-gap:14px;
-    }
-    @media (min-width:700px){.masonry{columns:2}}
-    @media (min-width:1100px){.masonry{columns:3}}
-    .tile{
-      break-inside:avoid;
-      margin:0 0 14px;
-      background:white;
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow:0 18px 30px rgba(20,45,100,.12);
-      border:1px solid rgba(125,145,210,.14);
-      cursor:pointer;
-      transform:translateZ(0);
-      transition:.22s ease;
-    }
-    .tile:hover{transform:translateY(-4px) scale(1.01)}
-    .tile .img{
-      aspect-ratio: 4/5;
-      background:#dfe9ff center/cover no-repeat;
-    }
-    .tile .cap{padding:12px 14px;font-size:13px;color:#354867}
+.nav-links{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
 
-    /* Sidebars */
-    .sidebar .mini{
-      display:grid;
-      gap:12px;
-    }
-    .profile-head{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-    .pfp{
-      width:72px;height:72px;border-radius:22px;
-      background:url("REPLACE_WITH_REAL_DETOUR_IMAGE_3.jpg") center/cover no-repeat;
-      box-shadow:0 14px 30px rgba(24,119,242,.2);
-      flex:none;
-    }
-    .chip{
-      display:inline-flex;
-      padding:6px 10px;border-radius:999px;
-      background:rgba(24,119,242,.08);
-      border:1px solid rgba(24,119,242,.12);
-      font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
-    }
-    .sidebar-list{
-      display:grid;gap:10px;
-    }
-    .list-item{
-      display:flex;justify-content:space-between;gap:12px;
-      padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.8);border:1px solid rgba(125,145,210,.14)
-    }
+.nav-links a{
+  text-decoration:none;
+  color:white;
+  background:rgba(255,255,255,.09);
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  transition:.3s;
+  font-size:.85rem;
+}
 
-    /* Footer */
-    .footer{
-      grid-column:1/-1;
-      padding:28px 18px;
-      border-radius:28px;
-      background:linear-gradient(135deg, rgba(24,119,242,.97), rgba(255,108,201,.72));
-      color:white;
-      position:relative;
-      overflow:hidden;
-      box-shadow:0 24px 70px rgba(18,48,110,.2);
-    }
-    .footer::before{
-      content:"";
-      position:absolute;inset:-20%;
-      background:radial-gradient(circle, rgba(255,255,255,.16), transparent 38%);
-      animation:float 8s ease-in-out infinite;
-    }
-    @keyframes float{50%{transform:translate3d(18px,-10px,0)}}
-    .footer-inner{
-      position:relative;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
+.nav-links a:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.2);
+  box-shadow:var(--glow);
+}
 
-    /* Modal */
-    .modal{
-      position:fixed;inset:0;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      background:rgba(8,14,28,.62);
-      z-index:200;
-    }
-    .modal.open{display:flex}
-    .modal-box{
-      max-width:min(980px, 96vw);
-      max-height:90vh;
-      overflow:auto;
-      background:white;
-      border-radius:24px;
-      box-shadow:0 30px 100px rgba(0,0,0,.35);
-    }
-    .modal-img{width:min(980px,96vw);aspect-ratio:16/10;background:#000 center/cover no-repeat}
-    .modal-close{
-      position:fixed;top:18px;right:18px;
-      border:0;border-radius:999px;
-      padding:12px 14px;
-      background:white;cursor:pointer;
-    }
+/* =========================================================
+   HERO
+========================================================= */
 
-    /* Effects */
-    .sparkle{
-      position:fixed;
-      width:10px;height:10px;
-      pointer-events:none;
-      background:radial-gradient(circle, white 0 30%, rgba(255,255,255,0) 72%);
-      mix-blend-mode:screen;
-      filter:drop-shadow(0 0 8px rgba(255,255,255,.9));
-      animation:spark .75s ease-out forwards;
-      z-index:999;
-    }
-    @keyframes spark{to{transform:translateY(-18px) scale(0); opacity:0}}
-    .hide{display:none !important}
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:120px 20px 60px;
+  overflow:hidden;
+}
 
-    @media (min-width: 1000px){
-      .sidebar{position:sticky;top:88px}
-    }
-  </style>
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(5,8,20,.55),rgba(5,8,20,.72)),
+    url('https://images.squarespace-cdn.com/content/v1/5e4b32f0f0f5e70f9137bac9/1710195598098-RSQ9PB9BXYXQOQTTXZDK/Kim+Petras+2024.jpg');
+  background-size:cover;
+  background-position:center;
+  transform:scale(1.05);
+  animation:slowZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes slowZoom{
+  from{transform:scale(1.05) translateY(0);}
+  to{transform:scale(1.14) translateY(-10px);}
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at center,transparent 20%,rgba(0,0,0,.65));
+}
+
+.hero-content{
+  position:relative;
+  z-index:5;
+  max-width:1200px;
+  width:100%;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:40px;
+  align-items:center;
+}
+
+.hero-copy{
+  backdrop-filter:blur(18px);
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:30px;
+  padding:40px;
+  box-shadow:var(--shadow);
+}
+
+.kim{
+  font-size:clamp(1rem,3vw,1.4rem);
+  letter-spacing:7px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+  opacity:.8;
+}
+
+.detour{
+  font-size:clamp(4rem,14vw,10rem);
+  line-height:.9;
+  font-weight:900;
+  letter-spacing:-6px;
+  text-shadow:
+    0 0 20px rgba(255,255,255,.4),
+    0 0 50px rgba(255,0,255,.3);
+}
+
+.release{
+  margin-top:18px;
+  font-size:1.3rem;
+  letter-spacing:4px;
+  color:#d7e2ff;
+}
+
+.tagline{
+  margin-top:20px;
+  display:inline-block;
+  background:linear-gradient(90deg,#fff,#ffc2ec,#b9cfff);
+  -webkit-background-clip:text;
+  color:transparent;
+  font-size:1.1rem;
+  animation:flicker 3s infinite;
+}
+
+@keyframes flicker{
+  0%,18%,22%,25%,53%,57%,100%{opacity:1}
+  20%,24%,55%{opacity:.4}
+}
+
+.enter-btn{
+  margin-top:35px;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:#09111f;
+  background:white;
+  padding:16px 28px;
+  border-radius:999px;
+  font-weight:700;
+  transition:.3s;
+}
+
+.enter-btn:hover{
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 0 30px rgba(255,255,255,.45);
+}
+
+.floating-window{
+  position:relative;
+  backdrop-filter:blur(20px);
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:28px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+
+.window-bar{
+  display:flex;
+  gap:8px;
+  margin-bottom:15px;
+}
+
+.window-bar span{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:white;
+}
+
+.window-image{
+  width:100%;
+  border-radius:22px;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  box-shadow:var(--shadow);
+}
+
+.status-box{
+  position:absolute;
+  bottom:-25px;
+  right:-20px;
+  width:220px;
+  padding:16px;
+  border-radius:24px;
+  backdrop-filter:blur(18px);
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:var(--shadow);
+}
+
+.status-title{
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  opacity:.6;
+  margin-bottom:8px;
+}
+
+.sparkle{
+  position:absolute;
+  font-size:1.5rem;
+  animation:float 5s ease-in-out infinite;
+}
+
+.sparkle:nth-child(1){top:10%;left:8%}
+.sparkle:nth-child(2){bottom:18%;left:12%;animation-delay:1s}
+.sparkle:nth-child(3){top:22%;right:18%;animation-delay:2s}
+.sparkle:nth-child(4){bottom:15%;right:8%;animation-delay:3s}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-16px)}
+}
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+section{
+  position:relative;
+  padding:90px 20px;
+}
+
+.container{
+  max-width:1300px;
+  margin:auto;
+}
+
+.section-title{
+  font-size:clamp(2rem,6vw,4rem);
+  margin-bottom:20px;
+  font-weight:900;
+  letter-spacing:-2px;
+}
+
+.section-sub{
+  max-width:700px;
+  opacity:.8;
+  line-height:1.8;
+  margin-bottom:50px;
+}
+
+/* =========================================================
+   COUNTDOWNS
+========================================================= */
+
+.countdown-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:30px;
+}
+
+.count-card{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:30px;
+  backdrop-filter:blur(20px);
+  padding:35px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.count-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.08),transparent);
+  pointer-events:none;
+}
+
+.count-label{
+  font-size:.85rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  opacity:.7;
+  margin-bottom:18px;
+}
+
+.count-time{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.time-box{
+  min-width:75px;
+}
+
+.time-box h3{
+  font-size:2.4rem;
+}
+
+.time-box span{
+  font-size:.8rem;
+  opacity:.6;
+  text-transform:uppercase;
+}
+
+/* =========================================================
+   PLAYER
+========================================================= */
+
+.player-shell{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:35px;
+  align-items:start;
+}
+
+.player-ui{
+  background:rgba(255,255,255,.08);
+  border-radius:35px;
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(22px);
+  padding:30px;
+  box-shadow:var(--shadow);
+}
+
+.player-display{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  padding:30px;
+  background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.04));
+}
+
+.on-air{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+  font-size:.85rem;
+  letter-spacing:3px;
+}
+
+.live-dot{
+  width:10px;
+  height:10px;
+  background:#ff4e89;
+  border-radius:50%;
+  box-shadow:0 0 15px #ff4e89;
+  animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+  50%{transform:scale(1.4)}
+}
+
+.disc{
+  width:220px;
+  aspect-ratio:1;
+  border-radius:50%;
+  margin:auto;
+  background:
+    url('https://media.pitchfork.com/photos/664f9e14b5d6c8f672e4bba8/1:1/w_450%2Cc_limit/Kim-Petras.jpg');
+  background-size:cover;
+  border:8px solid rgba(255,255,255,.14);
+  animation:spin 10s linear infinite;
+}
+
+@keyframes spin{
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
+}
+
+.song-title{
+  margin-top:24px;
+  text-align:center;
+  font-size:1.2rem;
+  font-weight:700;
+}
+
+.eq{
+  display:flex;
+  gap:4px;
+  justify-content:center;
+  margin-top:25px;
+}
+
+.eq span{
+  width:6px;
+  height:20px;
+  border-radius:999px;
+  background:linear-gradient(to top,#ff93dc,#8bb5ff);
+  animation:eq 1s infinite ease-in-out;
+}
+
+.eq span:nth-child(2){animation-delay:.1s}
+.eq span:nth-child(3){animation-delay:.2s}
+.eq span:nth-child(4){animation-delay:.3s}
+.eq span:nth-child(5){animation-delay:.4s}
+
+@keyframes eq{
+  50%{height:45px}
+}
+
+.controls{
+  margin-top:25px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+
+.controls button{
+  width:60px;
+  height:60px;
+  border:none;
+  border-radius:50%;
+  background:white;
+  color:#111;
+  cursor:pointer;
+  font-size:1rem;
+  transition:.3s;
+}
+
+.controls button:hover{
+  transform:scale(1.1);
+}
+
+.playlist{
+  max-height:650px;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.track{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  padding:16px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.track:hover{
+  transform:translateX(6px);
+  background:rgba(255,255,255,.14);
+}
+
+.track.active{
+  border-color:#ffc4eb;
+  box-shadow:0 0 25px rgba(255,192,233,.3);
+}
+
+/* =========================================================
+   STORY
+========================================================= */
+
+.story-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+
+.story-card{
+  background:rgba(255,255,255,.08);
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.12);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.story-card img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+}
+
+.story-copy{
+  padding:30px;
+}
+
+.quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.7rem;
+  line-height:1.4;
+  margin-bottom:16px;
+}
+
+.quote-source{
+  opacity:.65;
+  font-size:.9rem;
+}
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery-grid{
+  columns:3 260px;
+  column-gap:18px;
+}
+
+.gallery-item{
+  break-inside:avoid;
+  margin-bottom:18px;
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.gallery-item img{
+  width:100%;
+  display:block;
+  transition:1s;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.08);
+}
+
+.caption{
+  position:absolute;
+  left:12px;
+  bottom:12px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.14);
+  backdrop-filter:blur(10px);
+  font-size:.8rem;
+}
+
+/* =========================================================
+   FAN WALL
+========================================================= */
+
+.wall-wrap{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:30px;
+}
+
+.post-form,
+.wall-feed{
+  background:rgba(255,255,255,.08);
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.12);
+  padding:28px;
+  box-shadow:var(--shadow);
+}
+
+.input{
+  width:100%;
+  margin-bottom:14px;
+  border:none;
+  border-radius:18px;
+  background:rgba(255,255,255,.12);
+  color:white;
+  padding:16px;
+  outline:none;
+}
+
+.submit-btn{
+  border:none;
+  padding:15px 22px;
+  border-radius:999px;
+  cursor:pointer;
+  background:white;
+  font-weight:700;
+}
+
+.post{
+  background:rgba(255,255,255,.06);
+  border-radius:22px;
+  padding:18px;
+  margin-bottom:16px;
+  animation:fadeUp .5s ease;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.post strong{
+  display:block;
+  margin-bottom:8px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+  padding:100px 20px 60px;
+  text-align:center;
+  position:relative;
+}
+
+.footer-title{
+  font-size:clamp(2rem,8vw,5rem);
+  line-height:1;
+  font-weight:900;
+  margin-bottom:25px;
+}
+
+.footer-sub{
+  opacity:.7;
+  max-width:700px;
+  margin:auto;
+  line-height:1.8;
+}
+
+.socials{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin-top:30px;
+}
+
+.socials a{
+  width:55px;
+  height:55px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  color:white;
+  text-decoration:none;
+  border:1px solid rgba(255,255,255,.12);
+  transition:.3s;
+}
+
+.socials a:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--glow);
+}
+
+/* =========================================================
+   SECRET MODE
+========================================================= */
+
+.detour-mode{
+  filter:hue-rotate(80deg) saturate(1.4);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:980px){
+
+  .hero-content,
+  .player-shell,
+  .story-grid,
+  .wall-wrap{
+    grid-template-columns:1fr;
+  }
+
+  .status-box{
+    position:relative;
+    right:auto;
+    bottom:auto;
+    margin-top:20px;
+    width:100%;
+  }
+
+}
+
+</style>
 </head>
+
 <body>
-  <div class="app">
-    <header class="topbar">
-      <div class="topbar-inner">
-        <div class="brand" aria-label="Kim Petras Detour">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span>Kim Petras / Detour</span>
-        </div>
-        <nav class="nav-links" aria-label="Primary">
-          <a class="pill" href="#story">Story</a>
-          <a class="pill" href="#player">Radio</a>
-          <a class="pill" href="#wall">Fan Wall</a>
-          <a class="pill" href="#gallery">Gallery</a>
-        </nav>
-      </div>
-    </header>
 
-    <main class="shell">
-      <section class="hero card" id="hero">
-        <div class="hero-bg" id="heroBg"></div>
-        <div class="hero-grid"></div>
-        <div class="hero-content">
-          <div class="hero-inner">
-            <div class="kicker">Facebook-era launch page • hyperpop editorial fantasy</div>
-            <h1 class="title">KIM PETRAS</h1>
-            <div class="subtitle">
-              <strong>DETOUR</strong> arrives May 29, 2026 — a glossy social-era world of nightlife, nostalgia, and cinematic pop.
-            </div>
-            <div class="hero-row">
-              <button class="cta primary" id="scrollCountdown">View countdown</button>
-              <button class="cta secondary" id="themeStar">Change the sparkle</button>
-            </div>
-          </div>
-        </div>
-        <aside class="floating-window" aria-label="Featured panel">
-          <div class="window-bar"><span>Profile update</span><span>May 2026</span></div>
-          <div class="window-body">
-            <div class="window-img" aria-hidden="true"></div>
-            <div class="label">album rollout</div>
-            <p class="fine" style="margin:8px 0 0;">A luxury Y2K fan space built like an old social profile, a glossy press kit, and a bedroom desktop shrine.</p>
-          </div>
-        </aside>
-      </section>
+<!-- =========================================================
+TOP NAV
+========================================================= -->
 
-      <aside class="sidebar card">
-        <div class="card-h"><h3>Artist page</h3><span class="chip">online</span></div>
-        <div class="card-b mini">
-          <div class="profile-head">
-            <div class="pfp" aria-hidden="true"></div>
-            <div>
-              <div style="font-weight:800;font-size:18px;">Kim Petras</div>
-              <div class="muted fine">DETOUR era / debut album rollout</div>
-            </div>
-          </div>
-          <div class="sidebar-list">
-            <div class="list-item"><span class="muted">Release</span><b>May 29, 2026</b></div>
-            <div class="list-item"><span class="muted">Mood</span><b>Hyperpop glamour</b></div>
-            <div class="list-item"><span class="muted">Status</span><b>Back on track</b></div>
-          </div>
-          <div class="quote">
-            “Back on track.” — verified rollout wording reported by Vanity Fair. [web:2]
-          </div>
-        </div>
-      </aside>
+<header class="topbar">
+  <div class="topbar-inner">
 
-      <section class="content">
-        <section class="countdowns" id="countdowns">
-          <article class="count-card card">
-            <div class="card-h"><h3>Detour arrives in</h3><span class="label">main countdown</span></div>
-            <div class="card-b">
-              <div class="count-big" id="mainCountdown">—</div>
-              <div class="timer" id="mainTimer"></div>
-            </div>
-          </article>
-          <article class="count-card card">
-            <div class="card-h"><h3>...something else is coming</h3><span class="label">second countdown</span></div>
-            <div class="card-b">
-              <div class="count-big" id="altCountdown">—</div>
-              <div class="timer" id="altTimer"></div>
-            </div>
-          </article>
-        </section>
+    <div class="logo">KIM PETRAS — DETOUR</div>
 
-        <section class="story card" id="story">
-          <div class="card-h"><h2>Era story</h2><span class="label">editorial scrapbook</span></div>
-          <div class="card-b story-grid">
-            <div>
-              <p class="fine">Detour is presented here as a polished social-profile fantasy: glossy, intimate, and intentionally nostalgic. Verified coverage described Kim Petras framing the album around pressure, identity, and the image of the “ideal pop star,” with the project set for release on May 29, 2026. [web:3][web:2]</p>
-              <p class="quote">“I love edging them.” — reported rollout wording from social coverage. [web:7]</p>
-              <p class="fine">Use this section for short editorial notes, real interview excerpts, and era-accurate context. Keep any added copy factual and concise so the page feels like a real launch microsite rather than fan fiction.</p>
-            </div>
-            <div class="collage">
-              <div class="polaroid" style="--r:-3deg">
-                <div class="ph" style="background-image:url('REPLACE_WITH_REAL_DETOUR_IMAGE_4.jpg')"></div>
-                <p>press image / Detour</p>
-              </div>
-              <div class="polaroid" style="--r:4deg">
-                <div class="ph" style="background-image:url('REPLACE_WITH_REAL_DETOUR_IMAGE_5.jpg')"></div>
-                <p>social promo / rollout</p>
-              </div>
-              <div class="polaroid" style="--r:2deg">
-                <div class="ph" style="background-image:url('REPLACE_WITH_REAL_DETOUR_IMAGE_6.jpg')"></div>
-                <p>cover / editorial crop</p>
-              </div>
-              <div class="polaroid" style="--r:-2deg">
-                <div class="ph" style="background-image:url('REPLACE_WITH_REAL_DETOUR_IMAGE_7.jpg')"></div>
-                <p>nightlife / visual mood</p>
-              </div>
-            </div>
-          </div>
-        </section>
+    <nav class="nav-links">
+      <a href="#countdowns">COUNTDOWN</a>
+      <a href="#radio">RADIO</a>
+      <a href="#story">ERA</a>
+      <a href="#gallery">GALLERY</a>
+      <a href="#wall">FAN WALL</a>
+    </nav>
 
-        <section class="card player" id="player">
-          <div class="card-h"><h2>Detour radio</h2><span class="label">playlist in order</span></div>
-          <div class="card-b player-body" id="playerWrap">
-            <div class="deck">
-              <div class="disc" aria-hidden="true"></div>
-              <div class="now">
-                <div class="onair"><span class="dot"></span> ON AIR</div>
-                <div class="track" id="nowPlaying">Polo</div>
-                <div class="muted fine" id="trackMeta">Official YouTube audio/video playlist</div>
-                <div class="progress" aria-label="Playback progress"><div class="bar" id="bar"></div></div>
-                <div class="controls">
-                  <button class="btn" id="playBtn">Play</button>
-                  <button class="btn" id="prevBtn">Prev</button>
-                  <button class="btn" id="nextBtn">Next</button>
-                  <button class="btn" id="openYT">Open YouTube</button>
-                </div>
-              </div>
-            </div>
-            <div class="playlist" id="playlist" aria-label="Playlist"></div>
-          </div>
-          <div style="padding:0 16px 16px;">
-            <iframe id="ytPlayer" width="100%" height="0" style="border:0;display:block" allow="autoplay; encrypted-media" title="Kim Petras YouTube player"></iframe>
-          </div>
-        </section>
-
-        <section class="card" id="wall">
-          <div class="card-h"><h2>Fan wall</h2><span class="label">guestbook / status feed</span></div>
-          <div class="card-b">
-            <div class="wall-form">
-              <input class="field" id="username" maxlength="24" placeholder="Username" />
-              <textarea id="message" maxlength="280" placeholder="Leave a message for the Detour era..."></textarea>
-              <select id="reaction">
-                <option>✨ sparkle</option>
-                <option>💿 love it</option>
-                <option>💖 obsessed</option>
-                <option>🩵 iconic</option>
-              </select>
-              <button class="cta primary" id="postBtn" type="button">Post</button>
-            </div>
-            <div class="feed" id="feed"></div>
-          </div>
-        </section>
-
-        <section class="card" id="gallery">
-          <div class="card-h"><h2>Photo gallery</h2><span class="label">masonry / lightbox</span></div>
-          <div class="card-b">
-            <div class="masonry" id="galleryGrid"></div>
-          </div>
-        </section>
-      </section>
-
-      <aside class="sidebar card">
-        <div class="card-h"><h3>Updates</h3><span class="label">activity</span></div>
-        <div class="card-b mini">
-          <div class="list-item"><span>Detour release</span><b>May 29</b></div>
-          <div class="list-item"><span>Premiere window</span><b>12:00 PM EST</b></div>
-          <div class="list-item"><span>Bonus drop</span><b>12:30 PM EST</b></div>
-          <div class="list-item"><span>Hidden mode</span><b>Press 7</b></div>
-          <div class="list-item"><span>Theme switch</span><b>Click star</b></div>
-        </div>
-      </aside>
-
-      <footer class="footer">
-        <div class="footer-inner">
-          <strong>the detour begins may 29</strong>
-          <div class="fine">Fan-made concept site. Images, quotes, and video links should be replaced with official assets where available.</div>
-          <div class="fine">© 2026 Kim Petras fan experience • Y2K social glamour • chrome hearts and glitter UI</div>
-        </div>
-      </footer>
-    </main>
   </div>
+</header>
 
-  <div class="modal" id="modal" aria-hidden="true">
-    <button class="modal-close" id="closeModal">Close</button>
-    <div class="modal-box">
-      <div class="modal-img" id="modalImg"></div>
+<!-- =========================================================
+HERO
+========================================================= -->
+
+<section class="hero">
+
+  <div class="hero-bg"></div>
+
+  <div class="sparkle">✦</div>
+  <div class="sparkle">✧</div>
+  <div class="sparkle">★</div>
+  <div class="sparkle">✦</div>
+
+  <div class="hero-content">
+
+    <div class="hero-copy">
+
+      <div class="kim">KIM PETRAS</div>
+
+      <h1 class="detour">DETOUR</h1>
+
+      <div class="release">MAY 29 2026</div>
+
+      <div class="tagline">a new era begins</div>
+
+      <a href="#radio" class="enter-btn">
+        ENTER THE ERA
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
     </div>
+
+    <div class="floating-window">
+
+      <div class="window-bar">
+        <span style="background:#ff7eb6"></span>
+        <span style="background:#ffd96d"></span>
+        <span style="background:#9effb0"></span>
+      </div>
+
+      <img
+      class="window-image"
+      src="https://www.rollingstone.com/wp-content/uploads/2023/09/Kim-Petras-Feed-The-Beast.jpg"
+      alt="Kim Petras promo image">
+
+      <div class="status-box">
+        <div class="status-title">CURRENT STATUS</div>
+        online • emotionally unavailable • entering detour mode
+      </div>
+
+    </div>
+
   </div>
 
-  <script>
-    const data = [
-      {title:"Polo", url:"https://www.youtube.com/watch?v=3P23rfU-jZw"},
-      {title:"Freak It", url:"https://www.youtube.com/watch?v=4X0Udem1sj4"},
-      {title:"I Like Ur Look", url:"https://www.youtube.com/watch?v=FTxdMoZuq-E"},
-      {title:"Need For Speed", url:"https://www.youtube.com/watch?v=3xwk3Fb_Uis"},
-      {title:"Jeep", url:"https://www.youtube.com/watch?v=V_-rrLLkxas"},
-      {title:"Pop Sound", url:"https://www.youtube.com/watch?v=ifOuca8eQ2g"},
-      {title:"Mr. Producer (feat. BC Kingdom)", url:"https://www.youtube.com/watch?v=REPLACE_ME"},
-      {title:"Cha Cha", url:"https://www.youtube.com/watch?v=REPLACE_ME"},
-      {title:"Get Some (feat. Cortisa Star)", url:"https://www.youtube.com/watch?v=REPLACE_ME"}
-    ];
+</section>
 
-    const playlist = document.getElementById('playlist');
-    const nowPlaying = document.getElementById('nowPlaying');
-    const ytPlayer = document.getElementById('ytPlayer');
-    const playBtn = document.getElementById('playBtn');
-    const bar = document.getElementById('bar');
-    const playerWrap = document.getElementById('playerWrap');
-    let current = 0;
-    let playing = false;
+<!-- =========================================================
+COUNTDOWN
+========================================================= -->
 
-    function ytEmbed(url){
-      const id = (url.match(/v=([^&]+)/)||[])[1];
-      return `https://www.youtube.com/embed/${id}?autoplay=0&rel=0&modestbranding=1`;
-    }
+<section id="countdowns">
+  <div class="container">
 
-    function renderPlaylist(){
-      playlist.innerHTML = "";
-      data.forEach((t, i) => {
-        const row = document.createElement('button');
-        row.className = 'song' + (i===current ? ' active' : '');
-        row.innerHTML = `<span><b>${String(i+1).padStart(2,'0')} · ${t.title}</b><br><small>Kim Petras</small></span><span>▶</span>`;
-        row.onclick = () => loadTrack(i, true);
-        playlist.appendChild(row);
-      });
-    }
+    <h2 class="section-title">THE CLOCK IS TICKING</h2>
 
-    function loadTrack(i, autoplay=false){
-      current = (i + data.length) % data.length;
-      const t = data[current];
-      nowPlaying.textContent = t.title;
-      ytPlayer.src = ytEmbed(t.url) + (autoplay ? "&autoplay=1" : "");
-      playing = autoplay;
-      playBtn.textContent = playing ? "Pause" : "Play";
-      playerWrap.classList.toggle('playing', playing);
-      renderPlaylist();
-    }
+    <p class="section-sub">
+      A glossy hyperpop transmission counting down to the next chapter.
+      Two moments. One universe. Everything changes May 29.
+    </p>
 
-    playBtn.onclick = () => {
-      playing = !playing;
-      playBtn.textContent = playing ? "Pause" : "Play";
-      ytPlayer.src = ytEmbed(data[current].url) + (playing ? "&autoplay=1" : "");
-      playerWrap.classList.toggle('playing', playing);
-    };
-    document.getElementById('prevBtn').onclick = () => loadTrack(current - 1, playing);
-    document.getElementById('nextBtn').onclick = () => loadTrack(current + 1, playing);
-    document.getElementById('openYT').onclick = () => window.open(data[current].url, '_blank');
+    <div class="countdown-grid">
 
-    renderPlaylist();
-    loadTrack(0, false);
+      <div class="count-card">
 
-    function countdown(target, out, detailEl){
-      const tick = () => {
-        const now = new Date();
-        const diff = Math.max(0, target - now);
-        const s = Math.floor(diff / 1000);
-        const d = Math.floor(s / 86400);
-        const h = Math.floor((s % 86400) / 3600);
-        const m = Math.floor((s % 3600) / 60);
-        const sec = s % 60;
-        out.textContent = `${d}d ${h}h ${m}m ${sec}s`;
-        detailEl.innerHTML = [
-          ['Days', d],['Hours', h],['Mins', m],['Secs', sec]
-        ].map(([l,v]) => `<div class="unit"><b>${v}</b><span>${l}</span></div>`).join('');
-      };
-      tick(); setInterval(tick, 1000);
-    }
+        <div class="count-label">DETOUR ARRIVES IN</div>
 
-    countdown(new Date('2026-05-29T12:00:00-04:00'), document.getElementById('mainCountdown'), document.getElementById('mainTimer'));
-    countdown(new Date('2026-05-29T12:30:00-04:00'), document.getElementById('altCountdown'), document.getElementById('altTimer'));
+        <div class="count-time" id="countdown1"></div>
 
-    const storageKey = 'detour_wall_v1';
-    const feed = document.getElementById('feed');
-    const seed = JSON.parse(localStorage.getItem(storageKey) || 'null') || [
-      {u:'fanclub', r:'💖 obsessed', m:'The Detour rollout feels like a real old-school pop era page.'},
-      {u:'nightdrive', r:'🩵 iconic', m:'The countdown + player + wall combo is perfect.'}
-    ];
+      </div>
 
-    function saveWall(posts){ localStorage.setItem(storageKey, JSON.stringify(posts.slice(0,20))); }
-    function renderWall(posts){
-      feed.innerHTML = posts.map(p => `
-        <div class="post">
-          <div class="post-top">
-            <div style="display:flex;gap:10px;align-items:center">
-              <div class="avatar">${(p.u||'K').slice(0,1).toUpperCase()}</div>
-              <div>
-                <div style="font-weight:800">${escapeHtml(p.u || 'anonymous')}</div>
-                <div class="muted fine">${escapeHtml(p.r || '')}</div>
-              </div>
-            </div>
-            <div class="muted fine">${new Date().toLocaleDateString()}</div>
+      <div class="count-card">
+
+        <div class="count-label">...something else is coming</div>
+
+        <div class="count-time" id="countdown2"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================
+PLAYER
+========================================================= -->
+
+<section id="radio">
+  <div class="container">
+
+    <h2 class="section-title">DETOUR RADIO</h2>
+
+    <p class="section-sub">
+      A glossy Y2K broadcast console inspired by old Winamp skins,
+      iPods, internet radio, and chrome MP3 players.
+    </p>
+
+    <div class="player-shell">
+
+      <div class="player-ui">
+
+        <div class="player-display">
+
+          <div class="on-air">
+            <div class="live-dot"></div>
+            ON AIR
           </div>
-          <div class="fine" style="font-size:14px;line-height:1.7">${escapeHtml(p.m || '')}</div>
-        </div>`).join('');
-    }
-    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-    renderWall(seed);
 
-    document.getElementById('postBtn').onclick = () => {
-      const u = document.getElementById('username').value.trim() || 'anonymous';
-      const m = document.getElementById('message').value.trim();
-      const r = document.getElementById('reaction').value;
-      if(!m) return;
-      seed.unshift({u,r,m});
-      saveWall(seed);
-      renderWall(seed);
-      document.getElementById('message').value = '';
-      spark(window.innerWidth*0.5, window.innerHeight*0.5, 18);
-    };
+          <div class="disc" id="disc"></div>
 
-    const galleryItems = [
-      ["REPLACE_WITH_REAL_DETOUR_IMAGE_8.jpg","Detour press image"],
-      ["REPLACE_WITH_REAL_DETOUR_IMAGE_9.jpg","Album rollout still"],
-      ["REPLACE_WITH_REAL_DETOUR_IMAGE_10.jpg","Editorial portrait"],
-      ["REPLACE_WITH_REAL_DETOUR_IMAGE_11.jpg","Social promo crop"],
-      ["REPLACE_WITH_REAL_DETOUR_IMAGE_12.jpg","Nightlife visual"],
-      ["REPLACE_WITH_REAL_DETOUR_IMAGE_13.jpg","Cover art detail"]
-    ];
-    const galleryGrid = document.getElementById('galleryGrid');
-    galleryGrid.innerHTML = galleryItems.map(([src,cap]) => `
-      <article class="tile" data-src="${src}">
-        <div class="img" style="background-image:url('${src}')"></div>
-        <div class="cap">${cap}</div>
-      </article>`).join('');
+          <div class="song-title" id="songTitle">
+            Polo
+          </div>
 
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modalImg');
-    document.querySelectorAll('.tile').forEach(t => t.onclick = () => {
-      const src = t.dataset.src;
-      modalImg.style.backgroundImage = `url('${src}')`;
-      modal.classList.add('open');
-    });
-    document.getElementById('closeModal').onclick = () => modal.classList.remove('open');
-    modal.onclick = e => { if(e.target === modal) modal.classList.remove('open'); };
+          <div class="eq">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
 
-    function spark(x,y,n=12){
-      for(let i=0;i<n;i++){
-        const s=document.createElement('div');
-        s.className='sparkle';
-        s.style.left=(x + (Math.random()*40-20))+'px';
-        s.style.top=(y + (Math.random()*40-20))+'px';
-        s.style.transform=`translate(${Math.random()*16-8}px, ${Math.random()*16-8}px)`;
-        document.body.appendChild(s);
-        setTimeout(()=>s.remove(),800);
-      }
-    }
+          <div class="controls">
+            <button id="prevBtn"><i class="fa-solid fa-backward"></i></button>
+            <button id="playBtn"><i class="fa-solid fa-play"></i></button>
+            <button id="nextBtn"><i class="fa-solid fa-forward"></i></button>
+          </div>
 
-    document.addEventListener('click', e => {
-      if(e.target.closest('button, a, input, textarea, select')) return;
-      if(Math.random() < .15) spark(e.clientX, e.clientY, 8);
-    });
+        </div>
 
-    document.getElementById('themeStar').onclick = () => {
-      document.documentElement.style.setProperty('--blue', `hsl(${Math.floor(Math.random()*360)}, 80%, 52%)`);
-      spark(window.innerWidth*0.75, window.innerHeight*0.28, 16);
-    };
+      </div>
 
-    document.getElementById('scrollCountdown').onclick = () => document.getElementById('countdowns').scrollIntoView({behavior:'smooth', block:'start'});
+      <div class="playlist" id="playlist"></div>
 
-    document.addEventListener('keydown', e => {
-      if(e.key === '7'){
-        document.body.classList.toggle('detour-mode');
-        document.body.style.filter = document.body.classList.contains('detour-mode') ? 'saturate(1.22) hue-rotate(10deg)' : '';
-        spark(window.innerWidth*0.5, 120, 20);
-      }
-      if(e.key.toLowerCase() === 's') document.getElementById('themeStar').click();
-      if(e.key === 'ArrowRight') document.getElementById('nextBtn').click();
-      if(e.key === 'ArrowLeft') document.getElementById('prevBtn').click();
-    });
+    </div>
 
-    document.getElementById('heroBg').addEventListener('pointermove', e => {
-      const x = (e.clientX / window.innerWidth - .5) * 10;
-      const y = (e.clientY / window.innerHeight - .5) * 8;
-      document.getElementById('heroBg').style.transform = `scale(1.06) translate(${x}px, ${y}px)`;
-    });
-  </script>
+  </div>
+</section>
+
+<!-- =========================================================
+STORY
+========================================================= -->
+
+<section id="story">
+  <div class="container">
+
+    <h2 class="section-title">THE DETOUR ERA</h2>
+
+    <p class="section-sub">
+      A cinematic scrapbook universe inspired by nightlife, internet
+      mythology, emotional freedom, femininity, and hyperpop glamour.
+    </p>
+
+    <div class="story-grid">
+
+      <article class="story-card">
+
+        <img src="https://media.glamourmagazine.co.uk/photos/64f9f2458ef7b4d06f79886e/16:9/w_2560%2Cc_limit/KIM%2520PETRAS%2520040923%2520GettyImages-1665579728.jpg" alt="Kim Petras">
+
+        <div class="story-copy">
+
+          <div class="quote">
+            “I always want my music to feel escapist.”
+          </div>
+
+          <div class="quote-source">
+            — Kim Petras, public interviews discussing her pop aesthetic and creative direction.
+          </div>
+
+        </div>
+
+      </article>
+
+      <article class="story-card">
+
+        <img src="https://variety.com/wp-content/uploads/2023/06/Kim-Petras.jpg" alt="Kim Petras editorial">
+
+        <div class="story-copy">
+
+          <div class="quote">
+            “Pop music should feel larger than life.”
+          </div>
+
+          <div class="quote-source">
+            — Kim Petras discussing theatrical pop and fantasy-driven songwriting.
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================
+GALLERY
+========================================================= -->
+
+<section id="gallery">
+  <div class="container">
+
+    <h2 class="section-title">TUMBLR ARCHIVE</h2>
+
+    <p class="section-sub">
+      Luxury scrapbook layouts inspired by fan archives, celebrity profile
+      collages, and glossy social media nostalgia.
+    </p>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item">
+        <img src="https://assets.teenvogue.com/photos/64f7bb50d04d74d3e20f6e6c/16:9/w_2560%2Cc_limit/GettyImages-1655048014.jpg">
+        <div class="caption">hyperpop mythology</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://www.billboard.com/wp-content/uploads/2023/06/Kim-Petras-cr-Cody-Critcheloe-2023-billboard-1548.jpg">
+        <div class="caption">cyber-pop glamour</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://www.nme.com/wp-content/uploads/2023/06/Kim-Petras-696x442.jpg">
+        <div class="caption">detour mode</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://media.pitchfork.com/photos/6480b55cbfcb45fd2fd56ed7/16:9/w_2240,c_limit/Kim-Petras.jpg">
+        <div class="caption">internet icon</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://www.rollingstone.com/wp-content/uploads/2023/06/kim-petras-pride.jpg">
+        <div class="caption">late-night transmission</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://media.vanityfair.com/photos/6480f5e7d5f2ea02ca22964f/master/w_2560%2Cc_limit/1492868170">
+        <div class="caption">dreamstate</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================
+FAN WALL
+========================================================= -->
+
+<section id="wall">
+  <div class="container">
+
+    <h2 class="section-title">FAN WALL</h2>
+
+    <p class="section-sub">
+      A nostalgic Tumblr + Facebook style guestbook feed for DETOUR.
+    </p>
+
+    <div class="wall-wrap">
+
+      <div class="post-form">
+
+        <input class="input" id="username" placeholder="username">
+
+        <textarea class="input" id="message" rows="5" placeholder="leave a message for the DETOUR era..."></textarea>
+
+        <button class="submit-btn" id="postBtn">
+          POST TO WALL
+        </button>
+
+      </div>
+
+      <div class="wall-feed" id="feed"></div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================
+FOOTER
+========================================================= -->
+
+<footer>
+
+  <div class="footer-title">
+    the detour begins may 29
+  </div>
+
+  <p class="footer-sub">
+    fan-made immersive concept microsite inspired by Kim Petras’ upcoming DETOUR era.
+    all imagery belongs to their respective copyright holders.
+    created with love for hyperpop internet culture, tumblr nostalgia, and Y2K celebrity web aesthetics.
+  </p>
+
+  <div class="socials">
+    <a href="https://www.instagram.com/kimpetras/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com/kimpetras" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.youtube.com/@KimPetras" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://open.spotify.com/artist/3Xt3RrJMFv5SZkCfUE8C1J" target="_blank"><i class="fab fa-spotify"></i></a>
+  </div>
+
+</footer>
+
+<!-- =========================================================
+AUDIO PLAYER
+========================================================= -->
+
+<iframe
+id="youtubePlayer"
+width="0"
+height="0"
+style="display:none"
+src=""
+allow="autoplay">
+</iframe>
+
+<script>
+
+/* =========================================================
+PLAYLIST
+========================================================= */
+
+const tracks = [
+  {
+    title:"Polo",
+    url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  },
+  {
+    title:"Freak It",
+    url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  },
+  {
+    title:"I Like Ur Look",
+    url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  },
+  {
+    title:"Need For Speed",
+    url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  },
+  {
+    title:"Jeep",
+    url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  },
+  {
+    title:"Pop Sound",
+    url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  },
+  {
+    title:"Mr. Producer (feat. BC Kingdom)",
+    url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  },
+  {
+    title:"Cha Cha",
+    url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  },
+  {
+    title:"Get Some (feat. Cortisa Star)",
+    url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  }
+];
+
+let currentTrack = 0;
+let playing = false;
+
+const playlistEl = document.getElementById('playlist');
+const songTitle = document.getElementById('songTitle');
+const iframe = document.getElementById('youtubePlayer');
+const playBtn = document.getElementById('playBtn');
+
+tracks.forEach((track,index)=>{
+
+  const div = document.createElement('div');
+  div.className = 'track';
+
+  if(index === 0) div.classList.add('active');
+
+  div.innerHTML = `
+    <strong>${index + 1}. ${track.title}</strong>
+    <div style="opacity:.6;font-size:.85rem;margin-top:5px;">
+      DETOUR RADIO TRANSMISSION
+    </div>
+  `;
+
+  div.addEventListener('click',()=>{
+    currentTrack = index;
+    loadTrack();
+  });
+
+  playlistEl.appendChild(div);
+
+});
+
+function loadTrack(){
+
+  document.querySelectorAll('.track').forEach((t,i)=>{
+    t.classList.toggle('active',i===currentTrack);
+  });
+
+  songTitle.textContent = tracks[currentTrack].title;
+
+  iframe.src = tracks[currentTrack].url.replace("watch?v=","embed/") + "?autoplay=1";
+
+  playing = true;
+
+  playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+
+}
+
+playBtn.addEventListener('click',()=>{
+
+  if(!playing){
+
+    loadTrack();
+
+  } else {
+
+    iframe.src = "";
+    playing = false;
+    playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+
+  }
+
+});
+
+document.getElementById('nextBtn').addEventListener('click',()=>{
+  currentTrack = (currentTrack + 1) % tracks.length;
+  loadTrack();
+});
+
+document.getElementById('prevBtn').addEventListener('click',()=>{
+  currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+  loadTrack();
+});
+
+/* =========================================================
+COUNTDOWN
+========================================================= */
+
+function updateCountdown(id,targetDate){
+
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60*60));
+  const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000*60));
+  const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById(id).innerHTML = `
+    <div class="time-box">
+      <h3>${days}</h3>
+      <span>days</span>
+    </div>
+
+    <div class="time-box">
+      <h3>${hours}</h3>
+      <span>hours</span>
+    </div>
+
+    <div class="time-box">
+      <h3>${mins}</h3>
+      <span>mins</span>
+    </div>
+
+    <div class="time-box">
+      <h3>${secs}</h3>
+      <span>secs</span>
+    </div>
+  `;
+
+}
+
+const releaseDate = new Date("May 29, 2026 12:00:00 EST").getTime();
+const mysteryDate = new Date("May 29, 2026 12:30:00 EST").getTime();
+
+setInterval(()=>{
+
+  updateCountdown("countdown1",releaseDate);
+  updateCountdown("countdown2",mysteryDate);
+
+},1000);
+
+/* =========================================================
+FAN WALL
+========================================================= */
+
+const feed = document.getElementById('feed');
+const postBtn = document.getElementById('postBtn');
+
+function renderPosts(){
+
+  const posts = JSON.parse(localStorage.getItem('detourPosts')) || [];
+
+  feed.innerHTML = "";
+
+  posts.reverse().forEach(post=>{
+
+    const div = document.createElement('div');
+    div.className = 'post';
+
+    div.innerHTML = `
+      <strong>${post.user}</strong>
+      <div>${post.message}</div>
+    `;
+
+    feed.appendChild(div);
+
+  });
+
+}
+
+postBtn.addEventListener('click',()=>{
+
+  const user = document.getElementById('username').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if(!user || !message) return;
+
+  const posts = JSON.parse(localStorage.getItem('detourPosts')) || [];
+
+  posts.push({
+    user,
+    message
+  });
+
+  localStorage.setItem('detourPosts',JSON.stringify(posts));
+
+  document.getElementById('message').value = "";
+
+  renderPosts();
+
+});
+
+renderPosts();
+
+/* =========================================================
+SECRET DETOUR MODE
+========================================================= */
+
+let detourMode = false;
+
+document.addEventListener('keydown',(e)=>{
+
+  if(e.key.toLowerCase() === 'd'){
+
+    detourMode = !detourMode;
+
+    document.body.classList.toggle('detour-mode');
+
+    alert(detourMode
+      ? 'DETOUR MODE ACTIVATED ✦'
+      : 'DETOUR MODE DISABLED');
+
+  }
+
+});
+
+/* =========================================================
+SPARKLE CLICKS
+========================================================= */
+
+document.querySelectorAll('.sparkle').forEach(star=>{
+
+  star.addEventListener('click',()=>{
+
+    document.body.style.background = `
+      radial-gradient(circle at top left,#ffe5f7 0%,transparent 25%),
+      radial-gradient(circle at bottom right,#a7c4ff 0%,transparent 30%),
+      linear-gradient(180deg,#170d2f,#2f1648 40%,#0f1222)
+    `;
+
+  });
+
+});
+
+</script>
+
 </body>
 </html>
+```
