@@ -1,1309 +1,781 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIM PETRAS — DETOUR (THE EXPERIENCE)</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
+    <title>KIM PETRAS • DETOUR</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <style>
-        /* --- GLOBAL DESIGN SYSTEM & VARIABLES --- */
+        @import url('https://fonts.googleapis.com/css2?family=Arial:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+        
         :root {
-            --pink-glow: #ff007f;
-            --pink-soft: #ffb6c1;
-            --pink-deep: #4a0026;
-            --cyber-neon: #00f0ff;
-            --glass-bg: rgba(255, 255, 255, 0.06);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --text-main: #ffffff;
-            --text-sub: #ffccd5;
-            --font-display: 'Syne', sans-serif;
-            --font-body: 'Plus Jakarta Sans', sans-serif;
-            --font-editorial: 'Cinzel', serif;
+            --fb-blue: #1877f2;
+            --pink: #ff69b4;
+            --hotpink: #ff1493;
         }
-
+        
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            cursor: none !important; /* Forces custom cursor */
+            box-sizing: border-box;
         }
-
-        html, body {
-            background-color: #05000a;
-            color: var(--text-main);
-            font-family: var(--font-body);
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0a0a;
+            color: white;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            line-height: 1.5;
         }
-
-        /* --- SCROLLBAR --- */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #05000a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(var(--pink-glow), var(--cyber-neon));
-            border-radius: 10px;
-        }
-
-        /* --- CUSTOM CURSOR & MOUSE TRAIL --- */
-        #custom-cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--pink-glow);
-            border-radius: 50%;
+        
+        /* OLD FACEBOOK TOP BAR */
+        .fb-topbar {
             position: fixed;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 10000;
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-            mix-blend-mode: difference;
-            box-shadow: 0 0 15px var(--pink-glow);
-        }
-        .cursor-trail {
-            width: 6px;
-            height: 6px;
-            background: var(--cyber-neon);
-            position: fixed;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.7;
-            transition: transform 0.1s linear;
-        }
-
-        /* --- AMBIENT BACKGROUNDS & OVERLAYS --- */
-        .vhs-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            background-size: 100% 4px, 6px 100%;
-            z-index: 999;
-            pointer-events: none;
-            opacity: 0.4;
-        }
-
-        .ambient-glow {
-            position: fixed;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(255,0,127,0.15) 0%, rgba(0,0,0,0) 70%);
-            top: -200px; left: -200px;
-            z-index: -1;
-            animation: floatGlow 15s infinite alternate ease-in-out;
-            pointer-events: none;
-        }
-        .ambient-glow-2 {
-            position: fixed;
-            width: 800px; height: 800px;
-            background: radial-gradient(circle, rgba(0,240,255,0.08) 0%, rgba(0,0,0,0) 70%);
-            bottom: -300px; right: -300px;
-            z-index: -1;
-            animation: floatGlow 20s infinite alternate-reverse ease-in-out;
-            pointer-events: none;
-        }
-        @keyframes floatGlow {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.2); }
-        }
-
-        /* Canvas Particle Layer */
-        #particle-canvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* --- PRELOADER ANIMATED SCREEN --- */
-        #preloader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #05000a;
-            z-index: 99999;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 42px;
+            background: linear-gradient(#3b5998, #2a4880);
+            z-index: 1000;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            transition: opacity 1s ease, visibility 1s;
+            padding: 0 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            border-bottom: 1px solid #133b7a;
         }
-        .loader-logo {
-            font-family: var(--font-display);
-            font-size: 4rem;
-            letter-spacing: 12px;
-            color: #fff;
-            text-shadow: 0 0 20px var(--pink-glow), 0 0 40px var(--cyber-neon);
-            margin-bottom: 20px;
-            animation: pulseGlow 2s infinite linear;
+        
+        .fb-logo {
+            font-family: 'Arial Black', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 0 8px #fff;
+            margin-right: 20px;
         }
-        .loader-bar-container {
-            width: 250px; height: 3px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 5px;
-            overflow: hidden;
+        
+        .search-bar {
+            background: white;
+            border-radius: 3px;
+            padding: 4px 8px;
+            width: 220px;
+            color: #333;
+            font-size: 13px;
+            border: 1px solid #999;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            margin-left: auto;
+            margin-right: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .profile-pic {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid white;
+            object-fit: cover;
+        }
+        
+        /* HERO */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
+            text-align: center;
+            overflow: hidden;
         }
-        .loader-bar {
-            width: 0%; height: 100%;
-            background: linear-gradient(90deg, var(--pink-glow), var(--cyber-neon));
+        
+        .hero::before {
+            content: '';
             position: absolute;
-            animation: loadProgress 2.5s forwards cubic-bezier(0.1, 0.8, 0.3, 1);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255, 20, 147, 0.1) 20px,
+                rgba(255, 20, 147, 0.1) 40px
+            );
+            animation: vhs 8s linear infinite;
         }
+        
+        @keyframes vhs {
+            0% { transform: translate(0); }
+            10% { transform: translate(-2px, 2px); }
+            20% { transform: translate(2px, -2px); }
+        }
+        
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 6.5rem;
+            font-weight: 700;
+            letter-spacing: -4px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #fff, #ff69b4, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(255, 105, 180, 0.8);
+        }
+        
+        .hero .subtitle {
+            font-size: 2.2rem;
+            margin: 10px 0 30px;
+            color: #ffd700;
+            text-shadow: 0 0 20px #000;
+        }
+        
         .enter-btn {
-            margin-top: 30px;
-            padding: 12px 35px;
-            font-family: var(--font-body);
-            font-weight: 800;
+            background: linear-gradient(#ff1493, #c71585);
+            color: white;
+            padding: 16px 60px;
+            font-size: 1.4rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
+            transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 2px;
-            background: transparent;
-            color: #fff;
-            border: 2px solid var(--pink-glow);
-            box-shadow: 0 0 15px var(--pink-glow);
-            border-radius: 50px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
         }
-        .enter-btn.ready {
-            opacity: 1; visibility: visible; transform: translateY(0);
-        }
-        .enter-btn:hover {
-            background: var(--pink-glow);
-            box-shadow: 0 0 30px var(--pink-glow), 0 0 10px #fff;
-            transform: scale(1.05);
-        }
-        @keyframes loadProgress { 0% { width: 0%; } 100% { width: 100%; } }
-        @keyframes pulseGlow { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; filter: hue-rotate(45deg); } }
-
-        /* --- TASTEFUL TWEAKED MARQUEE --- */
-        .global-marquee {
-            width: 100%; background: linear-gradient(90deg, var(--pink-deep), #200010);
-            padding: 10px 0; overflow: hidden;
-            white-space: nowrap; border-top: 1px solid var(--pink-glow); border-bottom: 1px solid var(--pink-glow);
-            position: relative; z-index: 10;
-        }
-        .marquee-content {
-            display: inline-block; animation: scrollMarquee 25s linear infinite;
-            font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase;
-        }
-        .marquee-content span { margin-right: 50px; color: var(--text-sub); }
-        .marquee-content span i { color: var(--cyber-neon); margin-right: 10px; }
-        @keyframes scrollMarquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-
-        /* --- FLOATING ELEMENTS / STICKERS --- */
-        .sticker {
-            position: absolute; pointer-events: auto; z-index: 5;
-            transition: transform 0.3s ease; animation: bounceSticker 4s infinite ease-in-out;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
-        }
-        .sticker:hover { transform: scale(1.15) rotate(5deg) !important; }
-        @keyframes bounceSticker {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(-3deg); }
-        }
-
-        /* --- GLASSMORPHISM CARD STYLE --- */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        /* ==========================================================================
-           1. HERO SECTION
-           ========================================================================== */
-        #hero {
-            height: 100vh;
-            width: 100%;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            text-align: center;
-            z-index: 2;
-        }
-        .hero-bg-carousel {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
-        }
-        .hero-slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center;
-            opacity: 0; transition: opacity 1.5s ease-in-out;
-            transform: scale(1.05); animation: zoomSlide 12s infinite linear;
-        }
-        .hero-slide.active { opacity: 0.45; }
-        @keyframes zoomSlide { 100% { transform: scale(1.15); } }
-
-        .hero-tint {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(5,0,10,0.4), #05000a); z-index: -1;
-        }
-
-        .hero-title-wrap { position: relative; }
-        .hero-artist {
-            font-family: var(--font-body); font-weight: 800; font-size: 1.5rem; letter-spacing: 12px;
-            text-transform: uppercase; color: var(--pink-soft); margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255,182,193,0.6);
-        }
-        .hero-album {
-            font-family: var(--font-display); font-size: 9rem; font-weight: 900;
-            letter-spacing: -2px; text-transform: uppercase; line-height: 0.85;
-            background: linear-gradient(135deg, #fff 30%, var(--pink-soft) 70%, var(--pink-glow));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 30px rgba(255,0,127,0.5));
-        }
-        @media (max-width: 768px) { .hero-album { font-size: 5rem; } }
-
-        .hero-tagline {
-            font-family: var(--font-editorial); font-style: italic; font-size: 1.8rem;
-            color: #fff; margin-top: 15px; opacity: 0.9; text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        }
-        .hero-date {
-            margin-top: 30px; font-family: var(--font-body); font-weight: 300; font-size: 1.1rem;
-            letter-spacing: 6px; text-transform: uppercase; background: rgba(255,255,255,0.08);
-            padding: 8px 24px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15);
-            display: inline-block;
-        }
-
-        /* ==========================================================================
-           2. COUNTDOWN SECTION
-           ========================================================================== */
-        #countdown-container {
-            padding: 100px 20px; position: relative; z-index: 2; max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
-        }
-        @media (max-width: 850px) { #countdown-container { grid-template-columns: 1fr; } }
-
-        .countdown-box {
-            padding: 40px; text-align: center; position: relative; overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .countdown-box:hover {
-            transform: translateY(-5px); box-shadow: 0 12px 40px rgba(255,0,127,0.15);
-        }
-        .countdown-box.mysterious {
-            border-color: rgba(0,240,255,0.2);
-        }
-        .countdown-box.mysterious:hover {
-            box-shadow: 0 12px 40px rgba(0,240,255,0.15);
-        }
-        .countdown-box h3 {
-            font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 3px;
-            margin-bottom: 30px; text-transform: uppercase;
-        }
-        .countdown-box.mysterious h3 {
-            color: var(--cyber-neon); text-shadow: 0 0 10px rgba(0,240,255,0.4);
-        }
-
-        .timer-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;
-        }
-        .timer-unit {
-            padding: 15px 5px; background: rgba(0,0,0,0.2); border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .timer-num {
-            font-family: var(--font-body); font-size: 2.8rem; font-weight: 800;
-            display: block; line-height: 1; margin-bottom: 5px;
-        }
-        .countdown-box:not(.mysterious) .timer-num {
-            color: #fff; text-shadow: 0 0 15px var(--pink-glow);
-        }
-        .countdown-box.mysterious .timer-num {
-            color: #fff; text-shadow: 0 0 15px var(--cyber-neon);
-        }
-        .timer-label {
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
-            color: var(--text-sub); opacity: 0.7;
-        }
-        .cryptic-hint {
-            margin-top: 25px; font-family: var(--font-editorial); font-style: italic;
-            font-size: 0.95rem; opacity: 0.7; color: var(--cyber-neon);
-        }
-
-        /* ==========================================================================
-           3. STORY / ERA SECTION
-           ========================================================================== */
-        #story {
-            padding: 120px 20px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2;
-        }
-        .story-grid {
-            display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center;
-        }
-        @media (max-width: 850px) { .story-grid { grid-template-columns: 1fr; gap: 40px; } }
-
-        .story-text-side h2 {
-            font-family: var(--font-display); font-size: 3rem; text-transform: uppercase;
-            line-height: 1; margin-bottom: 30px;
-        }
-        .story-text-side h2 span {
-            display: block; font-family: var(--font-editorial); font-weight: 400;
-            text-transform: lowercase; font-style: italic; color: var(--pink-soft); margin-top: 5px;
-        }
-        .story-p {
-            font-size: 1.1rem; line-height: 1.7; color: var(--text-sub); margin-bottom: 20px; opacity: 0.9;
-        }
-
-        /* Scrapbook Journal Element */
-        .journal-card {
-            background: rgba(255, 230, 240, 0.05); border: 1px dashed rgba(255, 182, 193, 0.4);
-            border-radius: 16px; padding: 25px; margin-top: 35px; position: relative;
-            transform: rotate(-1deg);
-        }
-        .journal-card::before {
-            content: '★ LOG EXP-2026'; position: absolute; top: -12px; left: 20px;
-            background: var(--pink-glow); font-size: 0.7rem; padding: 2px 10px; border-radius: 10px;
-            font-family: var(--font-display);
-        }
-        .journal-text {
-            font-family: var(--font-editorial); font-size: 1.15rem; line-height: 1.6;
-            color: #fff; opacity: 0.85;
-        }
-
-        /* Layered Scrapbook Image Collage Layout */
-        .collage-side {
-            position: relative; height: 500px; width: 100%;
-        }
-        .collage-frame {
-            position: absolute; padding: 12px 12px 35px 12px; background: #fff;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4); border-radius: 4px;
-            transition: transform 0.3s ease, z-index 0.1s;
-        }
-        .collage-frame img {
-            width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05) brightness(0.95);
-        }
-        .collage-frame p {
-            font-family: var(--font-editorial); color: #222; text-align: center;
-            font-size: 0.9rem; margin-top: 12px; font-weight: bold;
-        }
-        .cf-1 { width: 260px; height: 320px; top: 20px; left: 10px; transform: rotate(-6deg); z-index: 3; }
-        .cf-2 { width: 240px; height: 300px; bottom: 30px; right: 10px; transform: rotate(8deg); z-index: 2; }
-        .cf-3 { width: 200px; height: 240px; top: 160px; left: 160px; transform: rotate(3deg); z-index: 4; }
-        .collage-frame:hover { transform: scale(1.08) rotate(0deg) !important; z-index: 10 !important; }
-
-        /* ==========================================================================
-           4. DETOUR RADIO PLAYER
-           ========================================================================== */
-        #radio-section {
-            padding: 100px 20px; position: relative; z-index: 2; max-width: 900px; margin: 0 auto;
-        }
-        .section-header-center {
-            text-align: center; margin-bottom: 60px;
-        }
-        .section-header-center h2 {
-            font-family: var(--font-display); font-size: 3rem; text-transform: uppercase;
-        }
-
-        /* MP3/iPod Hybrid Grid Configuration */
-        .radio-container {
-            display: grid; grid-template-columns: 1.1fr 1.4fr; gap: 30px; padding: 35px;
-            position: relative; overflow: hidden; border: 1px solid rgba(255,0,127,0.25);
-            box-shadow: 0 0 40px rgba(255,0,127,0.1);
-        }
-        @media (max-width: 750px) { .radio-container { grid-template-columns: 1fr; } }
-
-        .radio-visuals {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border-right: 1px solid rgba(255,255,255,0.1); padding-right: 20px;
-        }
-        @media (max-width: 750px) { .radio-visuals { border-right: none; padding-right: 0; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); } }
-
-        .cd-wrapper {
-            position: relative; width: 220px; height: 220px; margin-bottom: 25px;
-        }
-        .cd-disk {
-            width: 100%; height: 100%; border-radius: 50%;
-            background: linear-gradient(135deg, #111 30%, var(--pink-glow) 50%, #111 70%);
-            border: 4px solid #fff; box-shadow: 0 0 25px rgba(0,0,0,0.6);
-            display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: hidden; animation: spinCD 8s linear infinite;
-            animation-play-state: paused;
-        }
-        .cd-disk::after {
-            content: ''; width: 50px; height: 50px; background: #05000a;
-            border: 3px solid #fff; border-radius: 50%; z-index: 2;
-        }
-        .cd-art {
-            position: absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;
-            opacity: 0.65; mix-blend-mode: luminosity;
-        }
-        @keyframes spinCD { 100% { transform: rotate(360deg); } }
-
-        .on-air-badge {
-            background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2);
-            padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; font-family: var(--font-display);
-            letter-spacing: 2px; color: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 8px;
-        }
-        .on-air-badge span {
-            width: 8px; height: 8px; background: #888; border-radius: 50%; display: inline-block;
-        }
-        .radio-container.playing .on-air-badge {
-            color: var(--pink-glow); border-color: var(--pink-glow);
-            box-shadow: 0 0 10px rgba(255,0,127,0.3);
-        }
-        .radio-container.playing .on-air-badge span {
-            background: var(--pink-glow); animation: pulseGlow 1s infinite alternate;
-        }
-
-        /* Tracklist Controls Area */
-        .radio-controls-wrap {
-            display: flex; flex-direction: column; justify-content: center;
-        }
-        .track-info { margin-bottom: 25px; text-align: left; }
-        .track-title { font-family: var(--font-display); font-size: 1.6rem; text-transform: uppercase; line-height: 1.2; margin-bottom: 4px; }
-        .track-meta { font-size: 0.85rem; color: var(--pink-soft); letter-spacing: 1px; text-transform: uppercase; font-weight: bold; }
-
-        /* Equalizer Display */
-        .eq-container {
-            height: 35px; display: flex; align-items: flex-end; gap: 3px; margin-bottom: 25px; width: 100%;
-        }
-        .eq-bar {
-            flex: 1; height: 2px; background: linear-gradient(to top, var(--pink-deep), var(--pink-glow));
-            transition: height 0.1s ease;
-        }
-
-        /* Controls Row */
-        .player-buttons {
-            display: flex; align-items: center; gap: 25px; margin-bottom: 25px;
-        }
-        .btn-ctrl {
-            background: transparent; border: none; color: #fff; font-size: 1.3rem;
-            transition: color 0.2s, transform 0.2s;
-        }
-        .btn-ctrl:hover { color: var(--pink-soft); transform: scale(1.1); }
-        .btn-ctrl.btn-main {
-            font-size: 2.2rem; color: var(--pink-glow); text-shadow: 0 0 10px rgba(255,0,127,0.4);
-        }
-        .btn-ctrl.btn-main:hover { color: #fff; }
-
-        /* Timeline Integration */
-        .timeline-box {
-            display: flex; align-items: center; gap: 10px; font-size: 0.8rem; opacity: 0.8; margin-bottom: 20px;
-        }
-        .prog-bar-container {
-            flex: 1; height: 4px; background: rgba(255,255,255,0.1); border-radius: 4px; position: relative;
-        }
-        .prog-bar-fill {
-            height: 100%; width: 0%; background: var(--pink-glow); border-radius: 4px; position: absolute; top:0; left:0;
-        }
-
-        /* Volume Widget */
-        .volume-box {
-            display: flex; align-items: center; gap: 10px; font-size: 0.85rem; opacity: 0.7;
-        }
-        .volume-box input {
-            accent-color: var(--pink-glow); flex: 1; max-width: 120px;
-        }
-
-        /* Active Playlist Module */
-        .mini-playlist {
-            margin-top: 30px; background: rgba(0,0,0,0.2); border-radius: 12px; max-height: 160px; overflow-y: auto;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .playlist-item {
-            display: flex; justify-content: space-between; align-items: center; padding: 10px 15px;
-            font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.03); opacity: 0.6; transition: all 0.2s;
-        }
-        .playlist-item.active {
-            opacity: 1; background: rgba(255,0,127,0.08); color: var(--pink-soft); font-weight: bold;
-        }
-        .playlist-item:hover:not(.active) { opacity: 0.9; background: rgba(255,255,255,0.02); }
-
-        /* ==========================================================================
-           5. INTERACTIVE FAN WALL / CHATBOX
-           ========================================================================== */
-        #fan-wall {
-            padding: 100px 20px; max-width: 800px; margin: 0 auto; position: relative; z-index: 2;
-        }
-        .chat-container {
-            padding: 30px; display: flex; flex-direction: column; height: 550px;
-            border: 1px solid rgba(255,182,193,0.2);
-        }
-        .chat-messages {
-            flex: 1; overflow-y: auto; margin-bottom: 20px; padding-right: 10px;
-            display: flex; flex-direction: column; gap: 15px;
-        }
-        .chat-msg {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
-            padding: 15px; border-radius: 16px; position: relative;
-            animation: fadeInUp 0.4s ease forwards;
-        }
-        .chat-msg-header {
-            display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;
-        }
-        .chat-user {
-            font-weight: 800; color: var(--pink-soft); font-family: var(--font-display);
-        }
-        .chat-time { opacity: 0.4; }
-        .chat-text { font-size: 0.95rem; line-height: 1.4; color: var(--text-main); }
-
-        .chat-input-area {
-            display: flex; flex-direction: column; gap: 12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;
-        }
-        .chat-row-inputs {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
-        }
-        .chat-field {
-            background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px;
-            padding: 12px 20px; color: #fff; font-family: var(--font-body); font-size: 0.9rem;
-            transition: border-color 0.3s, box-shadow 0.3s; outline: none;
-        }
-        .chat-field:focus {
-            border-color: var(--pink-glow); box-shadow: 0 0 10px rgba(255,0,127,0.2);
-        }
-        .chat-submit-btn {
-            background: linear-gradient(90deg, var(--pink-glow), #d0006b); color: #fff;
-            border: none; border-radius: 30px; padding: 14px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 2px; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(255,0,127,0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .chat-submit-btn:hover {
-            transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,0,127,0.5);
-        }
-
-        /* ==========================================================================
-           6. PHOTO GALLERY
-           ========================================================================== */
-        #gallery-section {
-            padding: 100px 20px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;
-        }
-        .gallery-masonry {
-            column-count: 3; column-gap: 25px;
-        }
-        @media (max-width: 900px) { .gallery-masonry { column-count: 2; } }
-        @media (max-width: 600px) { .gallery-masonry { column-count: 1; } }
-
-        .gallery-item {
-            break-inside: avoid; margin-bottom: 25px; position: relative; overflow: hidden;
-            border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
-        }
-        .gallery-item img {
-            width: 100%; display: block; object-fit: cover; transition: transform 0.6s ease;
-        }
-        .gallery-cap {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 25px 20px 20px 20px;
-            background: linear-gradient(to top, rgba(5,0,10,0.95), rgba(5,0,10,0));
-            opacity: 0; transform: translateY(10px); transition: opacity 0.3s, transform 0.3s;
-            pointer-events: none;
-        }
-        .gallery-item:hover {
-            transform: translateY(-6px); box-shadow: 0 15px 30px rgba(255,0,127,0.15);
-        }
-        .gallery-item:hover img { transform: scale(1.05); }
-        .gallery-item:hover .gallery-cap { opacity: 1; transform: translateY(0); }
         
-        .gallery-cap h4 { font-family: var(--font-display); font-size: 1.1rem; text-transform: uppercase; margin-bottom: 4px; }
-        .gallery-cap p { font-size: 0.8rem; color: var(--pink-soft); font-family: var(--font-editorial); font-style: italic; }
-
-        /* Custom Lightbox Element */
-        #lightbox {
-            position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(5,0,10,0.95);
-            z-index: 100000; display: flex; justify-content: center; align-items: center;
-            opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s;
+        /* MAIN CONTAINER */
+        .main-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 20px;
+            gap: 20px;
         }
-        #lightbox.active { opacity: 1; visibility: visible; }
-        #lightbox img { max-width: 85%; max-height: 80%; border-radius: 8px; box-shadow: 0 0 40px rgba(0,0,0,0.8); }
-        .lightbox-close {
-            position: absolute; top: 30px; right: 40px; font-size: 2.5rem; color: #fff; opacity: 0.6; transition: opacity 0.2s;
+        
+        /* LEFT SIDEBAR (PROFILE) */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
         }
-        .lightbox-close:hover { opacity: 1; }
-
-        /* ==========================================================================
-           7. FOOTER
-           ========================================================================== */
+        
+        .profile-card {
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .cover-photo {
+            height: 120px;
+            background: linear-gradient(#1877f2, #00bfff);
+            position: relative;
+        }
+        
+        .profile-info {
+            padding: 20px;
+            text-align: center;
+            margin-top: -50px;
+        }
+        
+        /* MUSIC PLAYER */
+        .player {
+            background: linear-gradient(145deg, #1a0033, #330066);
+            border: 4px solid #ff69b4;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .player::before {
+            content: 'ON AIR';
+            position: absolute;
+            top: 12px;
+            right: 20px;
+            background: #ff0000;
+            color: white;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .album-art {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            border: 6px solid #fff;
+            box-shadow: 0 0 40px #ff00ff;
+            background: url('https://picsum.photos/id/1015/400/400') center/cover;
+            animation: rotate 25s linear infinite paused;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .playing .album-art {
+            animation-play-state: running;
+        }
+        
+        .track-title {
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #fff;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: #333;
+            border-radius: 10px;
+            margin: 15px 0;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 45%;
+            background: linear-gradient(#00ffff, #ff00ff);
+            border-radius: 10px;
+        }
+        
+        /* CONTENT AREA */
+        .content {
+            flex: 1;
+        }
+        
+        .section {
+            background: rgba(255,255,255,0.95);
+            color: #222;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        .section-header {
+            background: linear-gradient(#1877f2, #3b5998);
+            color: white;
+            padding: 12px 20px;
+            font-weight: bold;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* COUNTDOWN */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1a0033, #330066);
+            color: white;
+        }
+        
+        .countdown-box {
+            text-align: center;
+        }
+        
+        .countdown-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #ff69b4;
+            text-shadow: 0 0 20px #ff00ff;
+        }
+        
+        /* FAN WALL */
+        .fan-wall {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .post {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 20px;
+            animation: fadeIn 0.6s;
+        }
+        
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            padding: 20px;
+        }
+        
+        .gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 6px;
+            transition: all 0.4s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 20px 30px rgba(255,105,180,0.4);
+        }
+        
+        /* FOOTER */
         footer {
-            padding: 80px 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.06);
-            position: relative; z-index: 2; background: #030007;
+            background: #000;
+            text-align: center;
+            padding: 60px 20px 30px;
+            border-top: 6px solid #ff1493;
         }
-        .foot-title {
-            font-family: var(--font-display); font-size: 2rem; letter-spacing: 4px; text-transform: uppercase;
-            margin-bottom: 15px; background: linear-gradient(90deg, #fff, var(--pink-soft));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        
+        .sparkle {
+            position: absolute;
+            color: #fff;
+            font-size: 20px;
+            animation: sparkleAnim 3s linear infinite;
+            pointer-events: none;
+            text-shadow: 0 0 10px gold;
         }
-        .foot-links {
-            display: flex; justify-content: center; gap: 30px; margin-bottom: 35px; font-size: 1.3rem;
+        
+        @keyframes sparkleAnim {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: scale(1.5) translateY(-100px); }
         }
-        .foot-links a { color: var(--text-sub); opacity: 0.6; transition: all 0.3s; }
-        .foot-links a:hover { color: var(--pink-glow); opacity: 1; transform: scale(1.2); }
-        .foot-copy { font-size: 0.75rem; opacity: 0.3; letter-spacing: 1px; text-transform: uppercase; }
-        .foot-disclaimer { font-size: 0.7rem; opacity: 0.2; max-width: 500px; margin: 15px auto 0 auto; line-height: 1.4; }
     </style>
 </head>
 <body>
-
-    <audio id="audio-engine" preload="auto"></audio>
-
-    <div id="custom-cursor"></div>
-
-    <div id="preloader">
-        <div class="loader-logo">DETOUR</div>
-        <div class="loader-bar-container">
-            <div class="loader-bar"></div>
+    <!-- TOP NAV -->
+    <div class="fb-topbar">
+        <div class="fb-logo">facebook</div>
+        <input type="text" class="search-bar" placeholder="Search Kim Petras Detour...">
+        <div class="nav-links">
+            <span>Home</span>
+            <span>Profile</span>
+            <span>Radio</span>
+            <span>Gallery</span>
         </div>
-        <button class="enter-btn" id="enter-experience-btn">Enter Experience</button>
-    </div>
-
-    <div class="vhs-overlay"></div>
-    <div class="ambient-glow"></div>
-    <div class="ambient-glow-2"></div>
-    <canvas id="particle-canvas"></canvas>
-
-    <img src="https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?auto=format&fit=crop&w=120&q=80" class="sticker" style="top: 15%; left: 4%; width: 70px; transform: rotate(-15deg); border-radius:50%; opacity:0.15;" alt="Sticker">
-    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=120&q=80" class="sticker" style="bottom: 25%; right: 5%; width: 80px; transform: rotate(20deg); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); opacity:0.15;" alt="Sticker">
-
-    <section id="hero">
-        <div class="hero-bg-carousel">
-            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=1920&q=80');"></div>
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1920&q=80');"></div>
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=1920&q=80');"></div>
-        </div>
-        <div class="hero-tint"></div>
-
-        <div class="hero-title-wrap">
-            <p class="hero-artist animate__animated animate__fadeInDown">Kim Petras</p>
-            <h1 class="hero-album">Detour</h1>
-            <p class="hero-tagline animate__animated animate__fadeInUp">a new era begins</p>
-            <span class="hero-date">May 29, 2026</span>
-        </div>
-    </section>
-
-    <div class="global-marquee">
-        <div class="marquee-content">
-            <span><i class="fa-solid fa-star"></i>Independent Era</span>
-            <span><i class="fa-solid fa-heart"></i>Detour Album Release May 29</span>
-            <span><i class="fa-solid fa-bolt"></i>Uncensored & Unbound</span>
-            <span><i class="fa-solid fa-sparkles"></i>Live Streaming Globally</span>
-            <span><i class="fa-solid fa-star"></i>Independent Era</span>
-            <span><i class="fa-solid fa-heart"></i>Detour Album Release May 29</span>
-            <span><i class="fa-solid fa-bolt"></i>Uncensored & Unbound</span>
-            <span><i class="fa-solid fa-sparkles"></i>Live Streaming Globally</span>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:12px;">
+            <img src="https://picsum.photos/id/64/32/32" class="profile-pic" alt="Kim">
+            <span style="font-size:13px;color:white;">Kim Petras</span>
         </div>
     </div>
 
-    <section id="countdown-container">
-        <div class="countdown-box glass-card">
-            <h3>Detour Arrives In</h3>
-            <div class="timer-grid" id="main-timer">
-                <div class="timer-unit"><span class="timer-num" id="m-days">00</span><span class="timer-label">Days</span></div>
-                <div class="timer-unit"><span class="timer-num" id="m-hours">00</span><span class="timer-label">Hrs</span></div>
-                <div class="timer-unit"><span class="timer-num" id="m-mins">00</span><span class="timer-label">Mins</span></div>
-                <div class="timer-unit"><span class="timer-num" id="m-secs">00</span><span class="timer-label">Secs</span></div>
-            </div>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>KIM PETRAS</h1>
+            <div class="subtitle">DETOUR</div>
+            <p style="font-size:1.4rem;margin-bottom:40px;letter-spacing:3px;">MAY 29 2026 • A NEW ERA BEGINS</p>
+            <button class="enter-btn" onclick="document.getElementById('main-content').scrollIntoView({behavior:'smooth'})">
+                ENTER THE DETOUR
+            </button>
+            <p style="margin-top:60px;font-size:0.95rem;opacity:0.8;">Y2K • HYPERPOP • GLITTER • CHAOS</p>
         </div>
-
-        <div class="countdown-box glass-card mysterious">
-            <h3>...something else is coming</h3>
-            <div class="timer-grid" id="secondary-timer">
-                <div class="timer-unit"><span class="timer-num" id="s-days">00</span><span class="timer-label">Days</span></div>
-                <div class="timer-unit"><span class="timer-num" id="s-hours">00</span><span class="timer-label">Hrs</span></div>
-                <div class="timer-unit"><span class="timer-num" id="s-mins">00</span><span class="timer-label">Mins</span></div>
-                <div class="timer-unit"><span class="timer-num" id="s-secs">00</span><span class="timer-label">Secs</span></div>
-            </div>
-            <div class="cryptic-hint">Phase II: Deluxe Transmission / Visual Experience Drop</div>
-        </div>
+        
+        <!-- Floating stickers -->
+        <div style="position:absolute;top:15%;left:8%;transform:rotate(-12deg);background:rgba(255,255,255,0.9);color:#c71585;padding:8px 20px;border-radius:4px;font-weight:bold;box-shadow:0 10px 20px rgba(0,0,0,0.3);">NEW ALBUM</div>
+        <div style="position:absolute;bottom:22%;right:12%;transform:rotate(18deg);background:#ff1493;color:white;padding:10px 18px;border-radius:50%;font-size:14px;box-shadow:0 0 30px #fff;">★</div>
     </section>
 
-    <section id="story">
-        <div class="story-grid">
-            <div class="story-text-side">
-                <h2>From Chaos To Clarity<span>the dawn of autonomous pop</span></h2>
-                <p class="story-p">After dismantling structural limits and rewriting her sonic terms, Kim Petras returns entirely on her own frequency. <em>Detour</em> marks an uncompromising independent resurrection—a raw, high-fashion statement of pure pop subversion.</p>
-                <p class="story-p">This isn't an alternative path. It's a total structural takeover. Reclaiming her club foundations and unfiltered emotional intensity, the collection weaves high-gloss production with the raw intimacy of true artistic liberation.</p>
-                
-                <div class="journal-card">
-                    <p class="journal-text">"I had to burn the blueprint down to remember why I fell in love with making sound. No compromises. No corporate approvals. Just pure kinetic movement, sweat, tears, and absolute freedom." — K.P.</p>
-                </div>
-            </div>
-
-            <div class="collage-side">
-                <div class="collage-frame cf-1">
-                    <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=400&q=80" alt="Era Frame 1">
-                    <p>Studio Session 04</p>
-                </div>
-                <div class="collage-frame cf-2">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" alt="Era Frame 2">
-                    <p>LA Night Shift</p>
-                </div>
-                <div class="collage-frame cf-3">
-                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80" alt="Era Frame 3">
-                    <p>Live & Uncut</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="radio-section">
-        <div class="section-header-center">
-            <h2>Detour Radio</h2>
-        </div>
-
-        <div class="radio-container glass-card" id="player-container-block">
-            <div class="radio-visuals">
-                <div class="cd-wrapper">
-                    <div class="cd-disk" id="cd-disk-object">
-                        <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=300&q=80" class="cd-art" id="player-art-target" alt="Album Cover">
-                    </div>
-                </div>
-                <div class="on-air-badge">
-                    <span></span>ON AIR PLAYER
-                </div>
-            </div>
-
-            <div class="radio-controls-wrap">
-                <div class="track-info">
-                    <h4 class="track-title" id="player-title-target">Loading Track Data...</h4>
-                    <p class="track-meta" id="player-meta-target">Kim Petras — Era Stream</p>
-                </div>
-
-                <div class="eq-container" id="eq-bar-wrap">
-                    <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-                    <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-                    <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-                    <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-                </div>
-
-                <div class="timeline-box">
-                    <span id="time-current">0:00</span>
-                    <div class="prog-bar-container" id="timeline-scrub-zone">
-                        <div class="prog-bar-fill" id="timeline-fill-target"></div>
-                    </div>
-                    <span id="time-total">0:00</span>
-                </div>
-
-                <div class="player-buttons">
-                    <button class="btn-ctrl" id="btn-prev-track"><i class="fa-solid fa-backward-step"></i></button>
-                    <button class="btn-ctrl btn-main" id="btn-play-trigger"><i class="fa-solid fa-circle-play"></i></button>
-                    <button class="btn-ctrl" id="btn-next-track"><i class="fa-solid fa-forward-step"></i></button>
-                </div>
-
-                <div class="volume-box">
-                    <i class="fa-solid fa-volume-low"></i>
-                    <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.7">
-                </div>
-
-                <div class="mini-playlist" id="playlist-inject-target">
-                    </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="fan-wall">
-        <div class="section-header-center">
-            <h2>The Fan Transmission Feed</h2>
-        </div>
-
-        <div class="chat-container glass-card">
-            <div class="chat-messages" id="guestbook-feed-target">
-                </div>
+    <div class="main-container" id="main-content">
+        
+        <!-- LEFT SIDEBAR -->
+        <div class="sidebar">
             
-            <form class="chat-input-area" id="guestbook-form">
-                <div class="chat-row-inputs">
-                    <input type="text" id="gb-user" class="chat-field" placeholder="Username..." required maxlength="25">
-                    <input type="text" id="gb-location" class="chat-field" placeholder="City/Location..." required maxlength="30">
+            <!-- PROFILE -->
+            <div class="profile-card">
+                <div class="cover-photo"></div>
+                <div class="profile-info">
+                    <img src="https://picsum.photos/id/1011/120/120" style="width:120px;height:120px;border-radius:50%;border:5px solid #fff;margin-top:-70px;" alt="Kim Petras">
+                    <h2 style="color:#1877f2;margin:15px 0 5px;">Kim Petras</h2>
+                    <p style="color:#666;font-size:14px;">@kimpetras • Detour Era</p>
+                    <div style="margin:20px 0;font-size:13px;">
+                        <strong>1.2M</strong> Bunheads • <strong>87</strong> Mutuals
+                    </div>
+                    <button onclick="toggleTheme()" style="width:100%;padding:10px;background:#1877f2;color:white;border:none;border-radius:4px;cursor:pointer;">Add Friend</button>
                 </div>
-                <input type="text" id="gb-msg" class="chat-field" placeholder="Type transmission..." required maxlength="140">
-                <button type="submit" class="chat-submit-btn">Send Transmission</button>
-            </form>
+            </div>
+            
+            <!-- MUSIC PLAYER -->
+            <div class="player" id="player">
+                <div style="text-align:center;">
+                    <div class="album-art" id="albumArt"></div>
+                    <div class="track-title" id="nowPlaying">Select a track</div>
+                </div>
+                
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                
+                <div style="display:flex;justify-content:center;gap:20px;margin:15px 0;">
+                    <button onclick="prevTrack()" style="background:none;border:none;font-size:28px;color:#ff69b4;">⫻</button>
+                    <button onclick="togglePlay()" id="playBtn" style="width:60px;height:60px;border-radius:50%;background:#ff1493;color:white;border:none;font-size:32px;display:flex;align-items:center;justify-content:center;">▶</button>
+                    <button onclick="nextTrack()" style="background:none;border:none;font-size:28px;color:#ff69b4;">⫻</button>
+                </div>
+                
+                <div id="playlist" style="max-height:260px;overflow:auto;font-size:13px;"></div>
+            </div>
+            
         </div>
-    </section>
-
-    <section id="gallery-section">
-        <div class="section-header-center">
-            <h2>Detour Visual Board</h2>
+        
+        <!-- MAIN CONTENT -->
+        <div class="content">
+            
+            <!-- DUAL COUNTDOWN -->
+            <div class="section">
+                <div class="section-header">🚨 LIVE COUNTDOWN 🚨</div>
+                <div class="countdown">
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="days1">5</div>
+                        <div style="font-size:13px;letter-spacing:1px;">DAYS</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="hours1">12</div>
+                        <div style="font-size:13px;letter-spacing:1px;">HOURS</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="mins1">45</div>
+                        <div style="font-size:13px;letter-spacing:1px;">MINUTES</div>
+                    </div>
+                </div>
+                <div style="text-align:center;padding:15px;background:#111;color:#ff69b4;font-size:15px;">
+                    DETOUR ARRIVES MAY 29 • 12:00 PM EST
+                </div>
+                
+                <div style="padding:25px 20px;text-align:center;background:linear-gradient(#330066,#1a0033);color:white;">
+                    <p style="margin-bottom:15px;opacity:0.9;">...something else is coming</p>
+                    <div style="display:flex;justify-content:center;gap:40px;">
+                        <div>
+                            <div class="countdown-number" style="font-size:2.8rem;" id="days2">5</div>
+                            <div>DAYS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ERA STORY -->
+            <div class="section">
+                <div class="section-header">📖 THE DETOUR STORY</div>
+                <div style="padding:30px;">
+                    <p style="font-size:15.5px;line-height:1.7;">
+                        "I have full creative control... Built out of frustration, chaos, and creative freedom."
+                    </p>
+                    <p style="margin-top:25px;color:#555;font-style:italic;">
+                        — Kim Petras on Detour (2026)
+                    </p>
+                    <div style="margin-top:40px;display:flex;gap:15px;flex-wrap:wrap;">
+                        <div style="flex:1;min-width:280px;background:#f8f8f8;padding:20px;border-left:5px solid #ff1493;">
+                            <strong>Nightlife Energy</strong><br>
+                            Hyperpop luxury meets raw honesty.
+                        </div>
+                        <div style="flex:1;min-width:280px;background:#f8f8f8;padding:20px;border-left:5px solid #00ffff;">
+                            <strong>Independent Spirit</strong><br>
+                            The detour was always the destination.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PHOTO GALLERY -->
+            <div class="section">
+                <div class="section-header">📸 DETOUR VISUALS</div>
+                <div class="gallery">
+                    <img src="https://picsum.photos/id/1015/600/600" onclick="openLightbox(this.src)" alt="Kim Petras Detour">
+                    <img src="https://picsum.photos/id/201/600/600" onclick="openLightbox(this.src)" alt="Kim Petras">
+                    <img src="https://picsum.photos/id/237/600/600" onclick="openLightbox(this.src)" alt="Detour Era">
+                    <img src="https://picsum.photos/id/1005/600/600" onclick="openLightbox(this.src)" alt="Kim Petras">
+                    <img src="https://picsum.photos/id/133/600/600" onclick="openLightbox(this.src)" alt="Glitter">
+                </div>
+            </div>
+            
+            <!-- INTERACTIVE FAN WALL -->
+            <div class="section">
+                <div class="section-header">💬 BUNHEAD WALL • LEAVE A MESSAGE</div>
+                <div style="padding:20px;">
+                    <input type="text" id="username" placeholder="Your Bunhead Name" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ccc;border-radius:4px;">
+                    <textarea id="message" placeholder="Write something for Kim..." style="width:100%;height:80px;padding:12px;border:1px solid #ccc;border-radius:4px;resize:none;"></textarea>
+                    <button onclick="postMessage()" style="margin-top:10px;padding:12px 30px;background:#1877f2;color:white;border:none;border-radius:4px;cursor:pointer;">Post to Wall</button>
+                </div>
+                
+                <div class="fan-wall" id="wallPosts">
+                    <!-- JS populated -->
+                </div>
+            </div>
+            
         </div>
-
-        <div class="gallery-masonry">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80" alt="Gallery Concept 1">
-                <div class="gallery-cap"><h4>Visual Concept I</h4><p>Vapor-Chrome Series</p></div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=600&q=80" alt="Gallery Concept 2">
-                <div class="gallery-cap"><h4>The Club Matrix</h4><p>Live Production Setup</p></div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80" alt="Gallery Concept 3">
-                <div class="gallery-cap"><h4>Studio Masters</h4><p>Hardware Architecture</p></div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80" alt="Gallery Concept 4">
-                <div class="gallery-cap"><h4>Midnight Run</h4><p>Promo Editorial Cut</p></div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80" alt="Gallery Concept 5">
-                <div class="gallery-cap"><h4>Frequency Test</h4><p>Warehouse Rave, London</p></div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1548778052-311f4bc2b502?auto=format&fit=crop&w=600&q=80" alt="Gallery Concept 6">
-                <div class="gallery-cap"><h4>Cyber Gloss</h4><p>Album Art Alternative Frame</p></div>
-            </div>
-        </div>
-    </section>
-
-    <div id="lightbox">
-        <span class="lightbox-close"><i class="fa-solid fa-xmark"></i></span>
-        <img src="" alt="Lightbox Content Focused">
+        
     </div>
-
+    
+    <!-- FOOTER -->
     <footer>
-        <div class="foot-title">The Detour Begins 05.29.26</div>
-        <div class="foot-links">
-            <a href="#" aria-label="Spotify Link"><i class="fa-brands fa-spotify"></i></a>
-            <a href="#" aria-label="Apple Music Link"><i class="fa-brands fa-apple"></i></a>
-            <a href="#" aria-label="Instagram Link"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" aria-label="TikTok Link"><i class="fa-brands fa-tiktok"></i></a>
+        <p style="font-size:2.2rem;margin-bottom:10px;letter-spacing:6px;">THE DETOUR BEGINS</p>
+        <p style="opacity:0.7;">May 29, 2026 • Independent &amp; Unstoppable</p>
+        <div style="margin:40px 0;">
+            <a href="#" style="color:#ff69b4;margin:0 15px;font-size:1.6rem;">IG</a>
+            <a href="#" style="color:#ff69b4;margin:0 15px;font-size:1.6rem;">X</a>
+            <a href="#" style="color:#ff69b4;margin:0 15px;font-size:1.6rem;">YT</a>
         </div>
-        <p class="foot-copy">&copy; 2026 KIM PETRAS / BUNHEAD RECORDS GLOBAL ARCHIVE</p>
-        <p class="foot-disclaimer">This platform constitutes a curated independent fan exhibition space. Visual and media references remain property of respective legal rights management groups.</p>
+        <p style="font-size:12px;opacity:0.5;">© 2026 Kim Petras • Fan experience made with glitter &amp; love • Not affiliated with any label</p>
     </footer>
 
+    <!-- LIGHTBOX -->
+    <div id="lightbox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:9999;align-items:center;justify-content:center;">
+        <img id="lightboxImg" style="max-height:90%;max-width:90%;border:8px solid white;box-shadow:0 0 80px #ff1493;" onclick="closeLightbox()">
+        <div onclick="closeLightbox()" style="position:absolute;top:30px;right:40px;color:white;font-size:40px;cursor:pointer;">×</div>
+    </div>
+
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            
-            /* --- CURSOR TRACKING SYSTEM --- */
-            const cursor = document.getElementById("custom-cursor");
-            let mouseX = 0, mouseY = 0;
-            let cursorX = 0, cursorY = 0;
-
-            document.addEventListener("mousemove", (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                createTrailNode(mouseX, mouseY);
-            });
-
-            function updateCursorCoordinatePositions() {
-                // Smooth interpolation for advanced fluidity vectors
-                cursorX += (mouseX - cursorX) * 0.15;
-                cursorY += (mouseY - cursorY) * 0.15;
-                cursor.style.left = `${cursorX}px`;
-                cursor.style.top = `${cursorY}px`;
-                requestAnimationFrame(updateCursorCoordinatePositions);
+        // Playlist Data
+        const playlist = [
+            {
+                title: "1. Polo",
+                artist: "Kim Petras",
+                url: "https://www.youtube.com/watch?v=NuAU3sbzbBo",
+                cover: "https://picsum.photos/id/1015/400/400"
+            },
+            {
+                title: "2. Freak It",
+                artist: "Kim Petras",
+                url: "https://www.youtube.com/watch?v=wl2ig2D61mc",
+                cover: "https://picsum.photos/id/201/400/400"
+            },
+            {
+                title: "3. I Like Ur Look",
+                artist: "Kim Petras",
+                url: "https://www.youtube.com/watch?v=FTxdMoZuq-E",
+                cover: "https://picsum.photos/id/133/400/400"
+            },
+            {
+                title: "4. Need For Speed",
+                artist: "Kim Petras",
+                url: "https://www.youtube.com/watch?v=3xwk3Fb_Uis",
+                cover: "https://picsum.photos/id/1005/400/400"
+            },
+            {
+                title: "5. Jeep",
+                artist: "Kim Petras",
+                url: "https://www.youtube.com/watch?v=V_-rrLLkxas",
+                cover: "https://picsum.photos/id/237/400/400"
             }
-            requestAnimationFrame(updateCursorCoordinatePositions);
-
-            function createTrailNode(x, y) {
-                if (Math.random() > 0.35) return; // Controls element generation frequency density
-                const node = document.createElement("div");
-                node.className = "cursor-trail";
-                node.style.left = `${x}px`;
-                node.style.top = `${y}px`;
-                document.body.appendChild(node);
+        ];
+        
+        let currentTrack = 0;
+        let isPlaying = false;
+        let audio; // Placeholder - real implementation would use YouTube API
+        
+        // Render playlist
+        function renderPlaylist() {
+            const container = document.getElementById('playlist');
+            container.innerHTML = '';
+            
+            playlist.forEach((track, index) => {
+                const div = document.createElement('div');
+                div.style.padding = '10px 8px';
+                div.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+                div.style.cursor = 'pointer';
+                div.style.display = 'flex';
+                div.style.alignItems = 'center';
+                div.style.gap = '12px';
+                div.innerHTML = `
+                    <span style="color:#aaa;font-size:13px;">${track.title}</span>
+                `;
+                div.onclick = () => playTrack(index);
+                container.appendChild(div);
+            });
+        }
+        
+        function playTrack(index) {
+            currentTrack = index;
+            const track = playlist[index];
+            
+            document.getElementById('nowPlaying').textContent = track.title;
+            document.getElementById('albumArt').style.backgroundImage = `url('${track.cover}')`;
+            document.getElementById('player').classList.add('playing');
+            
+            // Open YouTube in new tab for real playback
+            window.open(track.url, '_blank');
+            
+            isPlaying = true;
+            document.getElementById('playBtn').innerHTML = '❚❚';
+        }
+        
+        function togglePlay() {
+            if (!playlist[currentTrack]) return;
+            if (isPlaying) {
+                document.getElementById('playBtn').innerHTML = '▶';
+            } else {
+                document.getElementById('playBtn').innerHTML = '❚❚';
+            }
+            isPlaying = !isPlaying;
+        }
+        
+        function nextTrack() {
+            currentTrack = (currentTrack + 1) % playlist.length;
+            playTrack(currentTrack);
+        }
+        
+        function prevTrack() {
+            currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+            playTrack(currentTrack);
+        }
+        
+        // Fan wall
+        function loadWall() {
+            const wall = document.getElementById('wallPosts');
+            const messages = JSON.parse(localStorage.getItem('detourWall')) || [
+                {user: "bunhead4eva", msg: "finally the album we deserve 💖", time: "2m ago"},
+                {user: "hyperpopkween", msg: "Polo has been on repeat for weeks", time: "11m ago"}
+            ];
+            
+            wall.innerHTML = '';
+            messages.forEach(m => {
+                const post = document.createElement('div');
+                post.className = 'post';
+                post.innerHTML = `
+                    <strong>${m.user}</strong>
+                    <span style="float:right;font-size:12px;color:#888;">${m.time}</span>
+                    <p style="margin-top:8px;">${m.msg}</p>
+                `;
+                wall.appendChild(post);
+            });
+        }
+        
+        function postMessage() {
+            const username = document.getElementById('username').value || "anonymous_bunhead";
+            const msg = document.getElementById('message').value;
+            
+            if (!msg) return;
+            
+            let wallData = JSON.parse(localStorage.getItem('detourWall')) || [];
+            wallData.unshift({
+                user: username,
+                msg: msg,
+                time: "just now"
+            });
+            
+            localStorage.setItem('detourWall', JSON.stringify(wallData));
+            loadWall();
+            
+            document.getElementById('message').value = '';
+            
+            // Sparkle effect
+            createSparkles(12);
+        }
+        
+        function createSparkles(count) {
+            for (let i = 0; i < count; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.textContent = ['✨','💖','⭐','🦄'][Math.floor(Math.random()*4)];
+                sparkle.style.left = Math.random() * 100 + 'vw';
+                sparkle.style.top = Math.random() * 60 + 'vh';
+                sparkle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(sparkle);
                 
-                setTimeout(() => {
-                    node.style.transform = "scale(0)";
-                    node.style.opacity = "0";
-                    setTimeout(() => node.remove(), 150);
-                }, 200);
+                setTimeout(() => sparkle.remove(), 4000);
             }
-
-            // Interactive hovering response bindings
-            const interactiveElements = document.querySelectorAll("button, a, input, .gallery-item, .playlist-item, .chat-field");
-            interactiveElements.forEach(elem => {
-                elem.addEventListener("mouseenter", () => {
-                    cursor.style.width = "45px";
-                    cursor.style.height = "45px";
-                    cursor.style.backgroundColor = "rgba(255, 0, 127, 0.2)";
-                });
-                elem.addEventListener("mouseleave", () => {
-                    cursor.style.width = "20px";
-                    cursor.style.height = "20px";
-                    cursor.style.backgroundColor = "transparent";
-                });
-            });
-
-            /* --- LOADING OVERLAY PARSER --- */
-            const preloader = document.getElementById("preloader");
-            const enterBtn = document.getElementById("enter-experience-btn");
+        }
+        
+        // Countdown
+        function startCountdown() {
+            // May 29, 2026
+            const target = new Date('2026-05-29T12:00:00').getTime();
             
-            // Programmatically reveal interaction button after progress calculation passes threshold
-            setTimeout(() => {
-                enterBtn.classList.add("ready");
-            }, 2300);
-
-            enterBtn.addEventListener("click", () => {
-                preloader.style.opacity = "0";
-                setTimeout(() => {
-                    preloader.style.visibility = "hidden";
-                    // Non-intrusive ambient background image rotation trigger activation
-                    runHeroBackgroundCarouselEngine();
-                }, 1000);
-            });
-
-            /* --- HERO ENGINE CAROUSEL CONFIG --- */
-            function runHeroBackgroundCarouselEngine() {
-                const slides = document.querySelectorAll(".hero-slide");
-                let currentIndex = 0;
-                setInterval(() => {
-                    slides[currentIndex].classList.remove("active");
-                    currentIndex = (currentIndex + 1) % slides.length;
-                    slides[currentIndex].classList.add("active");
-                }, 5000);
-            }
-
-            /* --- AMBIENT CANVAS PARTICLES --- */
-            const canvas = document.getElementById("particle-canvas");
-            const ctx = canvas.getContext("2d");
-            let particleArray = [];
-
-            function resizeCanvasDimensions() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            window.addEventListener("resize", resizeCanvasDimensions);
-            resizeCanvasDimensions();
-
-            class Particle {
-                constructor() {
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
-                    this.size = Math.random() * 2 + 0.5;
-                    this.speedX = Math.random() * 0.4 - 0.2;
-                    this.speedY = Math.random() * -0.5 - 0.1; // Slow upward float vector
-                    this.opacity = Math.random() * 0.5 + 0.2;
-                }
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-                    if (this.y < 0) {
-                        this.y = canvas.height;
-                        this.x = Math.random() * canvas.width;
-                    }
-                }
-                draw() {
-                    ctx.fillStyle = `rgba(255, 182, 193, ${this.opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            function initParticleArray() {
-                particleArray = [];
-                const count = Math.min(70, window.innerWidth / 15);
-                for (let i = 0; i < count; i++) {
-                    particleArray.push(new Particle());
-                }
-            }
-            initParticleArray();
-
-            function animateParticlesLoop() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particleArray.forEach(p => {
-                    p.update();
-                    p.draw();
-                });
-                requestAnimationFrame(animateParticlesLoop);
-            }
-            requestAnimationFrame(animateParticlesLoop);
-
-
-            /* --- LIVE DUAL COUNTDOWN MATRIX ENGINE --- */
-            // Target timestamps normalized explicitly as required
-            const targetMainTime = new Date("May 29, 2026 12:00:00 EST").getTime();
-            const targetSecondaryTime = new Date("May 29, 2026 12:30:00 EST").getTime();
-
-            function updateTimerMetrics() {
+            setInterval(() => {
                 const now = new Date().getTime();
+                const distance = target - now;
                 
-                const distanceMain = targetMainTime - now;
-                const distanceSec = targetSecondaryTime - now;
-
-                calculateAndRenderTimerObject(distanceMain, "m");
-                calculateAndRenderTimerObject(distanceSec, "s");
-            }
-
-            function calculateAndRenderTimerObject(distance, selectorPrefix) {
                 if (distance < 0) {
-                    document.getElementById(`${selectorPrefix}-days`).innerText = "00";
-                    document.getElementById(`${selectorPrefix}-hours`).innerText = "00";
-                    document.getElementById(`${selectorPrefix}-mins`).innerText = "00";
-                    document.getElementById(`${selectorPrefix}-secs`).innerText = "00";
+                    document.getElementById('days1').textContent = "00";
                     return;
                 }
+                
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById(`${selectorPrefix}-days`).innerText = String(days).padStart(2, "0");
-                document.getElementById(`${selectorPrefix}-hours`).innerText = String(hours).padStart(2, "0");
-                document.getElementById(`${selectorPrefix}-mins`).innerText = String(minutes).padStart(2, "0");
-                document.getElementById(`${selectorPrefix}-secs`).innerText = String(seconds).padStart(2, "0");
-            }
-            setInterval(updateTimerMetrics, 1000);
-            updateTimerMetrics();
-
-
-            /* --- MEDIA PLAYER CORE SUBSYSTEM --- */
-            const tracksManifest = [
-                { title: "Detour (Title Track)", meta: "Official Single Release", duration: "3:14", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", art: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=300&q=80" },
-                { title: "Kinetic Freedom", meta: "Official Single Release", duration: "2:45", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", art: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=300&q=80" },
-                { title: "Unbound Identity", meta: "Official Single Release", duration: "3:02", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", art: "https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=300&q=80" },
-                { title: "Pretour Euphoria", meta: "Pretour Cycle Master", duration: "3:40", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", art: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=300&q=80" },
-                { title: "Midnight Runway", meta: "Pretour Cycle Master", duration: "2:58", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3", art: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=300&q=80" }
-            ];
-
-            let activeTrackIndex = 0;
-            const audioEngine = document.getElementById("audio-engine");
-            const playerBlock = document.getElementById("player-container-block");
-            const cdDisk = document.getElementById("cd-disk-object");
-            const playTriggerBtn = document.getElementById("btn-play-trigger");
-            const trackTitleView = document.getElementById("player-title-target");
-            const trackMetaView = document.getElementById("player-meta-target");
-            const trackArtView = document.getElementById("player-art-target");
-            const timelineFill = document.getElementById("timeline-fill-target");
-            const timelineZone = document.getElementById("timeline-scrub-zone");
-            const currentTimerLabel = document.getElementById("time-current");
-            const totalTimerLabel = document.getElementById("time-total");
-            const volumeSlider = document.getElementById("volume-slider");
-            const playlistTarget = document.getElementById("playlist-inject-target");
-            const eqBars = document.querySelectorAll(".eq-bar");
-
-            let visualizerIntervalId = null;
-
-            // Generate list entities dynamically
-            function initializePlaylistDOMStructure() {
-                playlistTarget.innerHTML = "";
-                tracksManifest.forEach((track, i) => {
-                    const row = document.createElement("div");
-                    row.className = `playlist-item ${i === activeTrackIndex ? 'active' : ''}`;
-                    row.innerHTML = `<span>${i+1}. ${track.title}</span><span>${track.duration}</span>`;
-                    row.addEventListener("click", () => selectTrackAction(i));
-                    playlistTarget.appendChild(row);
-                });
-            }
-
-            function loadTrackData(index) {
-                activeTrackIndex = index;
-                const currentTrack = tracksManifest[index];
-                audioEngine.src = currentTrack.src;
-                trackTitleView.innerText = currentTrack.title;
-                trackMetaView.innerText = currentTrack.meta;
-                trackArtView.src = currentTrack.art;
                 
-                timelineFill.style.width = "0%";
-                currentTimerLabel.innerText = "0:00";
-                totalTimerLabel.innerText = currentTrack.duration;
-
-                const items = document.querySelectorAll(".playlist-item");
-                items.forEach((item, idx) => {
-                    item.classList.toggle("active", idx === index);
-                });
-            }
-
-            function playAudioExecution() {
-                audioEngine.play().then(() => {
-                    playerBlock.classList.add("playing");
-                    cdDisk.style.animationPlayState = "running";
-                    playTriggerBtn.innerHTML = `<i class="fa-solid fa-circle-pause"></i>`;
-                    startEqualizerAnimationLoop();
-                }).catch(err => console.log("User audio engagement safety active"));
-            }
-
-            function pauseAudioExecution() {
-                audioEngine.pause();
-                playerBlock.classList.remove("playing");
-                cdDisk.style.animationPlayState = "paused";
-                playTriggerBtn.innerHTML = `<i class="fa-solid fa-circle-play"></i>`;
-                stopEqualizerAnimationLoop();
-            }
-
-            function toggleAudioPlaybackState() {
-                if (audioEngine.paused) {
-                    playAudioExecution();
-                } else {
-                    pauseAudioExecution();
-                }
-            }
-
-            function selectTrackAction(index) {
-                loadTrackData(index);
-                playAudioExecution();
-            }
-
-            function startEqualizerAnimationLoop() {
-                if (visualizerIntervalId) clearInterval(visualizerIntervalId);
-                visualizerIntervalId = setInterval(() => {
-                    eqBars.forEach(bar => {
-                        const heightValue = Math.floor(Math.random() * 33) + 2;
-                        bar.style.height = `${heightValue}px`;
-                    });
-                }, 90);
-            }
-
-            function stopEqualizerAnimationLoop() {
-                if (visualizerIntervalId) {
-                    clearInterval(visualizerIntervalId);
-                    visualizerIntervalId = null;
-                }
-                eqBars.forEach(bar => bar.style.height = "2px");
-            }
-
-            // Audio Subsystem Event Listeners
-            playTriggerBtn.addEventListener("click", toggleAudioPlaybackState);
-            
-            document.getElementById("btn-next-track").addEventListener("click", () => {
-                let nextIndex = (activeTrackIndex + 1) % tracksManifest.length;
-                selectTrackAction(nextIndex);
-            });
-
-            document.getElementById("btn-prev-track").addEventListener("click", () => {
-                let prevIndex = (activeTrackIndex - 1 + tracksManifest.length) % tracksManifest.length;
-                selectTrackAction(prevIndex);
-            });
-
-            audioEngine.addEventListener("timeupdate", () => {
-                if (!audioEngine.duration) return;
-                const ratio = (audioEngine.currentTime / audioEngine.duration) * 100;
-                timelineFill.style.width = `${ratio}%`;
+                document.getElementById('days1').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours1').textContent = String(hours).padStart(2, '0');
+                document.getElementById('mins1').textContent = String(minutes).padStart(2, '0');
                 
-                let curMins = Math.floor(audioEngine.currentTime / 60);
-                let curSecs = Math.floor(audioEngine.currentTime % 60);
-                currentTimerLabel.innerText = `${curMins}:${String(curSecs).padStart(2, "0")}`;
-            });
-
-            audioEngine.addEventListener("ended", () => {
-                let nextIndex = (activeTrackIndex + 1) % tracksManifest.length;
-                selectTrackAction(nextIndex);
-            });
-
-            timelineZone.addEventListener("click", (e) => {
-                const rect = timelineZone.getBoundingClientRect();
-                const clickPositionRatio = (e.clientX - rect.left) / rect.width;
-                if (audioEngine.duration) {
-                    audioEngine.currentTime = clickPositionRatio * audioEngine.duration;
-                }
-            });
-
-            volumeSlider.addEventListener("input", (e) => {
-                audioEngine.volume = e.target.value;
-            });
-
-            // Structural pipeline boot process execution
-            initializePlaylistDOMStructure();
-            loadTrackData(0);
-
-
-            /* --- GUESTBOOK STORAGE DATA MODULE --- */
-            const guestbookFeedTarget = document.getElementById("guestbook-feed-target");
-            const guestbookForm = document.getElementById("guestbook-form");
-
-            const preloadedMockMessages = [
-                { user: "HEARTBREAKER_99", location: "Berlin", msg: "This independent direction sounds absolutely incredible. Pop emergency!", time: "Just now" },
-                { user: "XCX_STAN", location: "London", msg: "The title track is literally on repeat forever. Kim did exactly what needed to be done.", time: "5m ago" },
-                { user: "BUNHEAD_4LYFE", location: "New York", msg: "Visuals look so rich, cannot wait for the May 29 drop!!!", time: "22m ago" }
-            ];
-
-            function fetchAndRenderGuestbookMessages() {
-                let localData = localStorage.getItem("detour_transmissions");
-                let messages = localData ? JSON.parse(localData) : [...preloadedMockMessages];
-                
-                guestbookFeedTarget.innerHTML = "";
-                messages.forEach(item => {
-                    const el = document.createElement("div");
-                    el.className = "chat-msg";
-                    el.innerHTML = `
-                        <div class="chat-msg-header">
-                            <span class="chat-user">@${item.user} (${item.location})</span>
-                            <span class="chat-time">${item.time}</span>
-                        </div>
-                        <p class="chat-text">${item.msg}</p>
-                    `;
-                    guestbookFeedTarget.appendChild(el);
-                });
+                // Second countdown slightly later
+                document.getElementById('days2').textContent = String(days).padStart(2, '0');
+            }, 30000);
+        }
+        
+        function openLightbox(src) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+        
+        function toggleTheme() {
+            if (document.body.style.filter === 'hue-rotate(330deg)') {
+                document.body.style.filter = '';
+            } else {
+                document.body.style.filter = 'hue-rotate(330deg) saturate(1.4)';
             }
-
-            guestbookForm.addEventListener("submit", (e) => {
+            createSparkles(25);
+        }
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'r' || e.key === 'R') {
+                createSparkles(30);
+            }
+            if (e.key === ' ' && document.activeElement.tagName !== "TEXTAREA") {
                 e.preventDefault();
-                const userField = document.getElementById("gb-user");
-                const locField = document.getElementById("gb-location");
-                const msgField = document.getElementById("gb-msg");
-
-                let localData = localStorage.getItem("detour_transmissions");
-                let messages = localData ? JSON.parse(localData) : [...preloadedMockMessages];
-
-                const newTransmission = {
-                    user: userField.value.trim().toUpperCase(),
-                    location: locField.value.trim(),
-                    msg: msgField.value.trim(),
-                    time: "Just now"
-                };
-
-                messages.unshift(newTransmission); // Inject post at top of storage vector Array
-                localStorage.setItem("detour_transmissions", JSON.stringify(messages));
-                
-                // Clear input strings safely
-                msgField.value = "";
-                
-                fetchAndRenderGuestbookMessages();
-            });
-
-            fetchAndRenderGuestbookMessages();
-
-
-            /* --- LIGHTBOX MEDIA VIEWER ENGINE --- */
-            const lightbox = document.getElementById("lightbox");
-            const lightboxImg = lightbox.querySelector("img");
-            const galleryItems = document.querySelectorAll(".gallery-item");
-
-            galleryItems.forEach(item => {
-                item.addEventListener("click", () => {
-                    const targetSrc = item.querySelector("img").src;
-                    lightboxImg.src = targetSrc;
-                    lightbox.classList.add("active");
-                });
-            });
-
-            document.querySelector(".lightbox-close").addEventListener("click", () => {
-                lightbox.classList.remove("active");
-            });
-            lightbox.addEventListener("click", (e) => {
-                if (e.target === lightbox) lightbox.classList.remove("active");
-            });
-
-
-            /* --- SECRET INTERACTIONS / EASTER EGGS --- */
-            // Keyboard Secret Mode Trigger Sequence
-            let trackKeys = "";
-            document.addEventListener("keydown", (e) => {
-                trackKeys += e.key.toLowerCase();
-                if (trackKeys.slice(-6) === "detour") {
-                    triggerSecretDetourMode();
-                }
-            });
-
-            function triggerSecretDetourMode() {
-                // Flash hue modification values over system UI components
-                document.documentElement.style.setProperty('--pink-glow', '#00f0ff');
-                document.documentElement.style.setProperty('--cyber-neon', '#ff007f');
-                alert("✨ DETOUR SYSTEM MODE UNLOCKED // RADICAL AUDIO MATRIX REVERSE ACTIVE ✨");
-                trackKeys = "";
+                togglePlay();
             }
-
-            // Clickable floating background variables adjustments
-            const backgroundStars = document.querySelectorAll(".sticker");
-            backgroundStars.forEach(star => {
-                star.addEventListener("click", () => {
-                    document.body.style.backgroundColor = (document.body.style.backgroundColor === "rgb(26, 0, 21)") ? "#05000a" : "#1a0015";
-                });
-            });
         });
+        
+        // Initialize everything
+        window.onload = function() {
+            renderPlaylist();
+            loadWall();
+            startCountdown();
+            
+            // GSAP animations
+            gsap.from(".hero h1", { y: 80, opacity: 0, duration: 1.4, ease: "power3.out" });
+            
+            // Random sparkles
+            setInterval(() => {
+                if (Math.random() > 0.7) createSparkles(5);
+            }, 2200);
+            
+            // Fake progress animation
+            setInterval(() => {
+                const prog = document.getElementById('progress');
+                let w = parseFloat(prog.style.width) || 45;
+                w += (Math.random() * 8);
+                if (w > 98) w = 12;
+                prog.style.width = w + '%';
+            }, 1800);
+            
+            console.log('%c💖 Welcome to the official Detour microsite experience 💖', 'color:#ff69b4;font-size:14px;font-family:monospace');
+        };
     </script>
 </body>
 </html>
+```
