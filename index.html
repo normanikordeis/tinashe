@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Detour</title>
+  <title>Detour | Automatic Audio Experience</title>
   <!-- Google Fonts + Font Awesome (lightweight CDN) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,200;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -12,7 +12,6 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      /* 🧹 CUSTOM CURSOR REMOVED — default system cursor is restored */
       cursor: auto;
     }
 
@@ -276,11 +275,15 @@
     .polaroid-card, .glass-card, .cute-radio {
       cursor: default;
     }
+    
+    /* hidden background audio element */
+    #backgroundAudio {
+      display: none;
+    }
   </style>
 </head>
 <body>
 
-<!-- NO .custom-cursor DIV REMOVED — FULLY DELETED -->
 <div class="loader" id="loader">
   <h1>DETOUR</h1>
   <div style="margin-top: 20px; font-size: 1.2rem;">loading...</div>
@@ -405,11 +408,58 @@
   </footer>
 </div>
 
+<!-- Hidden audio element for automatic background track -->
+<audio id="backgroundAudio" loop preload="auto">
+  <source src="https://audio.jukehost.co.uk/019e6083-758e-704a-91d1-22a6d3d66053" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
   // --------------------------------------------------------------
-  // LOADER + PAGE TRANSITION + PARTICLES (NO CURSOR REFERENCES)
+  // LOADER + PAGE TRANSITION + PARTICLES + AUTO BACKGROUND AUDIO
   // --------------------------------------------------------------
+  
+  // ---- BACKGROUND AUTO-PLAY (Only stops when radio takes over) ----
+  const bgAudio = document.getElementById('backgroundAudio');
+  let bgAudioPlaying = false;
+  let radioHasControl = false; // flag to know if user clicked radio to play a track
+  
+  // Attempt to play background audio automatically on page load (respects browser policies)
+  function attemptAutoPlayBackground() {
+    if(!bgAudio) return;
+    bgAudio.volume = 0.5;
+    bgAudio.play().then(() => {
+      console.log("Background audio playing automatically");
+      bgAudioPlaying = true;
+      radioHasControl = false; // radio hasn't taken over yet
+      // Ensure album art disc doesn't spin for background track (keep static)
+    }).catch(err => {
+      console.log("Auto-play prevented by browser policy:", err);
+      // Some browsers require user interaction first. Add one-time click handler to play.
+      const playOnInteraction = () => {
+        bgAudio.play().then(() => {
+          bgAudioPlaying = true;
+          document.removeEventListener('click', playOnInteraction);
+          document.removeEventListener('touchstart', playOnInteraction);
+        }).catch(e => console.log("Still blocked"));
+      };
+      document.addEventListener('click', playOnInteraction);
+      document.addEventListener('touchstart', playOnInteraction);
+    });
+  }
+  
+  // Function to stop background audio (when radio starts playing)
+  function stopBackgroundAudio() {
+    if(bgAudio && !bgAudio.paused) {
+      bgAudio.pause();
+      bgAudioPlaying = false;
+      console.log("Background audio stopped because radio player took over.");
+    }
+  }
+  
+  // Function to start background audio again (if radio stops and no track playing? not needed per spec, but kept as utility)
+  
   window.addEventListener('load', () => {
     setTimeout(() => {
       const loader = document.getElementById('loader');
@@ -418,6 +468,8 @@
       document.body.style.overflow = 'auto';
       document.getElementById('pageTransition').style.transform = 'scaleY(0)';
     }, 1400);
+    // Start background audio after loader
+    attemptAutoPlayBackground();
   });
 
   // Particles background
@@ -459,7 +511,7 @@
   }
   setInterval(updateCountdowns,1000); updateCountdowns();
   
-  // ========== 🎵 CUTE RADIO WITH YOUTUBE IDs (functional, no errors) ==========
+  // ========== 🎵 CUTE RADIO WITH YOUTUBE IDs (functional, takes over background audio) ==========
   const TRACK_LIST = [
     { name: "Polo", id: "NuAU3sbzbBo" },
     { name: "Freak It", id: "wl2ig2D61mc" },
@@ -505,6 +557,7 @@
       document.getElementById('playPauseBtnRadio').innerHTML = '<i class="fas fa-play"></i> PLAY';
       stopProgressUpdates();
       animateWave(false);
+      if(document.getElementById('albumArtDisc')) document.getElementById('albumArtDisc').style.animation = '';
     }
   }
   function startProgressUpdates() {
@@ -528,6 +581,11 @@
     waveSpans.forEach(s => s.style.animationPlayState = active ? 'running' : 'paused');
   }
   function playTrackRadio(index) {
+    // STOP BACKGROUND AUDIO FOREVER (once radio is used, background stops)
+    if(bgAudio && !bgAudio.paused) {
+      stopBackgroundAudio();
+      radioHasControl = true;
+    }
     if(!ytPlayer) initYouTubePlayer();
     setTimeout(() => {
       if(!ytPlayer) return;
@@ -571,6 +629,9 @@
   function prevTrackRadio() { playTrackRadio((currentIndex-1+TRACK_LIST.length)%TRACK_LIST.length); }
   function togglePlayPauseRadio() {
     if(!ytPlayer) { initYouTubePlayer(); setTimeout(()=> togglePlayPauseRadio(), 200); return; }
+    // If radio hasn't taken control yet but user clicks play/pause, we stop background as well.
+    if(!radioHasControl && bgAudio && !bgAudio.paused) stopBackgroundAudio();
+    radioHasControl = true;
     if(isPlayingFlag) { ytPlayer.pauseVideo(); isPlayingFlag=false; document.getElementById('playPauseBtnRadio').innerHTML='<i class="fas fa-play"></i> PLAY'; animateWave(false); stopProgressUpdates(); if(document.getElementById('albumArtDisc')) document.getElementById('albumArtDisc').style.animation = ''; }
     else { ytPlayer.playVideo(); isPlayingFlag=true; document.getElementById('playPauseBtnRadio').innerHTML='<i class="fas fa-pause"></i> PAUSE'; animateWave(true); startProgressUpdates(); if(document.getElementById('albumArtDisc')) document.getElementById('albumArtDisc').style.animation = 'spinVinyl 2s linear infinite'; }
   }
