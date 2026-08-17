@@ -1,1 +1,658 @@
-check back soon
+/* ============================================================
+   THE VAULT — design tokens
+   bg:      #0a070f  (near-black, violet undertone)
+   panel:   #15101d
+   panel-2: #1c1626
+   line:    #2c2436
+   accent:  #ff2f92  (hot magenta — "record" energy)
+   accent-2:#39f2c6  (cold teal — "signal" / vault glow)
+   text:    #f3eef7
+   muted:   #8d84a0
+   display: 'Unbounded'  |  body: 'Inter'  |  mono: 'JetBrains Mono'
+   ============================================================ */
+
+:root{
+  --bg:#0a070f;
+  --panel:#15101d;
+  --panel-2:#1c1626;
+  --line:#2c2436;
+  --accent:#ff2f92;
+  --accent-2:#39f2c6;
+  --text:#f3eef7;
+  --muted:#8d84a0;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+
+body{
+  background:
+    radial-gradient(circle at 15% 0%, rgba(255,47,146,0.10), transparent 45%),
+    radial-gradient(circle at 90% 20%, rgba(57,242,198,0.08), transparent 40%),
+    var(--bg);
+  color:var(--text);
+  font-family:'Inter', sans-serif;
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+
+/* ---------- ambient texture layers ---------- */
+.noise-overlay{
+  position:fixed; inset:0; pointer-events:none; z-index:2; opacity:.035; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.scanline{
+  position:fixed; inset:0; pointer-events:none; z-index:3; opacity:.06;
+  background:repeating-linear-gradient(to bottom, #fff 0px, #fff 1px, transparent 1px, transparent 3px);
+}
+
+/* ---------- layout shell ---------- */
+.vault{
+  max-width:920px;
+  margin:0 auto;
+  padding:56px 24px 40px;
+  position:relative;
+  z-index:1;
+}
+
+/* ---------- header ---------- */
+.vault-header{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.rec-dot{
+  display:inline-flex; align-items:center; gap:7px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px; letter-spacing:.18em;
+  color:var(--accent);
+  border:1px solid rgba(255,47,146,.35);
+  padding:5px 12px;
+  border-radius:100px;
+  margin-bottom:22px;
+  background:rgba(255,47,146,.06);
+}
+.rec-dot span{
+  width:7px; height:7px; border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 8px var(--accent);
+  animation:pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.25;} }
+
+.vault-title{
+  font-family:'Unbounded', sans-serif;
+  font-weight:900;
+  font-size:clamp(42px, 9vw, 84px);
+  line-height:.95;
+  margin:0;
+  letter-spacing:-.01em;
+  position:relative;
+}
+
+.glitch{
+  position:relative;
+  display:inline-block;
+  background:linear-gradient(180deg, #fff, #d9cfe8 60%, var(--accent-2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.glitch::before, .glitch::after{
+  content:attr(data-text);
+  position:absolute; left:0; top:0;
+  width:100%; height:100%;
+  background:linear-gradient(180deg,#fff,#d9cfe8 60%,var(--accent-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  opacity:.6;
+}
+.glitch::before{ transform:translate(2px,0); color:var(--accent); -webkit-text-fill-color:var(--accent); animation:glitchA 5s infinite; }
+.glitch::after{ transform:translate(-2px,0); color:var(--accent-2); -webkit-text-fill-color:var(--accent-2); animation:glitchB 6s infinite; }
+@keyframes glitchA{ 0%,92%,100%{opacity:0;transform:translate(0,0);} 93%{opacity:.7;transform:translate(3px,-1px);} 95%{opacity:.5;transform:translate(-2px,1px);} }
+@keyframes glitchB{ 0%,90%,100%{opacity:0;transform:translate(0,0);} 91%{opacity:.6;transform:translate(-3px,1px);} 94%{opacity:.4;transform:translate(2px,-1px);} }
+
+.vault-sub{
+  font-family:'JetBrains Mono', monospace;
+  font-size:12.5px;
+  letter-spacing:.14em;
+  color:var(--muted);
+  margin:16px 0 0;
+  text-transform:uppercase;
+}
+.vault-sub .era{ color:var(--accent-2); }
+
+/* ---------- player ---------- */
+.player{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:28px;
+  background:linear-gradient(160deg, var(--panel), var(--panel-2));
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:24px;
+  position:relative;
+}
+.player::before{
+  content:'';
+  position:absolute; inset:0;
+  border-radius:20px;
+  padding:1px;
+  background:linear-gradient(135deg, rgba(255,47,146,.35), transparent 30%, rgba(57,242,198,.25));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  pointer-events:none;
+}
+
+.art-column{ display:flex; flex-direction:column; gap:12px; }
+
+.art-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:14px;
+  overflow:hidden;
+  background:#0e0a15;
+  border:1px solid var(--line);
+}
+.cover-img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  opacity:0; transition:opacity .5s ease;
+}
+.cover-img.show{ opacity:1; }
+.art-fallback{
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+  font-family:'JetBrains Mono', monospace;
+  color:var(--muted);
+}
+.art-fallback span{ font-size:13px; letter-spacing:.15em; color:var(--accent-2); }
+.art-fallback small{ font-size:10.5px; opacity:.7; }
+.art-grain{
+  position:absolute; inset:0; pointer-events:none; opacity:.12; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.art-tag{
+  position:absolute; bottom:10px; left:10px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:9.5px; letter-spacing:.12em;
+  background:rgba(10,7,15,.7);
+  border:1px solid rgba(255,47,146,.4);
+  color:var(--accent);
+  padding:3px 8px;
+  border-radius:100px;
+  backdrop-filter:blur(4px);
+}
+
+.thumbstrip{
+  display:flex; gap:8px; flex-wrap:wrap;
+}
+.thumbstrip img{
+  width:44px; height:44px; object-fit:cover; border-radius:8px;
+  border:1px solid var(--line); cursor:pointer; opacity:.55;
+  transition:opacity .2s, border-color .2s, transform .2s;
+}
+.thumbstrip img:hover{ opacity:.9; transform:translateY(-2px); }
+.thumbstrip img.active{ opacity:1; border-color:var(--accent-2); }
+
+.deck-column{ display:flex; flex-direction:column; justify-content:center; gap:20px; min-width:0; }
+
+.now-playing{ min-width:0; }
+.np-label{
+  font-family:'JetBrains Mono', monospace;
+  font-size:10.5px; letter-spacing:.2em; color:var(--accent-2);
+}
+.now-playing h2{
+  font-family:'Unbounded', sans-serif;
+  font-size:clamp(22px, 3.4vw, 30px);
+  margin:8px 0 4px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+#trackMeta{
+  margin:0; font-family:'JetBrains Mono', monospace;
+  font-size:11.5px; color:var(--muted); letter-spacing:.08em;
+}
+
+.progress-wrap{ display:flex; align-items:center; gap:10px; }
+.time{ font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--muted); width:36px; }
+#curTime{ text-align:right; }
+
+input[type=range].seek{
+  -webkit-appearance:none; appearance:none;
+  flex:1; height:4px; border-radius:4px;
+  background:linear-gradient(90deg, var(--accent) var(--_p,0%), var(--line) var(--_p,0%));
+  outline:none; cursor:pointer;
+}
+input[type=range].seek::-webkit-slider-thumb{
+  -webkit-appearance:none; width:13px; height:13px; border-radius:50%;
+  background:var(--text); border:2px solid var(--accent);
+  box-shadow:0 0 6px rgba(255,47,146,.7);
+  cursor:pointer; margin-top:-1px;
+}
+input[type=range].seek::-moz-range-thumb{
+  width:13px; height:13px; border-radius:50%;
+  background:var(--text); border:2px solid var(--accent); cursor:pointer;
+}
+
+.controls{ display:flex; align-items:center; justify-content:center; gap:14px; }
+.ctrl-btn{
+  background:transparent; border:none; color:var(--text);
+  cursor:pointer; padding:8px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .2s, color .2s, transform .15s;
+}
+.ctrl-btn svg{ width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.ctrl-btn.small svg{ width:16px; height:16px; }
+.ctrl-btn:hover{ color:var(--accent-2); transform:translateY(-1px); }
+.ctrl-btn.small.active{ color:var(--accent); }
+.ctrl-btn.play{
+  background:linear-gradient(150deg, var(--accent), #b0206a);
+  width:54px; height:54px;
+  box-shadow:0 6px 20px rgba(255,47,146,.35);
+}
+.ctrl-btn.play svg{ width:22px; height:22px; fill:currentColor; }
+.ctrl-btn.play:hover{ color:var(--text); transform:translateY(-1px) scale(1.04); }
+
+.volume-wrap{ display:flex; align-items:center; gap:10px; max-width:180px; }
+.vol-icon{ width:16px; height:16px; fill:none; stroke:var(--muted); stroke-width:2; flex-shrink:0; }
+input[type=range].volume{ height:3px; }
+
+/* ---------- tracklist ---------- */
+.tracklist{ margin-top:36px; }
+
+.side-header{
+  display:flex; align-items:baseline; gap:12px;
+  margin:32px 0 12px;
+  font-family:'Unbounded', sans-serif;
+}
+.side-header:first-child{ margin-top:0; }
+.side-tag{
+  font-size:11px; letter-spacing:.16em;
+  color:var(--accent);
+  border:1px solid rgba(255,47,146,.35);
+  padding:4px 10px; border-radius:100px;
+  font-family:'JetBrains Mono', monospace;
+}
+.side-name{ font-size:15px; color:var(--muted); font-weight:600; letter-spacing:.02em; }
+.side-line{ flex:1; height:1px; background:var(--line); }
+
+.track-row{
+  display:grid;
+  grid-template-columns:34px 1fr auto;
+  align-items:center;
+  gap:14px;
+  padding:12px 14px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:background .18s;
+  border:1px solid transparent;
+}
+.track-row:hover{ background:rgba(255,255,255,.03); border-color:var(--line); }
+.track-row.active{ background:rgba(255,47,146,.08); border-color:rgba(255,47,146,.35); }
+
+.track-num{
+  font-family:'JetBrains Mono', monospace;
+  font-size:12px; color:var(--muted); text-align:center;
+}
+.track-row.active .track-num{ color:var(--accent); }
+.track-eq{ display:none; gap:2px; align-items:flex-end; height:14px; margin:0 auto; }
+.track-row.active .track-eq{ display:flex; }
+.track-row.active .track-num{ display:none; }
+.track-eq span{ width:2.5px; background:var(--accent-2); animation:eq 0.9s ease-in-out infinite; }
+.track-eq span:nth-child(1){ height:40%; animation-delay:0s; }
+.track-eq span:nth-child(2){ height:100%; animation-delay:.2s; }
+.track-eq span:nth-child(3){ height:65%; animation-delay:.4s; }
+@keyframes eq{ 0%,100%{ transform:scaleY(.4);} 50%{ transform:scaleY(1);} }
+
+.track-info{ min-width:0; }
+.track-name{
+  font-size:14.5px; font-weight:600; color:var(--text);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.track-file{
+  font-family:'JetBrains Mono', monospace; font-size:10.5px;
+  color:var(--muted); opacity:.7;
+}
+.track-len{
+  font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--muted);
+}
+
+/* ---------- footer ---------- */
+.vault-footer{
+  margin-top:44px; text-align:center;
+  font-family:'JetBrains Mono', monospace;
+  font-size:10.5px; color:var(--muted); opacity:.6; line-height:1.7;
+}
+.vault-footer code{ color:var(--accent-2); }
+
+/* ---------- responsive ---------- */
+@media (max-width:640px){
+  .player{ grid-template-columns:1fr; }
+  .art-column{ max-width:260px; margin:0 auto; }
+  .controls{ gap:10px; }
+}
+
+/* ============================================================
+   THE VAULT — player logic
+   HOW TO ADD YOUR OWN FILES:
+   1. Drop audio files into /audio  — name them to match the
+      "file" value below (e.g. audio/01-pressure.mp3)
+   2. Drop photos into /images — name them 1.jpg, 2.jpg, 3.jpg...
+      (or edit the IMAGES array to match whatever you use)
+   3. Push to GitHub, connect the repo in Netlify, done.
+   ============================================================ */
+
+// ---- your photo pool (cycles across the cover frame + thumbstrip) ----
+const IMAGES = [
+  "images/1.jpg",
+  "images/2.jpg",
+  "images/3.jpg",
+  "images/4.jpg",
+  "images/5.jpg",
+  "images/6.jpg",
+  "images/7.jpg",
+  "images/8.jpg",
+];
+
+// ---- playlist, grouped into "sides" (categorized order) ----
+const SIDES = [
+  {
+    tag: "SIDE A",
+    name: "PRESSURE",
+    tracks: [
+      { title: "Pressure",     file: "audio/01-pressure.mp3" },
+      { title: "Fashion Nova", file: "audio/02-fashion-nova.mp3" },
+      { title: "Wussaname",    file: "audio/03-wussaname.mp3" },
+      { title: "Pay Me",       file: "audio/04-pay-me.mp3" },
+      { title: "Lap Dance",    file: "audio/05-lap-dance.mp3" },
+      { title: "Enough",       file: "audio/06-enough.mp3" },
+    ],
+  },
+  {
+    tag: "SIDE B",
+    name: "PRISONER",
+    tracks: [
+      { title: "Hopeless",        file: "audio/07-hopeless.mp3" },
+      { title: "Prisoner",        file: "audio/08-prisoner.mp3" },
+      { title: "Secret",          file: "audio/09-secret.mp3" },
+      { title: "Denial",          file: "audio/10-denial.mp3" },
+      { title: "Rain",            file: "audio/11-rain.mp3" },
+      { title: "End of the Night",file: "audio/12-end-of-the-night.mp3" },
+    ],
+  },
+  {
+    tag: "SIDE C",
+    name: "AFTER HOURS",
+    tracks: [
+      { title: "Sweet Satisfaction (Full Version)", file: "audio/13-sweet-satisfaction.mp3" },
+      { title: "SHY GUY (Full Version)",             file: "audio/14-shy-guy.mp3" },
+      { title: "Keep Me Up",                         file: "audio/15-keep-me-up.mp3" },
+      { title: "They're On (Take It)",                file: "audio/16-theyre-on-take-it.mp3" },
+    ],
+  },
+  {
+    tag: "BONUS",
+    name: "VAULT SCRAPS",
+    tracks: [
+      { title: "Cereal (2 Bowls)", file: "audio/17-cereal-2-bowls.mp3" },
+      { title: "Xylophone",        file: "audio/18-xylophone.mp3" },
+    ],
+  },
+];
+
+// flatten into a single ordered playlist, tagging each track with its side
+const PLAYLIST = SIDES.flatMap((side, sideIdx) =>
+  side.tracks.map((t, i) => ({
+    ...t,
+    sideTag: side.tag,
+    sideName: side.name,
+    globalIndex: null, // filled below
+  }))
+);
+PLAYLIST.forEach((t, i) => (t.globalIndex = i));
+
+// ---------------- state ----------------
+let currentIndex = 0;
+let shuffleOn = false;
+let repeatOn = false;
+let shuffleOrder = [];
+let shufflePos = 0;
+
+// ---------------- DOM refs ----------------
+const audio = document.getElementById("audio");
+const playBtn = document.getElementById("playBtn");
+const playIcon = document.getElementById("playIcon");
+const pauseIcon = document.getElementById("pauseIcon");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const shuffleBtn = document.getElementById("shuffleBtn");
+const repeatBtn = document.getElementById("repeatBtn");
+const seek = document.getElementById("seek");
+const curTime = document.getElementById("curTime");
+const durTime = document.getElementById("durTime");
+const volume = document.getElementById("volume");
+const trackTitle = document.getElementById("trackTitle");
+const trackMeta = document.getElementById("trackMeta");
+const tracklistEl = document.getElementById("tracklist");
+const coverImg = document.getElementById("coverImg");
+const artFallback = document.getElementById("artFallback");
+const thumbstrip = document.getElementById("thumbstrip");
+
+// ---------------- build tracklist UI ----------------
+function buildTracklist() {
+  tracklistEl.innerHTML = "";
+  SIDES.forEach((side) => {
+    const header = document.createElement("div");
+    header.className = "side-header";
+    header.innerHTML = `
+      <span class="side-tag">${side.tag}</span>
+      <span class="side-name">${side.name}</span>
+      <span class="side-line"></span>
+    `;
+    tracklistEl.appendChild(header);
+
+    side.tracks.forEach((t) => {
+      const row = document.createElement("div");
+      row.className = "track-row";
+      row.dataset.index = t.globalIndex;
+      row.innerHTML = `
+        <div class="track-num">${String(t.globalIndex + 1).padStart(2, "0")}</div>
+        <div class="track-eq"><span></span><span></span><span></span></div>
+        <div class="track-info">
+          <div class="track-name">${t.title}</div>
+          <div class="track-file">${t.file}</div>
+        </div>
+        <div class="track-len">—:—</div>
+      `;
+      row.addEventListener("click", () => {
+        currentIndex = t.globalIndex;
+        loadTrack(currentIndex, true);
+      });
+      tracklistEl.appendChild(row);
+    });
+  });
+}
+
+function refreshActiveRow() {
+  document.querySelectorAll(".track-row").forEach((row) => {
+    row.classList.toggle("active", Number(row.dataset.index) === currentIndex);
+  });
+}
+
+// ---------------- build thumbstrip ----------------
+function buildThumbs() {
+  thumbstrip.innerHTML = "";
+  IMAGES.forEach((src, i) => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "";
+    img.loading = "lazy";
+    img.addEventListener("click", () => setCover(i));
+    img.addEventListener("error", () => (img.style.display = "none"));
+    thumbstrip.appendChild(img);
+  });
+}
+
+function setCover(index) {
+  const src = IMAGES[index % IMAGES.length];
+  coverImg.classList.remove("show");
+  const tester = new Image();
+  tester.onload = () => {
+    coverImg.src = src;
+    coverImg.classList.add("show");
+    artFallback.style.display = "none";
+  };
+  tester.onerror = () => {
+    artFallback.style.display = "flex";
+    coverImg.classList.remove("show");
+  };
+  tester.src = src;
+
+  document.querySelectorAll(".thumbstrip img").forEach((img, i) => {
+    img.classList.toggle("active", i === index % IMAGES.length);
+  });
+}
+
+// ---------------- playback ----------------
+function loadTrack(index, autoplay) {
+  const t = PLAYLIST[index];
+  audio.src = t.file;
+  trackTitle.textContent = t.title;
+  trackMeta.textContent = `${t.sideTag} — ${t.sideName} · TRACK ${String(index + 1).padStart(2, "0")}/${PLAYLIST.length}`;
+  refreshActiveRow();
+  setCover(index % IMAGES.length);
+  seek.style.setProperty("--_p", "0%");
+  curTime.textContent = "0:00";
+  durTime.textContent = "0:00";
+
+  if (autoplay) {
+    audio.play().catch(() => {
+      /* file likely missing until user adds their own audio */
+    });
+  }
+}
+
+function togglePlay() {
+  if (audio.paused) {
+    audio.play().catch(() => {});
+  } else {
+    audio.pause();
+  }
+}
+
+audio.addEventListener("play", () => {
+  playIcon.style.display = "none";
+  pauseIcon.style.display = "block";
+});
+audio.addEventListener("pause", () => {
+  playIcon.style.display = "block";
+  pauseIcon.style.display = "none";
+});
+
+function fmtTime(s) {
+  if (!isFinite(s)) return "0:00";
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60).toString().padStart(2, "0");
+  return `${m}:${sec}`;
+}
+
+audio.addEventListener("timeupdate", () => {
+  if (audio.duration) {
+    const pct = (audio.currentTime / audio.duration) * 100;
+    seek.value = pct;
+    seek.style.setProperty("--_p", pct + "%");
+    curTime.textContent = fmtTime(audio.currentTime);
+  }
+});
+audio.addEventListener("loadedmetadata", () => {
+  durTime.textContent = fmtTime(audio.duration);
+  const row = document.querySelector(`.track-row[data-index="${currentIndex}"] .track-len`);
+  if (row) row.textContent = fmtTime(audio.duration);
+});
+audio.addEventListener("ended", () => {
+  if (repeatOn) {
+    audio.currentTime = 0;
+    audio.play();
+  } else {
+    goNext(true);
+  }
+});
+
+seek.addEventListener("input", () => {
+  if (audio.duration) {
+    audio.currentTime = (seek.value / 100) * audio.duration;
+  }
+});
+volume.addEventListener("input", () => {
+  audio.volume = volume.value;
+});
+audio.volume = volume.value;
+
+// ---------------- shuffle order ----------------
+function buildShuffleOrder() {
+  shuffleOrder = PLAYLIST.map((_, i) => i);
+  for (let i = shuffleOrder.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffleOrder[i], shuffleOrder[j]] = [shuffleOrder[j], shuffleOrder[i]];
+  }
+  shufflePos = shuffleOrder.indexOf(currentIndex);
+}
+
+function goNext(auto) {
+  if (shuffleOn) {
+    shufflePos = (shufflePos + 1) % shuffleOrder.length;
+    currentIndex = shuffleOrder[shufflePos];
+  } else {
+    currentIndex = (currentIndex + 1) % PLAYLIST.length;
+  }
+  loadTrack(currentIndex, true);
+}
+function goPrev() {
+  if (shuffleOn) {
+    shufflePos = (shufflePos - 1 + shuffleOrder.length) % shuffleOrder.length;
+    currentIndex = shuffleOrder[shufflePos];
+  } else {
+    currentIndex = (currentIndex - 1 + PLAYLIST.length) % PLAYLIST.length;
+  }
+  loadTrack(currentIndex, true);
+}
+
+// ---------------- controls ----------------
+playBtn.addEventListener("click", togglePlay);
+nextBtn.addEventListener("click", () => goNext(false));
+prevBtn.addEventListener("click", goPrev);
+
+shuffleBtn.addEventListener("click", () => {
+  shuffleOn = !shuffleOn;
+  shuffleBtn.classList.toggle("active", shuffleOn);
+  if (shuffleOn) buildShuffleOrder();
+});
+repeatBtn.addEventListener("click", () => {
+  repeatOn = !repeatOn;
+  repeatBtn.classList.toggle("active", repeatOn);
+});
+
+// keyboard: space = play/pause
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space" && e.target === document.body) {
+    e.preventDefault();
+    togglePlay();
+  }
+});
+
+// ---------------- init ----------------
+buildTracklist();
+buildThumbs();
+// randomize starting order right away since the vault plays "in random order"
+buildShuffleOrder();
+shuffleOn = true;
+shuffleBtn.classList.add("active");
+currentIndex = shuffleOrder[0];
+loadTrack(currentIndex, false);
